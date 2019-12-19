@@ -103,14 +103,19 @@ By default, the "page" variable is also added for the link to the first page. To
 disable the generation of `?page=1` in the url, simply set the `omitFirstPage` option
 to `true` when calling the `pagerfanta` twig function:
 
-```
-{{ pagerfanta(my_pager, 'default', { 'omitFirstPage': true}) }}
+```twig
+<div class="pagerfanta">
+    {{ pagerfanta(my_pager, 'default', { 'omitFirstPage': true}) }}
+</div>
 ```
 
-You can omit template parameter to make function call shorter, default template will be used:
+You can omit the template parameter to make function call shorter, in this case the
+default template will be used:
 
-```
-{{ pagerfanta(my_pager, { 'omitFirstPage': true }) }}
+```twig
+<div class="pagerfanta">
+    {{ pagerfanta(my_pager, { 'omitFirstPage': true }) }}
+</div>
 ```
 
 If you have multiple pagers on one page, you'll need to change the name of the `page` parameter.
@@ -126,7 +131,7 @@ Note the square brackets around `page_other`; this won't work without them.
 
 ### Twitter Bootstrap
 
-The bundle also has a Twitter Bootstrap view.
+The bundle has support for views using Twitter Bootstrap.
 
 For Bootstrap 2:
 
@@ -153,6 +158,16 @@ For Bootstrap 4:
 </div>
 ```
 
+### Semantic UI
+
+The bundle also has a Semantic UI view.
+
+```twig
+<div class="pagerfanta">
+    {{ pagerfanta(my_pager, 'semantic_ui') }}
+</div>
+```
+
 ### Custom template
 
 If you want to use a custom template, add another argument:
@@ -166,7 +181,7 @@ If you want to use a custom template, add another argument:
 With options:
 
 ```twig
-{{ pagerfanta(my_pager, 'default', { 'proximity': 2}) }}
+{{ pagerfanta(my_pager, 'default', {'proximity': 2}) }}
 ```
 
 See the [Pagerfanta documentation](https://github.com/whiteoctober/Pagerfanta) for the list of possible parameters.
@@ -187,36 +202,57 @@ The items can be retrieved using `currentPageResults`. For example:
 Translate in your language
 --------------------------
 
-The bundle also offers two views to translate the *default* and the
-*twitter bootstrap* views.
+Translated views are available for all supported views by adding `_translated`
+to the name.
 
 ```twig
 {{ pagerfanta(my_pager, 'default_translated') }}
 
 {{ pagerfanta(my_pager, 'twitter_bootstrap_translated') }}
+
+{{ pagerfanta(my_pager, 'semantic_ui_translated') }}
 ```
 
 Adding Views
 ------------
 
-The views are added to the container with the *pagerfanta.view* tag:
+Views are added to the service container with the `pagerfanta.view` tag. You should also
+optionally specify an alias, which is used as the view's name with the Twig function,
+but if one is not given then the service ID is used instead.
 
 XML
 
 ```xml
-<service id="pagerfanta.view.default" class="Pagerfanta\View\DefaultView" public="false">
-    <tag name="pagerfanta.view" alias="default" />
-</service>
+<container>
+    <!-- Use in Twig by calling {{ pagerfanta(my_pager, 'default') }} -->
+    <service id="pagerfanta.view.default" class="Pagerfanta\View\DefaultView" public="false">
+        <tag name="pagerfanta.view" alias="default" />
+    </service>
+
+    <!-- Use in Twig by calling {{ pagerfanta(my_pager, 'pagerfanta.view.semantic_ui') }} -->
+    <service id="pagerfanta.view.semantic_ui" class="Pagerfanta\View\SemanticUiView" public="false">
+        <tag name="pagerfanta.view" />
+    </service>
+</container>
 ```
 
 YAML
 
-```yml
+```yaml
 services:
+    # Use in Twig by calling {{ pagerfanta(my_pager, 'default') }}
     pagerfanta.view.default:
         class: Pagerfanta\View\DefaultView
         public: false
-        tags: [{ name: pagerfanta.view, alias: default }]
+        tags:
+            - { name: pagerfanta.view, alias: default }
+
+    # Use in Twig by calling {{ pagerfanta(my_pager, 'pagerfanta.view.semantic_ui') }}
+    pagerfanta.view.semantic_ui:
+        class: Pagerfanta\View\SemanticUiView
+        public: false
+        tags:
+            - { name: pagerfanta.view }
 ```
 
 Reusing Options
@@ -227,9 +263,9 @@ want to write them all the times you render a view, or you can have different
 configurations for a view and you want to save them in a place to be able to
 change them easily.
 
-For this you have to define views with the special view *OptionableView*:
+For this you have to define views with the special *OptionableView*:
 
-```yml
+```yaml
 services:
     pagerfanta.view.my_view_1:
         class: Pagerfanta\View\OptionableView
@@ -237,14 +273,17 @@ services:
             - @pagerfanta.view.default
             - { proximity: 2, prev_message: Anterior, next_message: Siguiente }
         public: false
-        tags: [{ name: pagerfanta.view, alias: my_view_1 }]
+        tags:
+            - { name: pagerfanta.view, alias: my_view_1 }
+
     pagerfanta.view.my_view_2:
         class: Pagerfanta\View\OptionableView
         arguments:
             - @pagerfanta.view.default
             - { proximity: 5 }
         public: false
-        tags: [{ name: pagerfanta.view, alias: my_view_2 }]
+        tags:
+            - { name: pagerfanta.view, alias: my_view_2 }
 ```
 
 And using then:
@@ -272,7 +311,9 @@ Configuration
 It's possible to configure the default view for all rendering in your
 configuration file:
 
-```yml
+```yaml
+// app/config/config.yml for Symfony Standard applications
+// config/packages/babdev_pagerfanta.yaml for Symfony Flex applications
 babdev_pagerfanta:
     default_view: my_view_1
 ```
@@ -282,12 +323,14 @@ Making bad page numbers return a HTTP 500
 
 Right now when the page is out of range or not a number,
 the server returns a 404 response by default.
-You can set the following parameters to different than default value
-`to_http_not_found` (ie. null) to show a 500 exception when the
-requested page is not valid instead.
 
-```yml
-// app/config/config.yml
+You can set the following parameters to something other than the
+default value `to_http_not_found` (ie. null) to show a 500 error
+when the requested page is not valid instead.
+
+```yaml
+// app/config/config.yml for Symfony Standard applications
+// config/packages/babdev_pagerfanta.yaml for Symfony Flex applications
 babdev_pagerfanta:
     exceptions_strategy:
         out_of_range_page:        ~
