@@ -2,39 +2,42 @@
 
 namespace BabDev\PagerfantaBundle\Tests\View;
 
-class TwitterBootstrapTranslatedViewTest extends TranslatedViewTest
+use BabDev\PagerfantaBundle\View\TwitterBootstrapTranslatedView;
+use Pagerfanta\View\TwitterBootstrapView;
+
+class TwitterBootstrapTranslatedViewTest extends TranslatedViewTestCase
 {
-    protected function viewClass()
+    protected function decoratedViewClass(): string
     {
-        return 'Pagerfanta\View\TwitterBootstrapView';
+        return TwitterBootstrapView::class;
     }
 
-    protected function translatedViewClass()
+    protected function translatedViewClass(): string
     {
-        return 'BabDev\PagerfantaBundle\View\TwitterBootstrapTranslatedView';
+        return TwitterBootstrapTranslatedView::class;
     }
 
-    protected function previousMessageOption()
+    protected function previousMessageOption(): string
     {
         return 'prev_message';
     }
 
-    protected function nextMessageOption()
+    protected function nextMessageOption(): string
     {
         return 'next_message';
     }
 
-    protected function buildPreviousMessage($text)
+    protected function buildPreviousMessage(string $text): string
     {
         return sprintf('&larr; %s', $text);
     }
 
-    protected function buildNextMessage($text)
+    protected function buildNextMessage(string $text): string
     {
         return sprintf('%s &rarr;', $text);
     }
 
-    protected function translatedViewName()
+    protected function translatedViewName(): string
     {
         return 'twitter_bootstrap_translated';
     }

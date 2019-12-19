@@ -2,39 +2,42 @@
 
 namespace BabDev\PagerfantaBundle\Tests\View;
 
-class DefaultTranslatedViewTest extends TranslatedViewTest
+use BabDev\PagerfantaBundle\View\DefaultTranslatedView;
+use Pagerfanta\View\DefaultView;
+
+class DefaultTranslatedViewTest extends TranslatedViewTestCase
 {
-    protected function viewClass()
+    protected function decoratedViewClass(): string
     {
-        return 'Pagerfanta\View\DefaultView';
+        return DefaultView::class;
     }
 
-    protected function translatedViewClass()
+    protected function translatedViewClass(): string
     {
-        return 'BabDev\PagerfantaBundle\View\DefaultTranslatedView';
+        return DefaultTranslatedView::class;
     }
 
-    protected function previousMessageOption()
+    protected function previousMessageOption(): string
     {
         return 'prev_message';
     }
 
-    protected function nextMessageOption()
+    protected function nextMessageOption(): string
     {
         return 'next_message';
     }
 
-    protected function buildPreviousMessage($text)
+    protected function buildPreviousMessage(string $text): string
     {
         return sprintf('&#171; %s', $text);
     }
 
-    protected function buildNextMessage($text)
+    protected function buildNextMessage(string $text): string
     {
         return sprintf('%s &#187;', $text);
     }
 
-    protected function translatedViewName()
+    protected function translatedViewName(): string
     {
         return 'default_translated';
     }

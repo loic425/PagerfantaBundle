@@ -2,19 +2,22 @@
 
 namespace BabDev\PagerfantaBundle\Tests\View;
 
+use BabDev\PagerfantaBundle\View\TwitterBootstrap3TranslatedView;
+use Pagerfanta\View\TwitterBootstrap3View;
+
 class TwitterBootstrap3TranslatedViewTest extends TwitterBootstrapTranslatedViewTest
 {
-    protected function viewClass()
+    protected function decoratedViewClass(): string
     {
-        return 'Pagerfanta\View\TwitterBootstrap3View';
+        return TwitterBootstrap3View::class;
     }
 
-    protected function translatedViewClass()
+    protected function translatedViewClass(): string
     {
-        return 'BabDev\PagerfantaBundle\View\TwitterBootstrap3TranslatedView';
+        return TwitterBootstrap3TranslatedView::class;
     }
 
-    protected function translatedViewName()
+    protected function translatedViewName(): string
     {
         return 'twitter_bootstrap3_translated';
     }
