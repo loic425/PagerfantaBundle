@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class PagerfantaExtensionTest extends TestCase
+final class PagerfantaExtensionTest extends TestCase
 {
     /**
      * @var ViewFactoryInterface

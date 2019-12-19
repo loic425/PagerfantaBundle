@@ -7,7 +7,7 @@ use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class ConvertNotValidCurrentPageToNotFoundListener
+final class ConvertNotValidCurrentPageToNotFoundListener
 {
     /**
      * @param GetResponseForExceptionEvent|ExceptionEvent $event

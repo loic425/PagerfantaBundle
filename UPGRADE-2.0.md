@@ -12,6 +12,7 @@ The below guide will assist in migrating from WhiteOctoberPagerfantaBundle to Ba
 - The bundle namespace has changed from `WhiteOctober\PagerfantaBundle` to `BabDev\PagerfantaBundle`, any references in your application should be updated
 - The bundle class has changed from `WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle` to `BabDev\PagerfantaBundle\BabDevPagerfantaBundle`, you will need to update your application to reference the correct bundle (with Symfony Flex this may have been done for you already)
 - The bundle's root configuration node has moved from `white_october_pagerfanta` to `babdev_pagerfanta`, you will need to update the configuration in your application
+- Made all classes final except for the Pagerfanta views
 
 ## Service Configuration Changes
 

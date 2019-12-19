@@ -5,7 +5,7 @@ namespace BabDev\PagerfantaBundle\Tests\View;
 use BabDev\PagerfantaBundle\View\DefaultTranslatedView;
 use Pagerfanta\View\DefaultView;
 
-class DefaultTranslatedViewTest extends TranslatedViewTestCase
+final class DefaultTranslatedViewTest extends TranslatedViewTestCase
 {
     protected function decoratedViewClass(): string
     {

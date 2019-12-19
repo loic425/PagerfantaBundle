@@ -8,7 +8,7 @@ use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\KernelEvents;
 
-class BabDevPagerfantaExtension extends Extension
+final class BabDevPagerfantaExtension extends Extension
 {
     public function getAlias()
     {

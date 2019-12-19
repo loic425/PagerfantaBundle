@@ -5,7 +5,7 @@ namespace BabDev\PagerfantaBundle\DependencyInjection;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
-class Configuration implements ConfigurationInterface
+final class Configuration implements ConfigurationInterface
 {
     public const EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND = 'to_http_not_found';
 

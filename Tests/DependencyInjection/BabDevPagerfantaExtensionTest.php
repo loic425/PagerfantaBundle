@@ -6,7 +6,7 @@ use BabDev\PagerfantaBundle\DependencyInjection\BabDevPagerfantaExtension;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Symfony\Component\HttpKernel\KernelEvents;
 
-class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
+final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
 {
     public function testContainerIsLoadedWithDefaultConfiguration(): void
     {

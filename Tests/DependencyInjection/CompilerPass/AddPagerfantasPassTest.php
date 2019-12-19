@@ -9,7 +9,7 @@ use Pagerfanta\View\ViewFactory;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
-class AddPagerfantasPassTest extends AbstractCompilerPassTestCase
+final class AddPagerfantasPassTest extends AbstractCompilerPassTestCase
 {
     public function testPeriodicHandlersAreAddedToTheRegistry(): void
     {

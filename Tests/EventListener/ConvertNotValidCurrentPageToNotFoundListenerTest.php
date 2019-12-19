@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
-class ConvertNotValidCurrentPageToNotFoundListenerTest extends TestCase
+final class ConvertNotValidCurrentPageToNotFoundListenerTest extends TestCase
 {
     public function testListenerConvertsExceptionForLegacyEvent(): void
     {

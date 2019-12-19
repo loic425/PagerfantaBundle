@@ -5,7 +5,7 @@ namespace BabDev\PagerfantaBundle\Tests\View;
 use BabDev\PagerfantaBundle\View\TwitterBootstrap4TranslatedView;
 use Pagerfanta\View\TwitterBootstrap4View;
 
-class TwitterBootstrap4TranslatedViewTest extends TwitterBootstrapTranslatedViewTest
+final class TwitterBootstrap4TranslatedViewTest extends TwitterBootstrapTranslatedViewTest
 {
     protected function decoratedViewClass(): string
     {

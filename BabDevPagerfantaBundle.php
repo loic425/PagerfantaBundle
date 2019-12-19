@@ -7,7 +7,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class BabDevPagerfantaBundle extends Bundle
+final class BabDevPagerfantaBundle extends Bundle
 {
     public function build(ContainerBuilder $container): void
     {

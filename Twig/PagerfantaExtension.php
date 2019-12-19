@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-class PagerfantaExtension extends AbstractExtension
+final class PagerfantaExtension extends AbstractExtension
 {
     /**
      * @var string
