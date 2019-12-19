@@ -1,12 +1,10 @@
-_This project is looking for maintainers - [details here](https://github.com/whiteoctober/WhiteOctoberPagerfantaBundle/issues/212)._
+# BabDevPagerfantaBundle
 
-# WhiteOctoberPagerfantaBundle
-
-[![Build Status](https://travis-ci.org/whiteoctober/WhiteOctoberPagerfantaBundle.png?branch=master)](https://travis-ci.org/whiteoctober/WhiteOctoberPagerfantaBundle) [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/whiteoctober/WhiteOctoberPagerfantaBundle/badges/quality-score.png?s=5bbc990b8c05b7dcc69cd0cfe7d8d46e9944c530)](https://scrutinizer-ci.com/g/whiteoctober/WhiteOctoberPagerfantaBundle/) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/e0838383-1c8d-406f-9874-a76c08b7d217/mini.png)](https://insight.sensiolabs.com/projects/e0838383-1c8d-406f-9874-a76c08b7d217)
+[![Build Status](https://travis-ci.org/BabDev/BabDevPagerfantaBundle.png?branch=master)](https://travis-ci.org/BabDev/BabDevPagerfantaBundle) [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/BabDev/BabDevPagerfantaBundle/badges/quality-score.png?s=5bbc990b8c05b7dcc69cd0cfe7d8d46e9944c530)](https://scrutinizer-ci.com/g/BabDev/BabDevPagerfantaBundle/)
 
 Bundle to use [Pagerfanta](https://github.com/whiteoctober/Pagerfanta) with [Symfony](https://github.com/symfony/symfony).
 
-**Note:** If you are using a 2.0.x release of Symfony2, please use the `symfony2.0` branch of this bundle.  The master branch of this bundle tracks the Symfony master branch.
+This bundle is a continuation of the [WhiteOctoberPagerfantaBundle](https://github.com/whiteoctober/WhiteOctoberPagerfantaBundle).
 
 The bundle includes:
 
@@ -18,29 +16,50 @@ The bundle includes:
 Installation
 ------------
 
-1) Use [Composer](https://getcomposer.org/) to download the library
+1) Use [Composer](https://getcomposer.org/) to install the bundle in your application
 
+```sh
+composer require babdev/pagerfanta-bundle
 ```
-php composer.phar require white-october/pagerfanta-bundle
-```
 
-2) Then add the WhiteOctoberPagerfantaBundle to your application:
+2) Register the bundle with your application
 
-In Symfony < 4:
+If your application is based on the Symfony Standard structure, you will need to add the bundle to your `AppKernel` class' `registerBundles()` method.
 
 ```php
+<?php
 // app/AppKernel.php
-public function registerBundles()
+
+// ...
+class AppKernel extends Kernel
 {
-    return array(
+    public function registerBundles()
+    {
+        $bundles = [
+            // ...
+
+            new BabDev\PagerfantaBundle\BabDevPagerfantaBundle(),
+        ];
+
         // ...
-        new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
-        // ...
-    );
+    }
+
+    // ...
 }
 ```
 
-In Symfony 4 with Symfony Flex this will be done automatically for you.
+If your application is based on the Symfony Flex structure, the bundle should be automatically registered, otherwise you will need to add it to your `config/bundles.php` file.
+
+```php
+<?php
+
+return [
+    // ...
+
+    BabDev\PagerfantaBundle\BabDevPagerfantaBundle::class => ['all' => true],
+];
+
+```
 
 3) Configure and use things!
 
@@ -57,9 +76,15 @@ First, you'll need to pass an instance of Pagerfanta as a parameter into your te
 For example:
 
 ```php
+<?php
+
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
+
 $adapter = new DoctrineORMAdapter($queryBuilder);
 $pagerfanta = new Pagerfanta($adapter);
-    return $this->render('@YourApp/Main/example.html.twig', [
+
+return $this->render('@YourApp/Main/example.html.twig', [
     'my_pager' => $pagerfanta,
 ]);
 ```
@@ -127,8 +152,8 @@ For Bootstrap 4:
     {{ pagerfanta(my_pager, 'twitter_bootstrap4') }}
 </div>
 ```
-### Custom template
 
+### Custom template
 
 If you want to use a custom template, add another argument:
 
@@ -279,15 +304,13 @@ Contributing
 
 We welcome contributions to this project, including pull requests and issues (and discussions on existing issues).
 
-If you'd like to contribute code but aren't sure what, the [issues list](https://github.com/whiteoctober/WhiteOctoberPagerfantaBundle/issues) is a good place to start.
+If you'd like to contribute code but aren't sure what, the [issues list](https://github.com/BabDev/BabDevPagerfantaBundle/issues) is a good place to start.
 If you're a first-time code contributor, you may find Github's guide to [forking projects](https://guides.github.com/activities/forking/) helpful.
-
-All contributors (whether contributing code, involved in issue discussions, or involved in any other way) must abide by our [code of conduct](code_of_conduct.md).
 
 Acknowledgements
 -----------------
 
-Pablo Díez (pablodip@gmail.com) for most of the work on the first versions of this bundle.
+This bundle is a continuation of the [WhiteOctoberPagerfantaBundle](https://github.com/whiteoctober/WhiteOctoberPagerfantaBundle). The work from all past contributors to the previous bundle is greatly appreciated.
 
 License
 -------

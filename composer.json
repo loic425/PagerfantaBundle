@@ -1,15 +1,9 @@
 {
-    "name": "white-october/pagerfanta-bundle",
+    "name": "babdev/pagerfanta-bundle",
     "description": "Bundle to use Pagerfanta with Symfony2",
-    "keywords": ["page","paging"],
+    "keywords": ["pagerfanta", "pagination", "symfony"],
     "type": "symfony-bundle",
     "license": "MIT",
-    "authors": [
-        {
-            "name": "Pablo Díez",
-            "email": "pablodip@gmail.com"
-        }
-    ],
     "require": {
         "php": ">=5.3.3",
         "pagerfanta/pagerfanta": "^1.1.0|^2.0.0",
@@ -33,7 +27,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0.x-dev"
+            "dev-master": "2.x-dev"
         }
     },
     "config": {
