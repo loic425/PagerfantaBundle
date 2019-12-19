@@ -11,7 +11,7 @@
  * @author Wenming Tang <wenming@cshome.com>
  */
 
-namespace WhiteOctober\PagerfantaBundle\View;
+namespace BabDev\PagerfantaBundle\View;
 
 /**
  * TwitterBootstrap4TranslatedView

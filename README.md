@@ -263,7 +263,7 @@ The bundles comes with basic CSS for the default view so you can get started wit
 Of course you can change it, use another one or create your own view.
 
 ```html
-<link rel="stylesheet" href="{{ asset('bundles/whiteoctoberpagerfanta/css/pagerfantaDefault.css') }}" type="text/css" media="all" />
+<link rel="stylesheet" href="{{ asset('bundles/babdevpagerfanta/css/pagerfantaDefault.css') }}" type="text/css" media="all" />
 ```
 
 Configuration

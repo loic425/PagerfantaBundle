@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace WhiteOctober\PagerfantaBundle\View;
+namespace BabDev\PagerfantaBundle\View;
 
 /**
  * This view renders the twitter bootstrap view with texts translated.

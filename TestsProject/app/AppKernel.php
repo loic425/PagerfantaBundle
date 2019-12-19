@@ -7,14 +7,12 @@ class AppKernel extends Kernel
 {
     public function registerBundles()
     {
-        $bundles = array(
+        return array(
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
-            new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
-            new WhiteOctober\PagerfantaTestBundle\WhiteOctoberPagerfantaTestBundle()
+            new BabDev\PagerfantaBundle\BabDevPagerfantaBundle(),
+            new BabDev\PagerfantaTestBundle\BabDevPagerfantaTestBundle()
         );
-
-        return $bundles;
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)

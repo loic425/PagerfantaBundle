@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "WhiteOctober\\PagerfantaBundle\\": ""
+            "BabDev\\PagerfantaBundle\\": ""
         },
         "exclude-from-classmap": ["Tests/", "TestsProject/"]
     },

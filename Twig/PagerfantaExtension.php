@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace WhiteOctober\PagerfantaBundle\Twig;
+namespace BabDev\PagerfantaBundle\Twig;
 
 use Pagerfanta\PagerfantaInterface;
 use Pagerfanta\View\ViewFactory;

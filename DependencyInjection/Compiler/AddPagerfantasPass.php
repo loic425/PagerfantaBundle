@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace WhiteOctober\PagerfantaBundle\DependencyInjection\Compiler;
+namespace BabDev\PagerfantaBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;

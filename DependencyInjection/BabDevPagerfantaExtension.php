@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace WhiteOctober\PagerfantaBundle\DependencyInjection;
+namespace BabDev\PagerfantaBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Definition\Processor;
@@ -20,14 +20,22 @@ use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
- * WhiteOctoberPagerfantaExtension.
+ * BabDevPagerfantaExtension.
  *
  * @author Pablo Díez <pablodip@gmail.com>
  */
-class WhiteOctoberPagerfantaExtension extends Extension
+class BabDevPagerfantaExtension extends Extension
 {
     /**
-     * Responds to the "white_october_pagerfanta" configuration parameter.
+     * {@inheritdoc}
+     */
+    public function getAlias()
+    {
+        return 'babdev_pagerfanta';
+    }
+
+    /**
+     * Responds to the "babdev_pagerfanta" configuration parameter.
      *
      * @param array            $configs
      * @param ContainerBuilder $container

@@ -9,7 +9,7 @@
  *
  * @author Wenming Tang <wenming@cshome.com>
  */
-namespace WhiteOctober\PagerfantaBundle\Tests\View;
+namespace BabDev\PagerfantaBundle\Tests\View;
 
 class TwitterBootstrap4TranslatedView extends TwitterBootstrapTranslatedViewTest
 {
@@ -19,7 +19,7 @@ class TwitterBootstrap4TranslatedView extends TwitterBootstrapTranslatedViewTest
     }
     protected function translatedViewClass()
     {
-        return 'WhiteOctober\PagerfantaBundle\View\TwitterBootstrap4TranslatedView';
+        return 'BabDev\PagerfantaBundle\View\TwitterBootstrap4TranslatedView';
     }
     protected function translatedViewName()
     {

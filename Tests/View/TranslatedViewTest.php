@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace WhiteOctober\PagerfantaBundle\Tests\View;
+namespace BabDev\PagerfantaBundle\Tests\View;
 
 use PHPUnit\Framework\TestCase;
 

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace WhiteOctober\PagerfantaBundle\Tests\View;
+namespace BabDev\PagerfantaBundle\Tests\View;
 
 class TwitterBootstrapTranslatedViewTest extends TranslatedViewTest
 {
@@ -20,7 +20,7 @@ class TwitterBootstrapTranslatedViewTest extends TranslatedViewTest
 
     protected function translatedViewClass()
     {
-        return 'WhiteOctober\PagerfantaBundle\View\TwitterBootstrapTranslatedView';
+        return 'BabDev\PagerfantaBundle\View\TwitterBootstrapTranslatedView';
     }
 
     protected function previousMessageOption()

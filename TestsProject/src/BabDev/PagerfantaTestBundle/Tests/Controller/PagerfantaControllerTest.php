@@ -1,6 +1,6 @@
 <?php
 
-namespace Pablodip\ModuleTestBundle\Tests\Module;
+namespace BabDev\PagerfantaTestBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

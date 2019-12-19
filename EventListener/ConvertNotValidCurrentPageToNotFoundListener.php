@@ -1,5 +1,5 @@
 <?php
-namespace  WhiteOctober\PagerfantaBundle\EventListener;
+namespace  BabDev\PagerfantaBundle\EventListener;
 
 use Pagerfanta\Exception\NotValidCurrentPageException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;

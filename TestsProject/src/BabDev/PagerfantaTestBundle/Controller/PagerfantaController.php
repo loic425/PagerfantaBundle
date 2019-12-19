@@ -1,6 +1,6 @@
 <?php
 
-namespace WhiteOctober\PagerfantaTestBundle\Controller;
+namespace BabDev\PagerfantaTestBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Pagerfanta\Pagerfanta;
@@ -89,7 +89,7 @@ class PagerfantaController extends Controller
 
     private function buildTemplateName($name)
     {
-        return sprintf('WhiteOctoberPagerfantaTestBundle:Pagerfanta:%s.html.twig', $name);
+        return sprintf('BabDevPagerfantaTestBundle:Pagerfanta:%s.html.twig', $name);
     }
 
     private function createPagerfanta()

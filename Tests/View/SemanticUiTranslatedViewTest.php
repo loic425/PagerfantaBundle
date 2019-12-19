@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace WhiteOctober\PagerfantaBundle\Tests\View;
+namespace BabDev\PagerfantaBundle\Tests\View;
 
 /**
  * @author Loïc Frémont <loic@mobizel.com>
@@ -23,7 +23,7 @@ class SemanticUiTranslatedViewTest extends TranslatedViewTest
 
     protected function translatedViewClass()
     {
-        return 'WhiteOctober\PagerfantaBundle\View\SemanticUiTranslatedView';
+        return 'BabDev\PagerfantaBundle\View\SemanticUiTranslatedView';
     }
 
     protected function previousMessageOption()
