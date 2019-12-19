@@ -102,20 +102,16 @@ class PagerfantaExtension extends AbstractExtension
         if (null === $options['routeName']) {
             $request = $this->getRequest();
 
-            $options['routeName'] = $request->attributes->get('_route');
-
-            if ('_internal' === $options['routeName']) {
+            if (null !== $this->requestStack->getParentRequest()) {
                 throw new \RuntimeException('PagerfantaBundle can not guess the route when used in a sub-request');
             }
+
+            $options['routeName'] = $request->attributes->get('_route');
 
             // make sure we read the route parameters from the passed option array
             $defaultRouteParams = array_merge($request->query->all(), $request->attributes->get('_route_params', []));
 
-            if (\array_key_exists('routeParams', $options)) {
-                $options['routeParams'] = array_merge($defaultRouteParams, $options['routeParams']);
-            } else {
-                $options['routeParams'] = $defaultRouteParams;
-            }
+            $options['routeParams'] = array_merge($defaultRouteParams, $options['routeParams']);
         }
 
         $routeName = $options['routeName'];
@@ -123,8 +119,9 @@ class PagerfantaExtension extends AbstractExtension
         $pagePropertyPath = new PropertyPath($options['pageParameter']);
         $omitFirstPage = $options['omitFirstPage'];
 
-        return function ($page) use ($router, $routeName, $routeParams, $pagePropertyPath, $omitFirstPage) {
+        return static function ($page) use ($router, $routeName, $routeParams, $pagePropertyPath, $omitFirstPage) {
             $propertyAccessor = PropertyAccess::createPropertyAccessor();
+
             if ($omitFirstPage) {
                 $propertyAccessor->setValue($routeParams, $pagePropertyPath, $page > 1 ? $page : null);
             } else {
