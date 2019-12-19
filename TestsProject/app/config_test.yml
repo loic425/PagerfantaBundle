@@ -1,6 +1,3 @@
-imports:
-    - { resource: 'symfony3-compat.php' }
-
 framework:
     secret:         secret
     router:         { resource: "%kernel.root_dir%/routing.yml" }
