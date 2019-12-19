@@ -1,21 +1,7 @@
-<?php
-
-/*
- * This file is part of the Pagerfanta package.
- *
- * (c) Pablo Díez <pablodip@gmail.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+<?php declare(strict_types=1);
 
 namespace BabDev\PagerfantaBundle\View;
 
-/**
- * This view renders the twitter bootstrap view with texts translated.
- *
- * @author Pablo Díez <pablodip@gmail.com>
- */
 class TwitterBootstrapTranslatedView extends TranslatedView
 {
     protected function previousMessageOption()
@@ -38,9 +24,6 @@ class TwitterBootstrapTranslatedView extends TranslatedView
         return sprintf('%s &rarr;', $text);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName()
     {
         return 'twitter_bootstrap_translated';

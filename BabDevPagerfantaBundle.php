@@ -1,41 +1,21 @@
-<?php
-
-/*
- * This file is part of the Pagerfanta package.
- *
- * (c) Pablo Díez <pablodip@gmail.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+<?php declare(strict_types=1);
 
 namespace BabDev\PagerfantaBundle;
 
+use BabDev\PagerfantaBundle\DependencyInjection\Compiler\AddPagerfantasPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
-use BabDev\PagerfantaBundle\DependencyInjection\Compiler\AddPagerfantasPass;
 
-/**
- * BabDevPagerfantaBundle.
- *
- * @author Pablo Díez <pablodip@gmail.com>
- */
 class BabDevPagerfantaBundle extends Bundle
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function build(ContainerBuilder $container)
+    public function build(ContainerBuilder $container): void
     {
         parent::build($container);
 
         $container->addCompilerPass(new AddPagerfantasPass());
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getContainerExtension()
     {
         if (null === $this->extension) {
@@ -43,7 +23,7 @@ class BabDevPagerfantaBundle extends Bundle
 
             if (null !== $extension) {
                 if (!$extension instanceof ExtensionInterface) {
-                    throw new \LogicException(sprintf('Extension %s must implement %s.', get_class($extension), ExtensionInterface::class));
+                    throw new \LogicException(sprintf('Extension %s must implement %s.', \get_class($extension), ExtensionInterface::class));
                 }
 
                 $this->extension = $extension;

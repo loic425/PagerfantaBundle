@@ -1,26 +1,19 @@
-<?php
-/*
- * This file is part of the Pagerfanta package.
- *
- * (c) Pablo Díez <pablodip@gmail.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * @author Wenming Tang <wenming@cshome.com>
- */
+<?php declare(strict_types=1);
+
 namespace BabDev\PagerfantaBundle\Tests\View;
 
-class TwitterBootstrap4TranslatedView extends TwitterBootstrapTranslatedViewTest
+class TwitterBootstrap4TranslatedViewTest extends TwitterBootstrapTranslatedViewTest
 {
     protected function viewClass()
     {
         return 'Pagerfanta\View\TwitterBootstrap4View';
     }
+
     protected function translatedViewClass()
     {
         return 'BabDev\PagerfantaBundle\View\TwitterBootstrap4TranslatedView';
     }
+
     protected function translatedViewName()
     {
         return 'twitter_bootstrap4_translated';

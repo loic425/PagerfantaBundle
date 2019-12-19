@@ -1,23 +1,7 @@
-<?php
-
-/*
- * This file is part of the Pagerfanta package.
- *
- * (c) Pablo Díez <pablodip@gmail.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+<?php declare(strict_types=1);
 
 namespace BabDev\PagerfantaBundle\View;
 
-/**
- * SemanticUiTranslatedView
- *
- * This view renders the semantic ui view with the text translated.
- *
- * @author Loïc Frémont <loic@mobizel.com>
- */
 class SemanticUiTranslatedView extends TranslatedView
 {
     protected function previousMessageOption()
@@ -40,9 +24,6 @@ class SemanticUiTranslatedView extends TranslatedView
         return sprintf('%s &rarr;', $text);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName()
     {
         return 'semantic_ui_translated';

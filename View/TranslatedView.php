@@ -1,13 +1,4 @@
-<?php
-
-/*
- * This file is part of the Pagerfanta package.
- *
- * (c) Pablo Díez <pablodip@gmail.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+<?php declare(strict_types=1);
 
 namespace BabDev\PagerfantaBundle\View;
 
@@ -16,11 +7,6 @@ use Pagerfanta\View\ViewInterface;
 use Symfony\Component\Translation\TranslatorInterface as LegacyTranslatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * Translated view.
- *
- * @author Pablo Díez <pablodip@gmail.com>
- */
 abstract class TranslatedView implements ViewInterface
 {
     /**
@@ -33,26 +19,17 @@ abstract class TranslatedView implements ViewInterface
      */
     private $translator;
 
-    /**
-     * Constructor.
-     *
-     * @param ViewInterface $view A view.
-     * @param LegacyTranslatorInterface|TranslatorInterface $translator A translator interface.
-     */
     public function __construct(ViewInterface $view, object $translator)
     {
         if (!($translator instanceof LegacyTranslatorInterface) && !($translator instanceof TranslatorInterface)) {
-            throw new \InvalidArgumentException(sprintf('The $translator argument of %s must be an instance of %s or %s, a %s was given.', static::class, LegacyTranslatorInterface::class, TranslatorInterface::class, get_class($translator)));
+            throw new \InvalidArgumentException(sprintf('The $translator argument of %s must be an instance of %s or %s, a %s was given.', static::class, LegacyTranslatorInterface::class, TranslatorInterface::class, \get_class($translator)));
         }
 
         $this->view = $view;
         $this->translator = $translator;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function render(PagerfantaInterface $pagerfanta, $routeGenerator, array $options = array())
+    public function render(PagerfantaInterface $pagerfanta, $routeGenerator, array $options = [])
     {
         $optionsWithTranslations = $this->addTranslationOptions($options);
 
@@ -68,18 +45,12 @@ abstract class TranslatedView implements ViewInterface
 
     private function addPreviousTranslationOption($options)
     {
-        $option = $this->previousMessageOption();
-        $messageMethod = 'previousMessage';
-
-        return $this->addTranslationOption($options, $option, $messageMethod);
+        return $this->addTranslationOption($options, $this->previousMessageOption(), 'previousMessage');
     }
 
     private function addNextTranslationOption($options)
     {
-        $option = $this->nextMessageOption();
-        $messageMethod = 'nextMessage';
-
-        return $this->addTranslationOption($options, $option, $messageMethod);
+        return $this->addTranslationOption($options, $this->nextMessageOption(), 'nextMessage');
     }
 
     private function addTranslationOption($options, $option, $messageMethod)
@@ -90,7 +61,7 @@ abstract class TranslatedView implements ViewInterface
 
         $message = $this->$messageMethod();
 
-        return array_merge($options, array($option => $message));
+        return array_merge($options, [$option => $message]);
     }
 
     abstract protected function previousMessageOption();
@@ -113,12 +84,12 @@ abstract class TranslatedView implements ViewInterface
 
     private function previousText()
     {
-        return $this->translator->trans('previous', array(), 'pagerfanta');
+        return $this->translator->trans('previous', [], 'pagerfanta');
     }
 
     private function nextText()
     {
-        return $this->translator->trans('next', array(), 'pagerfanta');
+        return $this->translator->trans('next', [], 'pagerfanta');
     }
 
     abstract protected function buildPreviousMessage($text);

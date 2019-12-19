@@ -1,13 +1,4 @@
-<?php
-
-/*
- * This file is part of the Pagerfanta package.
- *
- * (c) Pablo Díez <pablodip@gmail.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+<?php declare(strict_types=1);
 
 namespace BabDev\PagerfantaBundle\Tests\View;
 
@@ -42,7 +33,7 @@ abstract class TranslatedViewTest extends TestCase
             return $this->createMock($originalClassName);
         }
 
-        return $this->getMock($originalClassName);
+        return $this->createMock($originalClassName);
     }
 
     private function createViewMock()
@@ -77,62 +68,62 @@ abstract class TranslatedViewTest extends TestCase
 
     private function createRouteGenerator()
     {
-        return function () { };
+        return function (): void { };
     }
 
-    public function testRenderShouldTranslatePreviuosAndNextMessage()
+    public function testRenderShouldTranslatePreviuosAndNextMessage(): void
     {
         $this->translatorExpectsPreviousAt(0);
         $this->translatorExpectsNextAt(1);
 
-        $options = array();
+        $options = [];
 
         $this->assertRender($options);
     }
 
-    public function testRenderAllowsCustomizingPreviousMessageWithOption()
+    public function testRenderAllowsCustomizingPreviousMessageWithOption(): void
     {
         $this->translatorExpectsNextAt(0);
 
         $previousMessageOption = $this->previousMessageOption();
-        $options = array($previousMessageOption => $this->previousMessage());
+        $options = [$previousMessageOption => $this->previousMessage()];
 
         $this->assertRender($options);
     }
 
-    public function testRenderAllowsCustomizingNextMessageWithOption()
+    public function testRenderAllowsCustomizingNextMessageWithOption(): void
     {
         $this->translatorExpectsPreviousAt(0);
 
         $nextMessageOption = $this->nextMessageOption();
-        $options = array($nextMessageOption => $this->nextMessage());
+        $options = [$nextMessageOption => $this->nextMessage()];
 
         $this->assertRender($options);
     }
 
-    private function translatorExpectsPreviousAt($at)
+    private function translatorExpectsPreviousAt($at): void
     {
         $previous = $this->previous();
 
         $this->translator
             ->expects($this->at($at))
             ->method('trans')
-            ->with('previous', array(), 'pagerfanta')
-            ->will($this->returnValue($previous));
+            ->with('previous', [], 'pagerfanta')
+            ->willReturn($previous);
     }
 
-    private function translatorExpectsNextAt($at)
+    private function translatorExpectsNextAt($at): void
     {
         $next = $this->next();
 
         $this->translator
             ->expects($this->at($at))
             ->method('trans')
-            ->with('next', array(), 'pagerfanta')
-            ->will($this->returnValue($next));
+            ->with('next', [], 'pagerfanta')
+            ->willReturn($next);
     }
 
-    private function assertRender($options)
+    private function assertRender($options): void
     {
         $previousMessageOption = $this->previousMessageOption();
         $nextMessageOption = $this->nextMessageOption();
@@ -140,10 +131,10 @@ abstract class TranslatedViewTest extends TestCase
         $previous = $this->previous();
         $next = $this->next();
 
-        $expectedOptions = array(
+        $expectedOptions = [
             $previousMessageOption => $this->buildPreviousMessage($previous),
-            $nextMessageOption => $this->buildNextMessage($next)
-        );
+            $nextMessageOption => $this->buildNextMessage($next),
+        ];
 
         $result = new \stdClass();
 
@@ -151,7 +142,7 @@ abstract class TranslatedViewTest extends TestCase
             ->expects($this->once())
             ->method('render')
             ->with($this->pagerfanta, $this->routeGenerator, $expectedOptions)
-            ->will($this->returnvalue($result));
+            ->willReturn($result);
 
         $rendered = $this->translatedView->render($this->pagerfanta, $this->routeGenerator, $options);
 
@@ -186,9 +177,9 @@ abstract class TranslatedViewTest extends TestCase
 
     abstract protected function buildNextMessage($text);
 
-    public function testGetNameShouldReturnTheName()
+    public function testGetNameShouldReturnTheName(): void
     {
-        $name = $this-> translatedViewName();
+        $name = $this->translatedViewName();
 
         $this->assertSame($name, $this->translatedView->getName());
     }

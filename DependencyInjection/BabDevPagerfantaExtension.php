@@ -1,13 +1,4 @@
-<?php
-
-/*
- * This file is part of the Pagerfanta package.
- *
- * (c) Pablo Díez <pablodip@gmail.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+<?php declare(strict_types=1);
 
 namespace BabDev\PagerfantaBundle\DependencyInjection;
 
@@ -17,28 +8,14 @@ use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\KernelEvents;
 
-/**
- * BabDevPagerfantaExtension.
- *
- * @author Pablo Díez <pablodip@gmail.com>
- */
 class BabDevPagerfantaExtension extends Extension
 {
-    /**
-     * {@inheritdoc}
-     */
     public function getAlias()
     {
         return 'babdev_pagerfanta';
     }
 
-    /**
-     * Responds to the "babdev_pagerfanta" configuration parameter.
-     *
-     * @param array            $configs
-     * @param ContainerBuilder $container
-     */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $config = $this->processConfiguration($this->getConfiguration($configs, $container), $configs);
         $container->setParameter('babdev_pagerfanta.default_view', $config['default_view']);
@@ -46,7 +23,7 @@ class BabDevPagerfantaExtension extends Extension
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('pagerfanta.xml');
 
-        if ($config['exceptions_strategy']['out_of_range_page'] === Configuration::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND) {
+        if (Configuration::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND === $config['exceptions_strategy']['out_of_range_page']) {
             $container->getDefinition('pagerfanta.event_listener.convert_not_valid_max_per_page_to_not_found')
                 ->addTag(
                     'kernel.event_listener',
@@ -57,7 +34,7 @@ class BabDevPagerfantaExtension extends Extension
                 );
         }
 
-        if ($config['exceptions_strategy']['not_valid_current_page'] === Configuration::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND) {
+        if (Configuration::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND === $config['exceptions_strategy']['not_valid_current_page']) {
             $container->getDefinition('pagerfanta.event_listener.convert_not_valid_current_page_to_not_found')
                 ->addTag(
                     'kernel.event_listener',

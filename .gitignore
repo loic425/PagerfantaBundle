@@ -2,6 +2,8 @@
 composer.lock
 .phpunit.result.cache
 /phpunit.xml
+.php_cs.cache
+/.php_cs
 Guardfile
 !/TestsProject/var/cache
 /TestsProject/var/cache/*
