@@ -10,7 +10,7 @@ class ConvertNotValidMaxPerPageToNotFoundListener
     /**
      * @param GetResponseForExceptionEvent $event
      */
-    public function onException(GetResponseForExceptionEvent $event)
+    public function onKernelException(GetResponseForExceptionEvent $event)
     {
         if (method_exists($event, 'getThrowable')) {
             $throwable = $event->getThrowable();
