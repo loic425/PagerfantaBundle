@@ -1,54 +1,45 @@
 language: php
 
-sudo: false
+dist: xenial
 
-git:
-  depth: 1
-
-dist: trusty
-
-php:
-  - 5.4
-  - 5.5
-  - 5.6
-  - 7.0
-  - 7.1
-  - 7.2
-  - 7.3
+env:
+  global:
+    - SYMFONY_REQUIRE="3.4.*"
+    - COMPOSER_FLAGS="--prefer-stable"
 
 matrix:
-  fast_finish: true
   include:
-    # PHP 5.3 doesn't install on Trusty on Travis: https://github.com/travis-ci/travis-ci/issues/8219
-    - php: 5.3
-      dist: precise
-    # Force testing against LTS versions
-    - php: 5.6
-      env: SYMFONY_VERSION=2.3.*
-    - php: 5.6
-      env: SYMFONY_VERSION=2.7.*
-    - php: 5.6
-      env: SYMFONY_VERSION=2.8.*
-    - php: 5.6
-      env: SYMFONY_VERSION=3.0.*
     - php: 7.2
-      env: SYMFONY_VERSION=4.0.*
+    # Build ensuring minimum dependencies are valid
+    - php: 7.2
+      env: COMPOSER_FLAGS="--prefer-stable --prefer-lowest"
     - php: 7.3
-      env: SYMFONY_VERSION=4.0.*
-
-cache:
-  directories:
-    - $HOME/.composer
+      env: SYMFONY_REQUIRE="4.4.*"
+    - php: 7.4
+      env: SYMFONY_REQUIRE="4.4.*"
+    - php: 7.4
+      env: SYMFONY_REQUIRE="5.0.*"
+    - php: 7.4
+      env: SYMFONY_REQUIRE="5.1.*@dev"
+    - php: nightly
+      env: SYMFONY_REQUIRE="4.4.*"
+  allow_failures:
+    # Allow failures with Symfony 5.0 until Ratchet is updated to support it
+    - php: 7.4
+      env: SYMFONY_REQUIRE="5.0.*"
+    # Allow failures on next Symfony minor, should always be tested on newest stable PHP branch
+    - php: 7.4
+      env: SYMFONY_REQUIRE="5.1.*@dev"
+    - php: nightly
+      env: SYMFONY_REQUIRE="4.4.*"
 
 before_install:
-  - composer self-update
-  - if [ "$SYMFONY_VERSION" != "" ]; then composer require --dev --no-update symfony/symfony=$SYMFONY_VERSION; fi
-  - INI_FILE=~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini;
-  - echo memory_limit = -1 >> $INI_FILE
-  # turn off XDebug
-  - phpenv config-rm xdebug.ini || return 0
+  - phpenv config-rm xdebug.ini || true
+  - travis_retry composer self-update
 
-install:
-  - composer install
+before_script:
+  - composer global require --no-scripts --no-plugins symfony/flex
+  - composer update $COMPOSER_FLAGS
 
-script: php tests.php
+script:
+  - php tests.php
