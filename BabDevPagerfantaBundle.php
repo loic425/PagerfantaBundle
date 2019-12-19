@@ -2,7 +2,7 @@
 
 namespace BabDev\PagerfantaBundle;
 
-use BabDev\PagerfantaBundle\DependencyInjection\Compiler\AddPagerfantasPass;
+use BabDev\PagerfantaBundle\DependencyInjection\CompilerPass\AddPagerfantasPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\HttpKernel\Bundle\Bundle;

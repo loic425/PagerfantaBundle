@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace BabDev\PagerfantaBundle\DependencyInjection\Compiler;
+namespace BabDev\PagerfantaBundle\DependencyInjection\CompilerPass;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
