@@ -4,10 +4,3 @@ composer.lock
 /phpunit.xml
 .php_cs.cache
 /.php_cs
-Guardfile
-!/TestsProject/var/cache
-/TestsProject/var/cache/*
-!/TestsProject/var/cache/.gitkeep
-!/TestsProject/var/log
-/TestsProject/var/log/*
-!/TestsProject/var/log/.gitkeep

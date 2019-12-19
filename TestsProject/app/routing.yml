@@ -1,3 +1,0 @@
-babdev_pagerfanta_test_bundle:
-    resource: "@BabDevPagerfantaTestBundle/Controller/"
-    type:     annotation
