@@ -17,7 +17,7 @@
         <!-- Twig Extension -->
         <service id="pagerfanta.twig_extension" class="BabDev\PagerfantaBundle\Twig\PagerfantaExtension" public="false">
             <argument>%babdev_pagerfanta.default_view%</argument>
-            <argument type="service" id="babdev_pagerfanta.view_factory" />
+            <argument type="service" id="pagerfanta.view_factory" />
             <argument type="service" id="router" />
             <argument type="service" id="request_stack" />
             <tag name="twig.extension" />

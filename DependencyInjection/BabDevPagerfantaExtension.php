@@ -47,7 +47,7 @@ class BabDevPagerfantaExtension extends Extension
         $loader->load('pagerfanta.xml');
 
         if ($config['exceptions_strategy']['out_of_range_page'] === Configuration::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND) {
-            $container->getDefinition('pagerfanta.convert_not_valid_max_per_page_to_not_found_listener')
+            $container->getDefinition('pagerfanta.event_listener.convert_not_valid_max_per_page_to_not_found')
                 ->addTag(
                     'kernel.event_listener',
                     [
@@ -58,7 +58,7 @@ class BabDevPagerfantaExtension extends Extension
         }
 
         if ($config['exceptions_strategy']['not_valid_current_page'] === Configuration::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND) {
-            $container->getDefinition('pagerfanta.convert_not_valid_current_page_to_not_found_listener')
+            $container->getDefinition('pagerfanta.event_listener.convert_not_valid_current_page_to_not_found')
                 ->addTag(
                     'kernel.event_listener',
                     [
