@@ -7,7 +7,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class Configuration implements ConfigurationInterface
 {
-    const EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND = 'to_http_not_found';
+    public const EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND = 'to_http_not_found';
 
     public function getConfigTreeBuilder()
     {
