@@ -273,7 +273,7 @@ It's possible to configure the default view for all rendering in your
 configuration file:
 
 ```yml
-white_october_pagerfanta:
+babdev_pagerfanta:
     default_view: my_view_1
 ```
 
@@ -288,7 +288,7 @@ requested page is not valid instead.
 
 ```yml
 // app/config/config.yml
-white_october_pagerfanta:
+babdev_pagerfanta:
     exceptions_strategy:
         out_of_range_page:        ~
         not_valid_current_page:   ~

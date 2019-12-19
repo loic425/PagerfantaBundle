@@ -46,7 +46,7 @@ class BabDevPagerfantaExtension extends Extension
         $processor = new Processor();
 
         $config = $processor->processConfiguration($configuration, $configs);
-        $container->setParameter('white_october_pagerfanta.default_view', $config['default_view']);
+        $container->setParameter('babdev_pagerfanta.default_view', $config['default_view']);
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('pagerfanta.xml');

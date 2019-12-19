@@ -24,7 +24,7 @@ class AddPagerfantasPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
-        if (!$container->hasDefinition('white_october_pagerfanta.view_factory')) {
+        if (!$container->hasDefinition('babdev_pagerfanta.view_factory')) {
             return;
         }
 
@@ -35,6 +35,6 @@ class AddPagerfantasPass implements CompilerPassInterface
             $views[$alias] = new Reference($serviceId);
         }
 
-        $container->getDefinition('white_october_pagerfanta.view_factory')->addMethodCall('add', array($views));
+        $container->getDefinition('babdev_pagerfanta.view_factory')->addMethodCall('add', array($views));
     }
 }
