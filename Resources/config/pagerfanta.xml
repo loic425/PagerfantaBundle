@@ -19,7 +19,7 @@
             <argument>%babdev_pagerfanta.default_view%</argument>
             <argument type="service" id="babdev_pagerfanta.view_factory" />
             <argument type="service" id="router" />
-            <argument type="service" id="request_stack" on-invalid="null" />
+            <argument type="service" id="request_stack" />
             <tag name="twig.extension" />
         </service>
 

@@ -13,10 +13,8 @@ namespace BabDev\PagerfantaBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
-use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
@@ -68,16 +66,6 @@ class BabDevPagerfantaExtension extends Extension
                         'method' => 'onKernelException',
                     ]
                 );
-        }
-
-        // BC layer to inject the 'request' service when RequestStack is unavailable
-        if (!class_exists('Symfony\\Component\\HttpFoundation\\RequestStack')) {
-            $container
-                ->getDefinition('twig.extension.pagerfanta')
-                ->addMethodCall('setRequest', array(
-                    new Reference('request', ContainerInterface::NULL_ON_INVALID_REFERENCE, false),
-                ))
-            ;
         }
     }
 }
