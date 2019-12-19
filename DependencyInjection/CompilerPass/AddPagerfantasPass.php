@@ -14,14 +14,12 @@ class AddPagerfantasPass implements CompilerPassInterface
             return;
         }
 
-        $views = [];
+        $definition = $container->getDefinition('pagerfanta.view_factory');
 
         foreach ($container->findTaggedServiceIds('pagerfanta.view') as $serviceId => $arguments) {
-            $alias = isset($arguments[0]['alias']) ? $arguments[0]['alias'] : $serviceId;
+            $alias = $arguments[0]['alias'] ?? $serviceId;
 
-            $views[$alias] = new Reference($serviceId);
+            $definition->addMethodCall('set', [$alias, new Reference($serviceId)]);
         }
-
-        $container->getDefinition('pagerfanta.view_factory')->addMethodCall('add', [$views]);
     }
 }
