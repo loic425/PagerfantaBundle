@@ -1,2 +1,3 @@
 babdev_pagerfanta_test_bundle:
-    resource: "@BabDevPagerfantaTestBundle/Resources/config/routing.yml"
+    resource: "@BabDevPagerfantaTestBundle/Controller/"
+    type:     annotation

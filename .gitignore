@@ -3,5 +3,9 @@ composer.lock
 .phpunit.result.cache
 /phpunit.xml
 Guardfile
-/TestsProject/app/cache/
-/TestsProject/app/log/
+!/TestsProject/var/cache
+/TestsProject/var/cache/*
+!/TestsProject/var/cache/.gitkeep
+!/TestsProject/var/log
+/TestsProject/var/log/*
+!/TestsProject/var/log/.gitkeep
