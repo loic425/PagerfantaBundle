@@ -11,7 +11,9 @@
 
 namespace WhiteOctober\PagerfantaBundle\Tests\View;
 
-abstract class TranslatedViewTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+abstract class TranslatedViewTest extends TestCase
 {
     private $view;
     private $translator;
@@ -21,7 +23,7 @@ abstract class TranslatedViewTest extends \PHPUnit_Framework_TestCase
     private $pagerfanta;
     private $routeGenerator;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->view = $this->createViewMock();
         $this->translator = $this->createTranslatorMock();

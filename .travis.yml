@@ -42,4 +42,5 @@ before_script:
   - composer update $COMPOSER_FLAGS
 
 script:
-  - php tests.php
+  - vendor/bin/phpunit
+  - vendor/bin/phpunit -c TestsProject/app/

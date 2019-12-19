@@ -1,6 +1,7 @@
+/vendor/
 composer.lock
+.phpunit.result.cache
+/phpunit.xml
 Guardfile
-phpunit.xml
 /TestsProject/app/cache/
 /TestsProject/app/log/
-/vendor/
