@@ -3,10 +3,7 @@
 namespace BabDev\PagerfantaBundle\Tests\DependencyInjection;
 
 use BabDev\PagerfantaBundle\DependencyInjection\BabDevPagerfantaExtension;
-use Doctrine\DBAL\Connection;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
-use Monolog\Logger;
-use Symfony\Bundle\MonologBundle\MonologBundle;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
