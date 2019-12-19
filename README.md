@@ -1,6 +1,6 @@
 # BabDevPagerfantaBundle
 
-[![Build Status](https://travis-ci.org/BabDev/BabDevPagerfantaBundle.png?branch=master)](https://travis-ci.org/BabDev/BabDevPagerfantaBundle) [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/BabDev/BabDevPagerfantaBundle/badges/quality-score.png?s=5bbc990b8c05b7dcc69cd0cfe7d8d46e9944c530)](https://scrutinizer-ci.com/g/BabDev/BabDevPagerfantaBundle/)
+[![Build Status](https://travis-ci.org/BabDev/BabDevPagerfantaBundle.png?branch=master)](https://travis-ci.org/BabDev/BabDevPagerfantaBundle) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/BabDev/BabDevPagerfantaBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/BabDev/BabDevPagerfantaBundle/?branch=master)
 
 Bundle to use [Pagerfanta](https://github.com/whiteoctober/Pagerfanta) with [Symfony](https://github.com/symfony/symfony).
 
