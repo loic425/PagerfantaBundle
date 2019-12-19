@@ -2,7 +2,7 @@
 
 namespace BabDev\PagerfantaBundle\Tests\View;
 
-use Pagerfanta\PagerfantaInterface;
+use Pagerfanta\Pagerfanta;
 use Pagerfanta\View\ViewInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -12,7 +12,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 abstract class TranslatedViewTestCase extends TestCase
 {
     /**
-     * @var MockObject|ViewInterface
+     * @var ViewInterface
      */
     private $view;
 
@@ -27,14 +27,14 @@ abstract class TranslatedViewTestCase extends TestCase
     private $translatedView;
 
     /**
-     * @var MockObject|PagerfantaInterface
+     * @var MockObject|Pagerfanta
      */
     private $pagerfanta;
     private $routeGenerator;
 
     protected function setUp(): void
     {
-        $this->view = $this->createViewMock();
+        $this->view = $this->createDecoratedView();
         $this->translator = $this->createTranslatorMock();
 
         $this->translatedView = $this->createTranslatedView();
@@ -57,7 +57,7 @@ abstract class TranslatedViewTestCase extends TestCase
 
     abstract protected function translatedViewName(): string;
 
-    public function testRenderShouldTranslatePreviuosAndNextMessage(): void
+    public function testRenderShouldTranslatePreviousAndNextMessage(): void
     {
         $this->translatorExpectsPreviousAt(0);
         $this->translatorExpectsNextAt(1);
@@ -89,11 +89,13 @@ abstract class TranslatedViewTestCase extends TestCase
     }
 
     /**
-     * @return MockObject|ViewInterface
+     * @return ViewInterface
      */
-    private function createViewMock(): MockObject
+    private function createDecoratedView(): ViewInterface
     {
-        return $this->createMock($this->decoratedViewClass());
+        $class = $this->decoratedViewClass();
+
+        return new $class();
     }
 
     /**
@@ -114,11 +116,11 @@ abstract class TranslatedViewTestCase extends TestCase
     }
 
     /**
-     * @return MockObject|PagerfantaInterface
+     * @return MockObject|Pagerfanta
      */
     private function createPagerfantaMock(): MockObject
     {
-        return $this->createMock(PagerfantaInterface::class);
+        return $this->createMock(Pagerfanta::class);
     }
 
     private function createRouteGenerator(): callable
@@ -161,17 +163,10 @@ abstract class TranslatedViewTestCase extends TestCase
             $nextMessageOption => $this->buildNextMessage($next),
         ];
 
-        $result = new \stdClass();
+        $rendered = $this->translatedView->render($this->pagerfanta, $this->routeGenerator, $options);
 
-        $this->view->expects($this->once())
-            ->method('render')
-            ->with($this->pagerfanta, $this->routeGenerator, $expectedOptions)
-            ->willReturn($result);
-
-        $this->assertSame(
-            $result,
-            $this->translatedView->render($this->pagerfanta, $this->routeGenerator, $options)
-        );
+        $this->assertStringContainsString($expectedOptions[$previousMessageOption], $rendered, 'The translated previous message should be used.');
+        $this->assertStringContainsString($expectedOptions[$nextMessageOption], $rendered, 'The translated next message should be used.');
     }
 
     private function previous(): string
