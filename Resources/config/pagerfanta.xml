@@ -7,11 +7,11 @@
     <services>
         <!-- Event Listeners -->
         <service id="pagerfanta.event_listener.convert_not_valid_max_per_page_to_not_found" class="BabDev\PagerfantaBundle\EventListener\ConvertNotValidMaxPerPageToNotFoundListener" public="false">
-            <!-- subscribe tag is added in the extension if convert_not_valid_max_per_page_to_not_found options set to true -->
+            <!-- conditionally tagged based on the bundle configuration -->
         </service>
 
         <service id="pagerfanta.event_listener.convert_not_valid_current_page_to_not_found" class="BabDev\PagerfantaBundle\EventListener\ConvertNotValidCurrentPageToNotFoundListener" public="false">
-            <!-- subscribe tag is added in the extension if convert_not_valid_current_page_to_not_found options set to true -->
+            <!-- conditionally tagged based on the bundle configuration -->
         </service>
 
         <!-- Twig Extension -->

@@ -2,12 +2,10 @@
 namespace  BabDev\PagerfantaBundle\EventListener;
 
 use Pagerfanta\Exception\NotValidCurrentPageException;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpKernel\KernelEvents;
 
-class ConvertNotValidCurrentPageToNotFoundListener implements EventSubscriberInterface
+class ConvertNotValidCurrentPageToNotFoundListener
 {
     /**
      * @param GetResponseForExceptionEvent $event
@@ -30,15 +28,5 @@ class ConvertNotValidCurrentPageToNotFoundListener implements EventSubscriberInt
                 $event->setException($notFoundHttpException);
             }
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function getSubscribedEvents()
-    {
-        return array(
-            KernelEvents::EXCEPTION => array('onException', 512)
-        );
     }
 }

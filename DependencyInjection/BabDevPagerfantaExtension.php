@@ -12,12 +12,12 @@
 namespace BabDev\PagerfantaBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
-use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
+use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
  * BabDevPagerfantaExtension.
@@ -42,23 +42,32 @@ class BabDevPagerfantaExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
-        $configuration = new Configuration();
-        $processor = new Processor();
-
-        $config = $processor->processConfiguration($configuration, $configs);
+        $config = $this->processConfiguration($this->getConfiguration($configs, $container), $configs);
         $container->setParameter('babdev_pagerfanta.default_view', $config['default_view']);
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('pagerfanta.xml');
 
-        if ($config['exceptions_strategy']['out_of_range_page'] == Configuration::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND) {
-            $convertListener = $container->getDefinition('pagerfanta.convert_not_valid_max_per_page_to_not_found_listener');
-            $convertListener->addTag('kernel.event_subscriber');
+        if ($config['exceptions_strategy']['out_of_range_page'] === Configuration::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND) {
+            $container->getDefinition('pagerfanta.convert_not_valid_max_per_page_to_not_found_listener')
+                ->addTag(
+                    'kernel.event_listener',
+                    [
+                        'event' => KernelEvents::EXCEPTION,
+                        'method' => 'onKernelException',
+                    ]
+                );
         }
 
-        if ($config['exceptions_strategy']['not_valid_current_page'] == Configuration::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND) {
-            $convertListener = $container->getDefinition('pagerfanta.convert_not_valid_current_page_to_not_found_listener');
-            $convertListener->addTag('kernel.event_subscriber');
+        if ($config['exceptions_strategy']['not_valid_current_page'] === Configuration::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND) {
+            $container->getDefinition('pagerfanta.convert_not_valid_current_page_to_not_found_listener')
+                ->addTag(
+                    'kernel.event_listener',
+                    [
+                        'event' => KernelEvents::EXCEPTION,
+                        'method' => 'onKernelException',
+                    ]
+                );
         }
 
         // BC layer to inject the 'request' service when RequestStack is unavailable

@@ -2,12 +2,10 @@
 namespace  BabDev\PagerfantaBundle\EventListener;
 
 use Pagerfanta\Exception\NotValidMaxPerPageException;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpKernel\KernelEvents;
 
-class ConvertNotValidMaxPerPageToNotFoundListener implements EventSubscriberInterface
+class ConvertNotValidMaxPerPageToNotFoundListener
 {
     /**
      * @param GetResponseForExceptionEvent $event
@@ -30,15 +28,5 @@ class ConvertNotValidMaxPerPageToNotFoundListener implements EventSubscriberInte
                 $event->setException($notFoundHttpException);
             }
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function getSubscribedEvents()
-    {
-        return array(
-            KernelEvents::EXCEPTION => array('onException', 512)
-        );
     }
 }
