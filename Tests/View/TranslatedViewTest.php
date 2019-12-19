@@ -12,6 +12,8 @@
 namespace BabDev\PagerfantaBundle\Tests\View;
 
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Translation\TranslatorInterface as LegacyTranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 abstract class TranslatedViewTest extends TestCase
 {
@@ -52,7 +54,9 @@ abstract class TranslatedViewTest extends TestCase
 
     private function createTranslatorMock()
     {
-        return $this->createOrGetMock('Symfony\Component\Translation\TranslatorInterface');
+        $translator = interface_exists(TranslatorInterface::class) ? TranslatorInterface::class : LegacyTranslatorInterface::class;
+
+        return $this->createOrGetMock($translator);
     }
 
     private function createTranslatedView()

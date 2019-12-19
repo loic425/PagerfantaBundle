@@ -13,7 +13,8 @@ namespace BabDev\PagerfantaBundle\View;
 
 use Pagerfanta\PagerfantaInterface;
 use Pagerfanta\View\ViewInterface;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Component\Translation\TranslatorInterface as LegacyTranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Translated view.
@@ -22,17 +23,28 @@ use Symfony\Component\Translation\TranslatorInterface;
  */
 abstract class TranslatedView implements ViewInterface
 {
+    /**
+     * @var ViewInterface
+     */
     private $view;
+
+    /**
+     * @var LegacyTranslatorInterface|TranslatorInterface
+     */
     private $translator;
 
     /**
      * Constructor.
      *
-     * @param ViewInterface       $view       A view.
-     * @param TranslatorInterface $translator A translator interface.
+     * @param ViewInterface $view A view.
+     * @param LegacyTranslatorInterface|TranslatorInterface $translator A translator interface.
      */
-    public function __construct(ViewInterface $view, TranslatorInterface $translator)
+    public function __construct(ViewInterface $view, object $translator)
     {
+        if (!($translator instanceof LegacyTranslatorInterface) && !($translator instanceof TranslatorInterface)) {
+            throw new \InvalidArgumentException(sprintf('The $translator argument of %s must be an instance of %s or %s, a %s was given.', static::class, LegacyTranslatorInterface::class, TranslatorInterface::class, get_class($translator)));
+        }
+
         $this->view = $view;
         $this->translator = $translator;
     }
