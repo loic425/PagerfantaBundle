@@ -26,6 +26,7 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
                 [
                     'event' => KernelEvents::EXCEPTION,
                     'method' => 'onKernelException',
+                    'priority' => 512,
                 ]
             );
         }

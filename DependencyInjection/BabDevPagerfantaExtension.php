@@ -30,6 +30,7 @@ final class BabDevPagerfantaExtension extends Extension
                     [
                         'event' => KernelEvents::EXCEPTION,
                         'method' => 'onKernelException',
+                        'priority' => 512,
                     ]
                 );
         }
@@ -41,6 +42,7 @@ final class BabDevPagerfantaExtension extends Extension
                     [
                         'event' => KernelEvents::EXCEPTION,
                         'method' => 'onKernelException',
+                        'priority' => 512,
                     ]
                 );
         }
