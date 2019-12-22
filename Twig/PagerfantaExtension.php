@@ -98,8 +98,6 @@ final class PagerfantaExtension extends AbstractExtension
             $options
         );
 
-        $router = $this->router;
-
         if (null === $options['routeName']) {
             $request = $this->getRequest();
 
@@ -115,21 +113,17 @@ final class PagerfantaExtension extends AbstractExtension
             $options['routeParams'] = array_merge($defaultRouteParams, $options['routeParams']);
         }
 
-        $routeName = $options['routeName'];
-        $routeParams = $options['routeParams'];
-        $pagePropertyPath = new PropertyPath($options['pageParameter']);
-        $omitFirstPage = $options['omitFirstPage'];
-
-        return static function ($page) use ($router, $routeName, $routeParams, $pagePropertyPath, $omitFirstPage) {
+        return function ($page) use ($options) {
+            $pagePropertyPath = new PropertyPath($options['pageParameter']);
             $propertyAccessor = PropertyAccess::createPropertyAccessor();
 
-            if ($omitFirstPage) {
-                $propertyAccessor->setValue($routeParams, $pagePropertyPath, $page > 1 ? $page : null);
+            if ($options['omitFirstPage']) {
+                $propertyAccessor->setValue($options['routeParams'], $pagePropertyPath, $page > 1 ? $page : null);
             } else {
-                $propertyAccessor->setValue($routeParams, $pagePropertyPath, $page);
+                $propertyAccessor->setValue($options['routeParams'], $pagePropertyPath, $page);
             }
 
-            return $router->generate($routeName, $routeParams);
+            return $this->router->generate($options['routeName'], $options['routeParams']);
         };
     }
 
