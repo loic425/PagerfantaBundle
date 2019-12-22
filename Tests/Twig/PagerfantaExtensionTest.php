@@ -4,6 +4,7 @@ namespace BabDev\PagerfantaBundle\Tests\Twig;
 
 use BabDev\PagerfantaBundle\Twig\PagerfantaExtension;
 use Pagerfanta\Adapter\FixedAdapter;
+use Pagerfanta\Exception\OutOfRangeCurrentPageException;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\View\DefaultView;
 use Pagerfanta\View\ViewFactory;
@@ -253,7 +254,7 @@ final class PagerfantaExtensionTest extends TestCase
 
     public function testAPageUrlCannotBeGeneratedIfThePageIsOutOfBounds(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(OutOfRangeCurrentPageException::class);
         $this->expectExceptionMessage("Page '1000' is out of bounds");
 
         $request = Request::create('/');

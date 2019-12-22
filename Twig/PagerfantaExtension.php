@@ -2,6 +2,7 @@
 
 namespace BabDev\PagerfantaBundle\Twig;
 
+use Pagerfanta\Exception\OutOfRangeCurrentPageException;
 use Pagerfanta\PagerfantaInterface;
 use Pagerfanta\View\ViewFactory;
 use Symfony\Component\HttpFoundation\Request;
@@ -69,12 +70,12 @@ final class PagerfantaExtension extends AbstractExtension
     }
 
     /**
-     * @throws \InvalidArgumentException if the page is out of bounds
+     * @throws OutOfRangeCurrentPageException if the page is out of bounds
      */
     public function getPageUrl(PagerfantaInterface $pagerfanta, int $page, array $options = [])
     {
         if ($page < 0 || $page > $pagerfanta->getNbPages()) {
-            throw new \InvalidArgumentException("Page '{$page}' is out of bounds");
+            throw new OutOfRangeCurrentPageException("Page '{$page}' is out of bounds");
         }
 
         $routeGenerator = $this->createRouteGenerator($options);
