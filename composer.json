@@ -31,7 +31,12 @@
         "psr-4": {
             "BabDev\\PagerfantaBundle\\": ""
         },
-        "exclude-from-classmap": ["Tests/", "TestsProject/"]
+        "exclude-from-classmap": ["Tests/"]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "BabDev\\PagerfantaBundle\\Tests\\": "Tests/"
+        }
     },
     "extra": {
         "branch-alias": {
