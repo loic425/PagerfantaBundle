@@ -4,6 +4,7 @@ build:
       environment:
         php:
           version: 7.2
+
       cache:
         disabled: false
         directories:
@@ -11,6 +12,7 @@ build:
 
       project_setup:
         override: true
+
       tests:
         override:
           - php-scrutinizer-run
