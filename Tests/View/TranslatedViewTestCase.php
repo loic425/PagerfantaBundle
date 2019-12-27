@@ -88,9 +88,6 @@ abstract class TranslatedViewTestCase extends TestCase
         $this->assertSame($this->translatedViewName(), $this->translatedView->getName());
     }
 
-    /**
-     * @return ViewInterface
-     */
     private function createDecoratedView(): ViewInterface
     {
         $class = $this->decoratedViewClass();

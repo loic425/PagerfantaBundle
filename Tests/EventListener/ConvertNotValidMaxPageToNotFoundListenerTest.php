@@ -4,15 +4,15 @@ namespace BabDev\PagerfantaBundle\Tests\DependencyInjection;
 
 use BabDev\PagerfantaBundle\EventListener\ConvertNotValidMaxPerPageToNotFoundListener;
 use Pagerfanta\Exception\NotValidMaxPerPageException;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
-final class ConvertNotValidMaxPerPageToNotFoundListenerTest extends TestCase
+final class ConvertNotValidMaxPageToNotFoundListenerTest extends TestCase
 {
     public function testListenerConvertsExceptionForLegacyEvent(): void
     {

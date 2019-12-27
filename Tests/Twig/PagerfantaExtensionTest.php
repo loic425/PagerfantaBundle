@@ -58,7 +58,7 @@ final class PagerfantaExtensionTest extends TestCase
     {
         do {
             $request = $this->requestStack->pop();
-        } while ($request !== null);
+        } while (null !== $request);
     }
 
     /**
@@ -75,7 +75,7 @@ final class PagerfantaExtensionTest extends TestCase
                 if (!empty($parameters)) {
                     $query = http_build_query($parameters, '', '&');
 
-                    if ($query !== '') {
+                    if ('' !== $query) {
                         return '/my-page?'.$query;
                     }
                 }
@@ -279,7 +279,7 @@ final class PagerfantaExtensionTest extends TestCase
         $this->extension->getPageUrl($this->createPagerfanta(), 1000);
     }
 
-    private function assertViewOutputMatches(string $view, string $expected)
+    private function assertViewOutputMatches(string $view, string $expected): void
     {
         $this->assertSame($this->removeWhitespacesBetweenTags($expected), $view);
     }
