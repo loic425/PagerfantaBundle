@@ -40,7 +40,6 @@ before_install:
   - travis_retry composer self-update
 
 install:
-  - rm composer.lock
   - composer global require --no-scripts --no-plugins symfony/flex
   - composer update $COMPOSER_FLAGS
 
