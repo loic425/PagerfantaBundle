@@ -238,6 +238,19 @@ final class PagerfantaExtensionTest extends TestCase
         $this->extension->renderPagerfanta($this->createPagerfanta());
     }
 
+    public function testTheDefaultPagerfantaViewIsNotRenderedWhenAnInvalidTypeIsGivenForTheViewNameArgument(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            sprintf(
+                'The $viewName argument of %s::renderPagerfanta() must be an array, a string, or a null value; a object was given.',
+                PagerfantaExtension::class
+            )
+        );
+
+        $this->extension->renderPagerfanta($this->createPagerfanta(), new \stdClass());
+    }
+
     public function testAPageUrlCanBeGenerated(): void
     {
         $request = Request::create('/');

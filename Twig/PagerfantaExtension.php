@@ -55,18 +55,20 @@ final class PagerfantaExtension extends AbstractExtension
      * @param string|array $viewName the view name
      *
      * @return string
+     *
+     * @throws \InvalidArgumentException if the $viewName argument is an invalid type
      */
     public function renderPagerfanta(PagerfantaInterface $pagerfanta, $viewName = null, array $options = [])
     {
         if (\is_array($viewName)) {
             [$viewName, $options] = [null, $viewName];
+        } elseif (null !== $viewName && !\is_string($viewName)) {
+            throw new \InvalidArgumentException(sprintf('The $viewName argument of %s() must be an array, a string, or a null value; a %s was given.', __METHOD__, \gettype($viewName)));
         }
 
         $viewName = $viewName ?: $this->defaultView;
 
-        $routeGenerator = $this->createRouteGenerator($options);
-
-        return $this->viewFactory->get($viewName)->render($pagerfanta, $routeGenerator, $options);
+        return $this->viewFactory->get($viewName)->render($pagerfanta, $this->createRouteGenerator($options), $options);
     }
 
     /**
