@@ -1,7 +1,7 @@
 {
     "name": "babdev/pagerfanta-bundle",
     "type": "symfony-bundle",
-    "description": "Bundle to use Pagerfanta with Symfony2",
+    "description": "Bundle integrating Pagerfanta with Symfony",
     "keywords": ["pagerfanta", "pagination", "symfony"],
     "license": "MIT",
     "require": {
