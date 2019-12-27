@@ -76,6 +76,8 @@
 
         <!-- View Factory -->
         <service id="pagerfanta.view_factory" class="Pagerfanta\View\ViewFactory" public="true" />
+        <service id="Pagerfanta\View\ViewFactory" alias="pagerfanta.view_factory" />
+        <service id="Pagerfanta\View\ViewFactoryInterface" alias="pagerfanta.view_factory" />
     </services>
 
 </container>

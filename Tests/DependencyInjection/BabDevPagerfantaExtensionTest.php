@@ -4,6 +4,8 @@ namespace BabDev\PagerfantaBundle\Tests\DependencyInjection;
 
 use BabDev\PagerfantaBundle\DependencyInjection\BabDevPagerfantaExtension;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
+use Pagerfanta\View\ViewFactory;
+use Pagerfanta\View\ViewFactoryInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
@@ -13,6 +15,9 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
         $this->load();
 
         $this->assertContainerBuilderHasParameter('babdev_pagerfanta.default_view');
+
+        $this->assertContainerBuilderHasAlias(ViewFactory::class, 'pagerfanta.view_factory');
+        $this->assertContainerBuilderHasAlias(ViewFactoryInterface::class, 'pagerfanta.view_factory');
 
         $listeners = [
             'pagerfanta.event_listener.convert_not_valid_max_per_page_to_not_found',
@@ -44,6 +49,9 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
         $this->load($bundleConfig);
 
         $this->assertContainerBuilderHasParameter('babdev_pagerfanta.default_view');
+
+        $this->assertContainerBuilderHasAlias(ViewFactory::class, 'pagerfanta.view_factory');
+        $this->assertContainerBuilderHasAlias(ViewFactoryInterface::class, 'pagerfanta.view_factory');
 
         $listeners = [
             'pagerfanta.event_listener.convert_not_valid_max_per_page_to_not_found',
