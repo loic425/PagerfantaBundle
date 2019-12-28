@@ -4,7 +4,7 @@ namespace BabDev\PagerfantaBundle\View;
 
 class TwitterBootstrap3TranslatedView extends TwitterBootstrapTranslatedView
 {
-    public function getName()
+    public function getName(): string
     {
         return 'twitter_bootstrap3_translated';
     }

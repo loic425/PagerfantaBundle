@@ -4,27 +4,27 @@ namespace BabDev\PagerfantaBundle\View;
 
 class TwitterBootstrapTranslatedView extends TranslatedView
 {
-    protected function previousMessageOption()
+    protected function previousMessageOption(): string
     {
         return 'prev_message';
     }
 
-    protected function nextMessageOption()
+    protected function nextMessageOption(): string
     {
         return 'next_message';
     }
 
-    protected function buildPreviousMessage($text)
+    protected function buildPreviousMessage(string $text): string
     {
         return sprintf('&larr; %s', $text);
     }
 
-    protected function buildNextMessage($text)
+    protected function buildNextMessage(string $text): string
     {
         return sprintf('%s &rarr;', $text);
     }
 
-    public function getName()
+    public function getName(): string
     {
         return 'twitter_bootstrap_translated';
     }

@@ -17,25 +17,15 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 final class PagerfantaExtensionTest extends TestCase
 {
-    /**
-     * @var ViewFactoryInterface
-     */
-    private $viewFactory;
+    private ViewFactoryInterface $viewFactory;
 
     /**
      * @var MockObject|UrlGeneratorInterface
      */
     private $router;
 
-    /**
-     * @var RequestStack
-     */
-    private $requestStack;
-
-    /**
-     * @var PagerfantaExtension
-     */
-    private $extension;
+    private RequestStack $requestStack;
+    private PagerfantaExtension $extension;
 
     protected function setUp(): void
     {

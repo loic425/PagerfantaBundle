@@ -4,7 +4,7 @@ namespace BabDev\PagerfantaBundle\Twig;
 
 use Pagerfanta\Exception\OutOfRangeCurrentPageException;
 use Pagerfanta\PagerfantaInterface;
-use Pagerfanta\View\ViewFactory;
+use Pagerfanta\View\ViewFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\PropertyAccess\PropertyAccess;
@@ -15,27 +15,12 @@ use Twig\TwigFunction;
 
 final class PagerfantaExtension extends AbstractExtension
 {
-    /**
-     * @var string
-     */
-    private $defaultView;
+    private string $defaultView;
+    private ViewFactoryInterface $viewFactory;
+    private UrlGeneratorInterface $router;
+    private RequestStack $requestStack;
 
-    /**
-     * @var ViewFactory
-     */
-    private $viewFactory;
-
-    /**
-     * @var UrlGeneratorInterface
-     */
-    private $router;
-
-    /**
-     * @var RequestStack
-     */
-    private $requestStack;
-
-    public function __construct(string $defaultView, ViewFactory $viewFactory, UrlGeneratorInterface $router, RequestStack $requestStack)
+    public function __construct(string $defaultView, ViewFactoryInterface $viewFactory, UrlGeneratorInterface $router, RequestStack $requestStack)
     {
         $this->defaultView = $defaultView;
         $this->viewFactory = $viewFactory;
@@ -43,7 +28,10 @@ final class PagerfantaExtension extends AbstractExtension
         $this->requestStack = $requestStack;
     }
 
-    public function getFunctions()
+    /**
+     * @return TwigFunction[]
+     */
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('pagerfanta', [$this, 'renderPagerfanta'], ['is_safe' => ['html']]),
@@ -52,13 +40,11 @@ final class PagerfantaExtension extends AbstractExtension
     }
 
     /**
-     * @param string|array $viewName the view name
-     *
-     * @return string
+     * @param string|array $viewName the view name or the view options
      *
      * @throws \InvalidArgumentException if the $viewName argument is an invalid type
      */
-    public function renderPagerfanta(PagerfantaInterface $pagerfanta, $viewName = null, array $options = [])
+    public function renderPagerfanta(PagerfantaInterface $pagerfanta, $viewName = null, array $options = []): string
     {
         if (\is_array($viewName)) {
             [$viewName, $options] = [null, $viewName];
@@ -74,7 +60,7 @@ final class PagerfantaExtension extends AbstractExtension
     /**
      * @throws OutOfRangeCurrentPageException if the page is out of bounds
      */
-    public function getPageUrl(PagerfantaInterface $pagerfanta, int $page, array $options = [])
+    public function getPageUrl(PagerfantaInterface $pagerfanta, int $page, array $options = []): string
     {
         if ($page < 0 || $page > $pagerfanta->getNbPages()) {
             throw new OutOfRangeCurrentPageException("Page '{$page}' is out of bounds");
@@ -115,7 +101,7 @@ final class PagerfantaExtension extends AbstractExtension
             $options['routeParams'] = array_merge($defaultRouteParams, $options['routeParams']);
         }
 
-        return function ($page) use ($options) {
+        return function ($page) use ($options): string {
             $pagePropertyPath = new PropertyPath($options['pageParameter']);
             $propertyAccessor = PropertyAccess::createPropertyAccessor();
 

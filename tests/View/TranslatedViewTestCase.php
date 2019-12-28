@@ -10,26 +10,21 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 abstract class TranslatedViewTestCase extends TestCase
 {
-    /**
-     * @var ViewInterface
-     */
-    private $view;
+    private ViewInterface $view;
 
     /**
      * @var MockObject|TranslatorInterface
      */
     private $translator;
 
-    /**
-     * @var ViewInterface
-     */
-    private $translatedView;
+    private ViewInterface $translatedView;
 
     /**
      * @var MockObject|Pagerfanta
      */
     private $pagerfanta;
-    private $routeGenerator;
+
+    private \Closure $routeGenerator;
 
     protected function setUp(): void
     {
@@ -117,7 +112,7 @@ abstract class TranslatedViewTestCase extends TestCase
         return $this->createMock(Pagerfanta::class);
     }
 
-    private function createRouteGenerator(): callable
+    private function createRouteGenerator(): \Closure
     {
         return function (): void { };
     }

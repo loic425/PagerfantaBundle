@@ -10,7 +10,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
 
 final class BabDevPagerfantaExtension extends Extension
 {
-    public function getAlias()
+    public function getAlias(): string
     {
         return 'babdev_pagerfanta';
     }

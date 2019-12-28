@@ -8,15 +8,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 abstract class TranslatedView implements ViewInterface
 {
-    /**
-     * @var ViewInterface
-     */
-    private $view;
-
-    /**
-     * @var TranslatorInterface
-     */
-    private $translator;
+    private ViewInterface $view;
+    private TranslatorInterface $translator;
 
     public function __construct(ViewInterface $view, TranslatorInterface $translator)
     {
@@ -24,31 +17,29 @@ abstract class TranslatedView implements ViewInterface
         $this->translator = $translator;
     }
 
-    public function render(PagerfantaInterface $pagerfanta, $routeGenerator, array $options = [])
+    public function render(PagerfantaInterface $pagerfanta, $routeGenerator, array $options = []): string
     {
-        $optionsWithTranslations = $this->addTranslationOptions($options);
-
-        return $this->view->render($pagerfanta, $routeGenerator, $optionsWithTranslations);
+        return $this->view->render($pagerfanta, $routeGenerator, $this->addTranslationOptions($options));
     }
 
-    private function addTranslationOptions($options)
+    private function addTranslationOptions(array $options): array
     {
         return $this->addNextTranslationOption(
             $this->addPreviousTranslationOption($options)
         );
     }
 
-    private function addPreviousTranslationOption($options)
+    private function addPreviousTranslationOption(array $options): array
     {
         return $this->addTranslationOption($options, $this->previousMessageOption(), 'previousMessage');
     }
 
-    private function addNextTranslationOption($options)
+    private function addNextTranslationOption(array $options): array
     {
         return $this->addTranslationOption($options, $this->nextMessageOption(), 'nextMessage');
     }
 
-    private function addTranslationOption($options, $option, $messageMethod)
+    private function addTranslationOption(array $options, string $option, string $messageMethod): array
     {
         if (isset($options[$option])) {
             return $options;
@@ -59,35 +50,35 @@ abstract class TranslatedView implements ViewInterface
         return array_merge($options, [$option => $message]);
     }
 
-    abstract protected function previousMessageOption();
+    abstract protected function previousMessageOption(): string;
 
-    abstract protected function nextMessageOption();
+    abstract protected function nextMessageOption(): string;
 
-    private function previousMessage()
+    private function previousMessage(): string
     {
         $previousText = $this->previousText();
 
         return $this->buildPreviousMessage($previousText);
     }
 
-    private function nextMessage()
+    private function nextMessage(): string
     {
         $nextText = $this->nextText();
 
         return $this->buildNextMessage($nextText);
     }
 
-    private function previousText()
+    private function previousText(): string
     {
         return $this->translator->trans('previous', [], 'pagerfanta');
     }
 
-    private function nextText()
+    private function nextText(): string
     {
         return $this->translator->trans('next', [], 'pagerfanta');
     }
 
-    abstract protected function buildPreviousMessage($text);
+    abstract protected function buildPreviousMessage(string $text): string;
 
-    abstract protected function buildNextMessage($text);
+    abstract protected function buildNextMessage(string $text): string;
 }
