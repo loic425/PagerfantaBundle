@@ -3,6 +3,7 @@
 namespace BabDev\PagerfantaBundle\Tests\DependencyInjection;
 
 use BabDev\PagerfantaBundle\DependencyInjection\BabDevPagerfantaExtension;
+use BabDev\PagerfantaBundle\DependencyInjection\Configuration;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Pagerfanta\View\ViewFactory;
 use Pagerfanta\View\ViewFactoryInterface;
@@ -41,8 +42,8 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
     {
         $bundleConfig = [
             'exceptions_strategy' => [
-                'out_of_range_page' => 'custom_handler',
-                'not_valid_current_page' => 'custom_handler',
+                'out_of_range_page' => Configuration::EXCEPTION_STRATEGY_CUSTOM,
+                'not_valid_current_page' => Configuration::EXCEPTION_STRATEGY_CUSTOM,
             ],
         ];
 

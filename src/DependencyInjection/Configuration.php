@@ -7,6 +7,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 final class Configuration implements ConfigurationInterface
 {
+    public const EXCEPTION_STRATEGY_CUSTOM = 'custom';
     public const EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND = 'to_http_not_found';
 
     public function getConfigTreeBuilder(): TreeBuilder
@@ -19,8 +20,14 @@ final class Configuration implements ConfigurationInterface
                 ->arrayNode('exceptions_strategy')
                     ->addDefaultsIfNotSet()
                     ->children()
-                        ->scalarNode('out_of_range_page')->defaultValue(self::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND)->end()
-                        ->scalarNode('not_valid_current_page')->defaultValue(self::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND)->end()
+                        ->enumNode('out_of_range_page')
+                            ->defaultValue(self::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND)
+                            ->values([self::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND, self::EXCEPTION_STRATEGY_CUSTOM])
+                        ->end()
+                        ->enumNode('not_valid_current_page')
+                            ->defaultValue(self::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND)
+                            ->values([self::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND, self::EXCEPTION_STRATEGY_CUSTOM])
+                        ->end()
                     ->end()
                 ->end()
             ->end();
