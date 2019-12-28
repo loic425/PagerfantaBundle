@@ -6,7 +6,6 @@ use Pagerfanta\Pagerfanta;
 use Pagerfanta\View\ViewInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Translation\TranslatorInterface as LegacyTranslatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 abstract class TranslatedViewTestCase extends TestCase
@@ -17,7 +16,7 @@ abstract class TranslatedViewTestCase extends TestCase
     private $view;
 
     /**
-     * @var MockObject|LegacyTranslatorInterface|TranslatorInterface
+     * @var MockObject|TranslatorInterface
      */
     private $translator;
 
@@ -96,13 +95,11 @@ abstract class TranslatedViewTestCase extends TestCase
     }
 
     /**
-     * @return MockObject|LegacyTranslatorInterface|TranslatorInterface
+     * @return MockObject|TranslatorInterface
      */
     private function createTranslatorMock(): MockObject
     {
-        $translator = interface_exists(TranslatorInterface::class) ? TranslatorInterface::class : LegacyTranslatorInterface::class;
-
-        return $this->createMock($translator);
+        return $this->createMock(TranslatorInterface::class);
     }
 
     private function createTranslatedView(): ViewInterface
