@@ -29,13 +29,12 @@
     },
     "autoload": {
         "psr-4": {
-            "BabDev\\PagerfantaBundle\\": ""
-        },
-        "exclude-from-classmap": ["Tests/"]
+            "BabDev\\PagerfantaBundle\\": "src/"
+        }
     },
     "autoload-dev": {
         "psr-4": {
-            "BabDev\\PagerfantaBundle\\Tests\\": "Tests/"
+            "BabDev\\PagerfantaBundle\\Tests\\": "tests/"
         }
     },
     "extra": {

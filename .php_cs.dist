@@ -17,8 +17,7 @@ return PhpCsFixer\Config::create()
     ->setRiskyAllowed(true)
     ->setFinder(
         PhpCsFixer\Finder::create()
-            ->notPath('vendor')
-            ->in(__DIR__)
-            ->append([__DIR__.'/BabDevPagerfantaBundle.php', __FILE__])
+            ->in(__DIR__.'/src')
+            ->in(__DIR__.'/tests')
     )
 ;

@@ -20,7 +20,7 @@ final class BabDevPagerfantaExtension extends Extension
         $config = $this->processConfiguration($this->getConfiguration($configs, $container), $configs);
         $container->setParameter('babdev_pagerfanta.default_view', $config['default_view']);
 
-        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../../config'));
         $loader->load('pagerfanta.xml');
 
         if (Configuration::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND === $config['exceptions_strategy']['out_of_range_page']) {

@@ -34,4 +34,9 @@ final class BabDevPagerfantaBundle extends Bundle
 
         return parent::getContainerExtension();
     }
+
+    public function getPath(): string
+    {
+        return \dirname(__DIR__);
+    }
 }
