@@ -59,11 +59,7 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
         ];
 
         foreach ($listeners as $listener) {
-            $this->assertContainerBuilderHasService($listener);
-
-            $definition = $this->container->getDefinition($listener);
-
-            $this->assertEmpty($definition->getTag('kernel.event_listener'), sprintf('The "%s" service should not have the "kernel.event_listener" tag when a custom strategy is used.', $listener));
+            $this->assertContainerBuilderNotHasService($listener);
         }
     }
 
