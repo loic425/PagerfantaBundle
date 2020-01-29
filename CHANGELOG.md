@@ -1,5 +1,5 @@
 # Changelog
 
-## 2.0.1 (TBD)
+## 3.0.0 (TBD)
 
-- Remove event listener services from the container when they are not used as their respective exception strategy
+- Consult the UPGRADE guide for changes between 2.x and 3.0
