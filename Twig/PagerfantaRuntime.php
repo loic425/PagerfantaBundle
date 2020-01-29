@@ -45,11 +45,9 @@ final class PagerfantaRuntime
     /**
      * @param string|array|null $viewName the view name
      *
-     * @return string
-     *
      * @throws \InvalidArgumentException if the $viewName argument is an invalid type
      */
-    public function renderPagerfanta(PagerfantaInterface $pagerfanta, $viewName = null, array $options = [])
+    public function renderPagerfanta(PagerfantaInterface $pagerfanta, $viewName = null, array $options = []): string
     {
         if (\is_array($viewName)) {
             [$viewName, $options] = [null, $viewName];
@@ -76,7 +74,7 @@ final class PagerfantaRuntime
     /**
      * @throws OutOfRangeCurrentPageException if the page is out of bounds
      */
-    public function getPageUrl(PagerfantaInterface $pagerfanta, int $page, array $options = [])
+    public function getPageUrl(PagerfantaInterface $pagerfanta, int $page, array $options = []): string
     {
         if (!($pagerfanta instanceof Pagerfanta)) {
             @trigger_error(
@@ -128,7 +126,7 @@ final class PagerfantaRuntime
             $options['routeParams'] = array_merge($defaultRouteParams, $options['routeParams']);
         }
 
-        return function ($page) use ($options) {
+        return function ($page) use ($options): string {
             $pagePropertyPath = new PropertyPath($options['pageParameter']);
             $propertyAccessor = PropertyAccess::createPropertyAccessor();
 
