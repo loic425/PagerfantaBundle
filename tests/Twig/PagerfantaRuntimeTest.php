@@ -2,7 +2,7 @@
 
 namespace BabDev\PagerfantaBundle\Tests\Twig;
 
-use BabDev\PagerfantaBundle\Twig\PagerfantaExtension;
+use BabDev\PagerfantaBundle\Twig\PagerfantaRuntime;
 use Pagerfanta\Adapter\FixedAdapter;
 use Pagerfanta\Exception\OutOfRangeCurrentPageException;
 use Pagerfanta\Pagerfanta;
@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-final class PagerfantaExtensionTest extends TestCase
+final class PagerfantaRuntimeTest extends TestCase
 {
     private ViewFactoryInterface $viewFactory;
 
@@ -25,7 +25,7 @@ final class PagerfantaExtensionTest extends TestCase
     private $router;
 
     private RequestStack $requestStack;
-    private PagerfantaExtension $extension;
+    private PagerfantaRuntime $extension;
 
     protected function setUp(): void
     {
@@ -36,7 +36,7 @@ final class PagerfantaExtensionTest extends TestCase
 
         $this->requestStack = new RequestStack();
 
-        $this->extension = new PagerfantaExtension(
+        $this->extension = new PagerfantaRuntime(
             'default',
             $this->viewFactory,
             $this->router,
@@ -60,18 +60,18 @@ final class PagerfantaExtensionTest extends TestCase
         $router = $this->createMock(UrlGeneratorInterface::class);
 
         $router->expects($this->any())
-            ->method('generate')
-            ->willReturnCallback(static function (string $name, array $parameters = [], int $referenceType = UrlGeneratorInterface::ABSOLUTE_PATH): string {
-                if (!empty($parameters)) {
-                    $query = http_build_query($parameters, '', '&');
+               ->method('generate')
+               ->willReturnCallback(static function (string $name, array $parameters = [], int $referenceType = UrlGeneratorInterface::ABSOLUTE_PATH): string {
+                   if (!empty($parameters)) {
+                       $query = http_build_query($parameters, '', '&');
 
-                    if ('' !== $query) {
-                        return '/my-page?'.$query;
-                    }
-                }
+                       if ('' !== $query) {
+                           return '/my-page?'.$query;
+                       }
+                   }
 
-                return '/my-page';
-            });
+                   return '/my-page';
+               });
 
         return $router;
     }
@@ -214,7 +214,7 @@ final class PagerfantaExtensionTest extends TestCase
     public function testTheDefaultPagerfantaViewIsNotRenderedWhenASubrequestIsActiveAndARouteNameIsNotSpecified(): void
     {
         $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessage('PagerfantaBundle can not guess the route when used in a sub-request');
+        $this->expectExceptionMessage('The Twig functions of BabDevPagerfantaBundle can not guess the route when used in a sub-request, pass the "routeName" option to use the pager.');
 
         $masterRequest = Request::create('/');
         $masterRequest->attributes->set('_route', 'pagerfanta_view');
@@ -234,7 +234,7 @@ final class PagerfantaExtensionTest extends TestCase
         $this->expectExceptionMessage(
             sprintf(
                 'The $viewName argument of %s::renderPagerfanta() must be an array, a string, or a null value; a object was given.',
-                PagerfantaExtension::class
+                PagerfantaRuntime::class
             )
         );
 
