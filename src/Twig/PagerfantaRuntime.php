@@ -4,7 +4,6 @@ namespace BabDev\PagerfantaBundle\Twig;
 
 use Pagerfanta\Exception\OutOfRangeCurrentPageException;
 use Pagerfanta\Pagerfanta;
-use Pagerfanta\PagerfantaInterface;
 use Pagerfanta\View\ViewFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -32,23 +31,12 @@ final class PagerfantaRuntime
      *
      * @throws \InvalidArgumentException if the $viewName argument is an invalid type
      */
-    public function renderPagerfanta(PagerfantaInterface $pagerfanta, $viewName = null, array $options = []): string
+    public function renderPagerfanta(Pagerfanta $pagerfanta, $viewName = null, array $options = []): string
     {
         if (\is_array($viewName)) {
             [$viewName, $options] = [null, $viewName];
         } elseif (null !== $viewName && !\is_string($viewName)) {
             throw new \InvalidArgumentException(sprintf('The $viewName argument of %s() must be an array, a string, or a null value; a %s was given.', __METHOD__, \gettype($viewName)));
-        }
-
-        if (!($pagerfanta instanceof Pagerfanta)) {
-            @trigger_error(
-                sprintf(
-                    'The "pagerfanta" Twig function will no longer accept "%1$s" implementations that are not a subclass of "%2$s" as of BabDevPagerfantaBundle 3.0. Ensure your pager is a subclass of "%2$s".',
-                    PagerfantaInterface::class,
-                    Pagerfanta::class
-                ),
-                E_USER_DEPRECATED
-            );
         }
 
         $viewName = $viewName ?: $this->defaultView;
@@ -59,19 +47,8 @@ final class PagerfantaRuntime
     /**
      * @throws OutOfRangeCurrentPageException if the page is out of bounds
      */
-    public function getPageUrl(PagerfantaInterface $pagerfanta, int $page, array $options = []): string
+    public function getPageUrl(Pagerfanta $pagerfanta, int $page, array $options = []): string
     {
-        if (!($pagerfanta instanceof Pagerfanta)) {
-            @trigger_error(
-                sprintf(
-                    'The "pagerfanta_page_url" Twig function will no longer accept "%1$s" implementations that are not a subclass of "%2$s" as of BabDevPagerfantaBundle 3.0. Ensure your pager is a subclass of "%2$s".',
-                    PagerfantaInterface::class,
-                    Pagerfanta::class
-                ),
-                E_USER_DEPRECATED
-            );
-        }
-
         if ($page < 0 || $page > $pagerfanta->getNbPages()) {
             throw new OutOfRangeCurrentPageException("Page '{$page}' is out of bounds");
         }
