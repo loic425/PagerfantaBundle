@@ -33,6 +33,8 @@ final class BabDevPagerfantaExtension extends Extension
                         'priority' => 512,
                     ]
                 );
+        } else {
+            $container->removeDefinition('pagerfanta.event_listener.convert_not_valid_max_per_page_to_not_found');
         }
 
         if (Configuration::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND === $config['exceptions_strategy']['not_valid_current_page']) {
@@ -45,6 +47,8 @@ final class BabDevPagerfantaExtension extends Extension
                         'priority' => 512,
                     ]
                 );
+        } else {
+            $container->removeDefinition('pagerfanta.event_listener.convert_not_valid_current_page_to_not_found');
         }
     }
 }
