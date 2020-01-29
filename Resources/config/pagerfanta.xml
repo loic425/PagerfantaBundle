@@ -16,11 +16,16 @@
 
         <!-- Twig Extension -->
         <service id="pagerfanta.twig_extension" class="BabDev\PagerfantaBundle\Twig\PagerfantaExtension" public="false">
+            <tag name="twig.extension" />
+        </service>
+
+        <!-- Twig Runtime -->
+        <service id="pagerfanta.twig_runtime" class="BabDev\PagerfantaBundle\Twig\PagerfantaRuntime" public="false">
             <argument>%babdev_pagerfanta.default_view%</argument>
             <argument type="service" id="pagerfanta.view_factory" />
             <argument type="service" id="router" />
             <argument type="service" id="request_stack" />
-            <tag name="twig.extension" />
+            <tag name="twig.runtime" />
         </service>
 
         <!-- Pagerfanta Views -->
