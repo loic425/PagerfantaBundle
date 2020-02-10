@@ -20,7 +20,7 @@
         "doctrine/annotations": "^1.8",
         "friendsofphp/php-cs-fixer": "^2.16",
         "matthiasnoback/symfony-dependency-injection-test": "^4.1",
-        "phpunit/phpunit": "^8.5",
+        "phpunit/phpunit": "^8.5 || ^9.0",
         "twig/twig": "^1.34 || ^2.4 || ^3.0"
     },
     "conflict": {
