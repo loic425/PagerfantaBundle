@@ -10,5 +10,5 @@ The below guide will assist in upgrading from the 2.x versions to 3.0.
 ## General Changes
 
 - Added parameter, return, and property typehints where not previously in place
-- The values for the `exceptions_strategy.out_of_range_page` and `exceptions_strategy.not_valid_current_page` must be one of "to_http_not_found" or "custom", other values will raise an exception
+- The values for the `babdev_pagerfanta.exceptions_strategy.out_of_range_page` and `babdev_pagerfanta.exceptions_strategy.not_valid_current_page` configuration options must be one of "to_http_not_found" or "custom", other values will raise an exception
 - The Twig functions no longer accept deprecated `Pagerfanta\PagerfantaInterface` implementations, `Pagerfanta\Pagerfanta` objects must be used
