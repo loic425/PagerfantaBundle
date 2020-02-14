@@ -2,9 +2,9 @@
 
 namespace BabDev\PagerfantaBundle;
 
+use BabDev\PagerfantaBundle\DependencyInjection\BabDevPagerfantaExtension;
 use BabDev\PagerfantaBundle\DependencyInjection\CompilerPass\AddPagerfantasPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 final class BabDevPagerfantaBundle extends Bundle
@@ -19,20 +19,10 @@ final class BabDevPagerfantaBundle extends Bundle
     public function getContainerExtension()
     {
         if (null === $this->extension) {
-            $extension = $this->createContainerExtension();
-
-            if (null !== $extension) {
-                if (!$extension instanceof ExtensionInterface) {
-                    throw new \LogicException(sprintf('Extension %s must implement %s.', \get_class($extension), ExtensionInterface::class));
-                }
-
-                $this->extension = $extension;
-            } else {
-                $this->extension = false;
-            }
+            $this->extension = new BabDevPagerfantaExtension();
         }
 
-        return parent::getContainerExtension();
+        return $this->extension ?: null;
     }
 
     public function getPath(): string
