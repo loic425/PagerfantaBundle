@@ -15,6 +15,7 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
         $this->load();
 
         $this->assertContainerBuilderHasParameter('babdev_pagerfanta.default_view');
+        $this->assertContainerBuilderHasParameter('babdev_pagerfanta.default_twig_template');
 
         $this->assertContainerBuilderHasAlias(ViewFactory::class, 'pagerfanta.view_factory');
         $this->assertContainerBuilderHasAlias(ViewFactoryInterface::class, 'pagerfanta.view_factory');
@@ -49,6 +50,7 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
         $this->load($bundleConfig);
 
         $this->assertContainerBuilderHasParameter('babdev_pagerfanta.default_view');
+        $this->assertContainerBuilderHasParameter('babdev_pagerfanta.default_twig_template');
 
         $this->assertContainerBuilderHasAlias(ViewFactory::class, 'pagerfanta.view_factory');
         $this->assertContainerBuilderHasAlias(ViewFactoryInterface::class, 'pagerfanta.view_factory');
