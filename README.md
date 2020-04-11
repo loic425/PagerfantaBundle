@@ -8,13 +8,13 @@ This bundle is a continuation of the [WhiteOctoberPagerfantaBundle](https://gith
 
 The bundle includes:
 
-  * Twig function to render pagerfantas with views and options.
+  * Twig function to render Pagerfanta objects with views and options.
+  * Pagerfanta view which supports Twig templates.
   * Way to use easily views.
   * Way to reuse options in views.
-  * Basic CSS for the DefaultView.
+  * Basic CSS for the `Pagerfanta\View\DefaultView` class.
 
-Installation
-------------
+## Installation
 
 1) Use [Composer](https://getcomposer.org/) to install the bundle in your application
 
@@ -30,7 +30,6 @@ If your application is based on the Symfony Standard structure, you will need to
 <?php
 // app/AppKernel.php
 
-// ...
 class AppKernel extends Kernel
 {
     public function registerBundles()
@@ -69,158 +68,131 @@ B) **Rendering in Twig** is shown below in the [Rendering Pagerfantas](#renderin
 
 C) **Configuration** is shown through this document
 
-Rendering Pagerfantas
----------------------
+## Rendering Pagerfantas
 
 First, you'll need to pass an instance of Pagerfanta as a parameter into your template.
-For example:
 
 ```php
 <?php
 
+namespace App\Controller;
+
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 
-$adapter = new DoctrineORMAdapter($queryBuilder);
-$pagerfanta = new Pagerfanta($adapter);
+final class MyController extends AbstractController
+{
+    public function pagerfanta(): Response
+    {
+        $adapter = new DoctrineORMAdapter($queryBuilder);
+        $pagerfanta = new Pagerfanta($adapter);
 
-return $this->render('@YourApp/Main/example.html.twig', [
-    'my_pager' => $pagerfanta,
-]);
+        return $this->render(
+            '@YourApp/Main/example.html.twig',
+            [
+                'my_pager' => $pagerfanta,
+            ]
+        );
+    }
+}
 ```
 
-You then call the the Pagerfanta Twig extension, passing in the Pagerfanta instance.
-The routes are generated automatically for the current route using the variable "page" to propagate the page number.
-By default, the bundle uses the *DefaultView* with the *default* name. The default syntax is:
+You then call the the `pagerfanta` function from the Twig extension, passing in the Pagerfanta instance. The routes are generated automatically for the current route using the variable "page" to propagate the page number. By default, the bundle uses the `Pagerfanta\View\DefaultView` class to render the pager.
 
 ```twig
-<div class="pagerfanta">
-    {{ pagerfanta(my_pager) }}
-</div>
+{{ pagerfanta(my_pager) }}
 ```
 
-By default, the "page" variable is also added for the link to the first page. To 
-disable the generation of `?page=1` in the url, simply set the `omitFirstPage` option
-to `true` when calling the `pagerfanta` twig function:
+By default, the "page" variable is also added for the link to the first page. To disable the generation of `?page=1` in the URL, set the `omitFirstPage` option to `true` when calling the `pagerfanta()` Twig function.
 
 ```twig
-<div class="pagerfanta">
-    {{ pagerfanta(my_pager, 'default', { 'omitFirstPage': true}) }}
-</div>
+{{ pagerfanta(my_pager, 'default', {'omitFirstPage': true}) }}
 ```
 
-You can omit the template parameter to make function call shorter, in this case the
-default template will be used:
+You can omit the template parameter to make function call shorter, in this case the default template will be used.
 
 ```twig
-<div class="pagerfanta">
-    {{ pagerfanta(my_pager, { 'omitFirstPage': true }) }}
-</div>
+{{ pagerfanta(my_pager, {'omitFirstPage': true }) }}
 ```
 
-If you have multiple pagers on one page, you'll need to change the name of the `page` parameter.
-Here's an example:
+If you are using a parameter other than `page` for pagination, you can set the parameter name by using the `pageParameter` option when rendering the pager.
 
 ```twig
-<div class="pagerfanta">
-    {{ pagerfanta(my_other_pager, 'default', {'pageParameter': '[page_other]'}) }}
-</div>
+{{ pagerfanta(my_pager, 'default', {'pageParameter': '[other_page]'}) }}
 ```
 
-Note the square brackets around `page_other`; this won't work without them.
+Note that the page parameter *MUST* be wrapped in brackets (i.e. `[other_page]`).
 
-### Twitter Bootstrap
+See the [Pagerfanta documentation](https://github.com/whiteoctober/Pagerfanta) for the list of supported options.
 
-The bundle has support for views using Twitter Bootstrap.
+## Available Views
 
-For Bootstrap 2:
+### Default Views
 
-```twig
-<div class="pagerfanta">
-    {{ pagerfanta(my_pager, 'twitter_bootstrap') }}
-</div>
-```
+All of the views provided in the `pagerfanta/pagerfanta` are available by default for use with this bundle.
 
-For Bootstrap 3:
+The below table lists the view names and the corresponding class. 
 
-```twig
-<div class="pagerfanta">
-    {{ pagerfanta(my_pager, 'twitter_bootstrap3') }}
-</div>
-```
+| View Name            | Class Name                              |
+| -------------------- | --------------------------------------- |
+| `default`            | `Pagerfanta\View\DefaultView`           |
+| `semantic_ui`        | `Pagerfanta\View\SemanticUiView`        |
+| `twitter_bootstrap`  | `Pagerfanta\View\TwitterBootstrapView`  |
+| `twitter_bootstrap3` | `Pagerfanta\View\TwitterBootstrap3View` |
+| `twitter_bootstrap4` | `Pagerfanta\View\TwitterBootstrap4View` |
 
+### Twig View
 
-For Bootstrap 4:
+_This feature was introduced in BabDevPagerfantaBundle 2.2_
 
-```twig
-<div class="pagerfanta">
-    {{ pagerfanta(my_pager, 'twitter_bootstrap4') }}
-</div>
-```
+This bundle provides a Pagerfanta view which renders a Twig template.
 
-### Semantic UI
+The below table lists the available templates and the CSS framework they correspond to.
 
-The bundle also has a Semantic UI view.
+| Template Name                                          | Framework                                            |
+| ------------------------------------------------------ | ---------------------------------------------------- |
+| `@BabDevPagerfantaBundle/default.html.twig`            | None (Pagerfanta's default view)                     |
+| `@BabDevPagerfantaBundle/semantic_ui.html.twig`        | [Semantic UI](https://semantic-ui.com) (version 2.x) |
+| `@BabDevPagerfantaBundle/twitter_bootstrap.html.twig`  | [Bootstrap](https://getbootstrap.com) (version 2.x)  |
+| `@BabDevPagerfantaBundle/twitter_bootstrap3.html.twig` | [Bootstrap](https://getbootstrap.com) (version 3.x)  |
+| `@BabDevPagerfantaBundle/twitter_bootstrap4.html.twig` | [Bootstrap](https://getbootstrap.com) (version 4.x)  |
 
-```twig
-<div class="pagerfanta">
-    {{ pagerfanta(my_pager, 'semantic_ui') }}
-</div>
-```
+*NOTE* The Twig view ignores the `prev_message` and `next_message` Pagerfanta options in favor of translations directly in the templates.
 
-### Custom template
+When rendering a Twig view, the following options are passed into the template for use:
 
-If you want to use a custom template, add another argument:
+- `pagerfanta` - The `Pagerfanta\Pagerfanta` object
+- `route_generator` - A `BabDev\PagerfantaBundle\RouteGenerator\RouteGeneratorDecorator` object which decorates the route generator created by the `pagerfanta()` Twig function
+    - The decorator is required because Twig does not allow direct execution of Closures within templates
+- `options` - The options array passed through the `pagerfanta()` Twig function
+- `start_page` - The calculated start page for the list of items displayed between separators, this is based on the `proximity` option and the total number of pages
+- `end_page` - The calculated end page for the list of items displayed between separators, this is based on the `proximity` option and the total number of pages
+- `current_page` - The current page in the paginated list
+- `nb_pages` - The total number of pages in the paginated list
 
-```twig
-<div class="pagerfanta">
-    {{ pagerfanta(my_pager, 'my_template') }}
-</div>
-```
+### Translated Views
 
-With options:
+_This feature is deprecated as of BabDevPagerfantaBundle 2.2 and will be removed in 3.0_
 
-```twig
-{{ pagerfanta(my_pager, 'default', {'proximity': 2}) }}
-```
+This bundle also provides translated views, which allows using translation messages for the "Previous" and "Next" text items. The translated views act as decorators around the base view to automatically set the appropriate view options with the translated text.
 
-See the [Pagerfanta documentation](https://github.com/whiteoctober/Pagerfanta) for the list of possible parameters.
+The below lists the view names, the corresponding class, and the class the view decorates. 
 
-Rendering the page of items itself
-----------------------------------
+| View Name                       | Class Name                                                     | Decorated Class Name                    |
+| ------------------------------- | -------------------------------------------------------------- | --------------------------------------- |
+| `default_translated`            | `BabDev\PagerfantaBundle\View\DefaultTranslatedView`           | `Pagerfanta\View\DefaultView`           |
+| `semantic_ui_translated`        | `BabDev\PagerfantaBundle\View\SemanticUiTranslatedView`        | `Pagerfanta\View\SemanticUiView`        |
+| `twitter_bootstrap_translated`  | `BabDev\PagerfantaBundle\View\TwitterBootstrapTranslatedView`  | `Pagerfanta\View\TwitterBootstrapView`  |
+| `twitter_bootstrap3_translated` | `BabDev\PagerfantaBundle\View\TwitterBootstrap3TranslatedView` | `Pagerfanta\View\TwitterBootstrap3View` |
+| `twitter_bootstrap4_translated` | `BabDev\PagerfantaBundle\View\TwitterBootstrap4TranslatedView` | `Pagerfanta\View\TwitterBootstrap4View` |
 
-The items can be retrieved using `currentPageResults`. For example:
+## Adding Views
 
-```twig
-{% for item in my_pager.currentPageResults %}
-    <ul>
-        <li>{{ item.id }}</li>
-    </ul>
-{% endfor %}
-```
+Views are added to the service container with the `pagerfanta.view` tag. You can also specify an alias which is used as the view's name in a `Pagerfanta\View\ViewFactoryInterface` instance, but if one is not given then the service ID is used instead.
 
-Translate in your language
---------------------------
-
-Translated views are available for all supported views by adding `_translated`
-to the name.
-
-```twig
-{{ pagerfanta(my_pager, 'default_translated') }}
-
-{{ pagerfanta(my_pager, 'twitter_bootstrap_translated') }}
-
-{{ pagerfanta(my_pager, 'semantic_ui_translated') }}
-```
-
-Adding Views
-------------
-
-Views are added to the service container with the `pagerfanta.view` tag. You should also
-optionally specify an alias, which is used as the view's name with the Twig function,
-but if one is not given then the service ID is used instead.
-
-XML
+### XML Configuration
 
 ```xml
 <container>
@@ -236,7 +208,7 @@ XML
 </container>
 ```
 
-YAML
+### YAML Configuration
 
 ```yaml
 services:
@@ -255,108 +227,121 @@ services:
             - { name: pagerfanta.view }
 ```
 
-Reusing Options
----------------
+## Retrieving Views
 
-Sometimes you want to reuse options of a view in your project, and you don't
-want to write them all the times you render a view, or you can have different
-configurations for a view and you want to save them in a place to be able to
-change them easily.
+You can access the Pagerfanta views through the `pagerfanta.view_factory` service, which is a `Pagerfanta\View\ViewFactoryInterface` instance. This is useful if your application does not use Twig but you still want to use Pagerfanta views for rendering pagination lists.
 
-For this you have to define views with the special *OptionableView*:
+```php
+<?php
+
+namespace App\Service;
+
+use Pagerfanta\Pagerfanta;
+use Pagerfanta\View\ViewFactoryInterface;
+
+final class PagerfantaService
+{
+    private $viewFactory;
+
+    public function __construct(ViewFactoryInterface $viewFactory)
+    {
+        $this->viewFactory = $viewFactory;
+    }
+
+    public function render(Pagerfanta $pagerfanta, string $view, array $options = []): string
+    {
+        return $this->viewFactory->get($view)->render($pagerfanta, $this->createRouteGenerator($options), $options);
+    }
+}
+```
+
+## Reusing Options
+
+Sometimes you want to reuse options for a view in your project and you don't want to repeat those options each time you render a view, or you have different configurations for a view and you want to save those configurations to be able to change them easily.
+
+For this you can define views with the `Pagerfanta\View\OptionableView` class, which is a decorator for any `Pagerfanta\View\ViewInterface` instance.
 
 ```yaml
 services:
-    pagerfanta.view.my_view_1:
+    pagerfanta.view.low_proximity_and_spanish_messages:
         class: Pagerfanta\View\OptionableView
         arguments:
             - @pagerfanta.view.default
             - { proximity: 2, prev_message: Anterior, next_message: Siguiente }
         public: false
         tags:
-            - { name: pagerfanta.view, alias: my_view_1 }
+            - { name: pagerfanta.view, alias: low_proximity_and_spanish_messages }
 
-    pagerfanta.view.my_view_2:
+    pagerfanta.view.high_proximity:
         class: Pagerfanta\View\OptionableView
         arguments:
             - @pagerfanta.view.default
             - { proximity: 5 }
         public: false
         tags:
-            - { name: pagerfanta.view, alias: my_view_2 }
+            - { name: pagerfanta.view, alias: high_proximity }
 ```
 
-And using then:
+## Default View CSS
 
-```twig
-{{ pagerfanta(my_pager, 'my_view_1') }}
-{{ pagerfanta(my_pager, 'my_view_2') }}
-```
-
-The easiest way to render pagerfantas (or paginators!) ;)
-
-Basic CSS for the default view
-------------------------------
-
-The bundles comes with basic CSS for the default view so you can get started with a good paginator faster.
-Of course you can change it, use another one or create your own view.
+The bundle comes with basic CSS for the default view so you can get started quickly.
 
 ```html
-<link rel="stylesheet" href="{{ asset('bundles/babdevpagerfanta/css/pagerfantaDefault.css') }}" type="text/css" media="all" />
+<link rel="stylesheet" href="{{ asset('bundles/babdevpagerfanta/css/pagerfantaDefault.css') }}">
 ```
 
-Configuration
--------------
+## Bundle Configuration
 
-It's possible to configure the default view for all rendering in your
-configuration file:
+### Default View
+The default view for your application can be set with the `default_view` configuration node. This defaults to "default".
 
 ```yaml
 // app/config/config.yml for Symfony Standard applications
 // config/packages/babdev_pagerfanta.yaml for Symfony Flex applications
 babdev_pagerfanta:
-    default_view: my_view_1
+    default_view: my_view
 ```
 
-Making bad page numbers return a HTTP 500
------------------------------------------
+### Default Twig Template
+The default Twig template for Twig views in your application can be set with the `default_twig_template` configuration node. This defaults to "`@BabDevPagerfantaBundle/default.html.twig`".
 
-Right now when the page is out of range or not a number,
-the server returns a 404 response by default.
+```yaml
+// app/config/config.yml for Symfony Standard applications
+// config/packages/babdev_pagerfanta.yaml for Symfony Flex applications
+babdev_pagerfanta:
+    default_view: twig
+    default_twig_template: '@App/Pagerfanta/default.html.twig'
+```
 
-You can set the following parameters to something other than the
-default value `to_http_not_found` (ie. null) to show a 500 error
-when the requested page is not valid instead.
+### Exception Strategies
+
+By default, the bundle converts `Pagerfanta\Exception\NotValidCurrentPageException` and `Pagerfanta\Exception\NotValidMaxPerPageException` exceptions into 404 responses. If you would like to disable or change this behavior, you can change the strategies using the `exceptions_strategy` node by setting the value to "custom" for each behavior you want to change.
 
 ```yaml
 // app/config/config.yml for Symfony Standard applications
 // config/packages/babdev_pagerfanta.yaml for Symfony Flex applications
 babdev_pagerfanta:
     exceptions_strategy:
-        out_of_range_page:        ~
-        not_valid_current_page:   ~
+        out_of_range_page: custom # Disables converting `Pagerfanta\Exception\NotValidMaxPerPageException` to a 404 response
+        not_valid_current_page: to_http_not_found # Default behavior converting `Pagerfanta\Exception\NotValidCurrentPageException` to a 404 response
 ```
 
-More information
-----------------
+## More information
 
 For more advanced documentation, check the [Pagerfanta documentation](https://github.com/whiteoctober/Pagerfanta/blob/master/README.md).
 
-Contributing
--------------
+## Contributing
 
 We welcome contributions to this project, including pull requests and issues (and discussions on existing issues).
 
 If you'd like to contribute code but aren't sure what, the [issues list](https://github.com/BabDev/BabDevPagerfantaBundle/issues) is a good place to start.
+You can also look at the [original bundle issues](https://github.com/whiteoctober/WhiteOctoberPagerfantaBundle/issues) for any items which are still open from there.
 If you're a first-time code contributor, you may find Github's guide to [forking projects](https://guides.github.com/activities/forking/) helpful.
 
-Acknowledgements
------------------
+## Acknowledgements
 
 This bundle is a continuation of the [WhiteOctoberPagerfantaBundle](https://github.com/whiteoctober/WhiteOctoberPagerfantaBundle). The work from all past contributors to the previous bundle is greatly appreciated.
 
-License
--------
+## License
 
-Pagerfanta is licensed under the MIT License. See the LICENSE file for full
-details.
+Pagerfanta is licensed under the MIT License. See the [LICENSE file](/LICENSE) for full details.
