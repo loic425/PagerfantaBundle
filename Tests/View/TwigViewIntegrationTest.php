@@ -190,6 +190,42 @@ final class TwigViewIntegrationTest extends TestCase
     </ul>
 </div>'
         ];
+
+        yield 'Twitter Bootstrap 3 template at page 1' => [
+            '@BabDevPagerfantaBundle/twitter_bootstrap3.html.twig',
+            1,
+            false,
+            '<ul class="pagination">
+    <li class="prev disabled"><span>&larr; Previous</span></li>
+    <li class="active"><span>1</span></li>
+    <li><a href="/pagerfanta-view?page=2">2</a></li>
+    <li><a href="/pagerfanta-view?page=3">3</a></li>
+    <li><a href="/pagerfanta-view?page=4">4</a></li>
+    <li><a href="/pagerfanta-view?page=5">5</a></li>
+    <li class="disabled"><span>&hellip;</span></li>
+    <li><a href="/pagerfanta-view?page=10">10</a></li>
+    <li class="next"><a href="/pagerfanta-view?page=2" rel="next">Next &rarr;</a></li>
+</ul>'
+        ];
+
+        yield 'Twitter Bootstrap 3 template at page 5 with first page omitted' => [
+            '@BabDevPagerfantaBundle/twitter_bootstrap3.html.twig',
+            5,
+            true,
+            '<ul class="pagination">
+    <li class="prev"><a href="/pagerfanta-view?page=4" rel="prev">&larr; Previous</a></li>
+    <li><a href="/pagerfanta-view">1</a></li>
+    <li><a href="/pagerfanta-view?page=2">2</a></li>
+    <li><a href="/pagerfanta-view?page=3">3</a></li>
+    <li><a href="/pagerfanta-view?page=4">4</a></li>
+    <li class="active"><span>5</span></li>
+    <li><a href="/pagerfanta-view?page=6">6</a></li>
+    <li><a href="/pagerfanta-view?page=7">7</a></li>
+    <li class="disabled"><span>&hellip;</span></li>
+    <li><a href="/pagerfanta-view?page=10">10</a></li>
+    <li class="next"><a href="/pagerfanta-view?page=6" rel="next">Next &rarr;</a></li>
+</ul>'
+        ];
     }
 
     /**
