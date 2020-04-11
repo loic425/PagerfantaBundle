@@ -2,6 +2,7 @@
 
 namespace BabDev\PagerfantaBundle\DependencyInjection;
 
+use BabDev\PagerfantaBundle\View\TwigView;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -24,6 +25,7 @@ final class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('default_view')->defaultValue('default')->end()
+                ->scalarNode('default_twig_template')->defaultValue(TwigView::DEFAULT_TEMPLATE)->end()
                 ->arrayNode('exceptions_strategy')
                     ->addDefaultsIfNotSet()
                     ->children()
