@@ -93,8 +93,7 @@ final class TwigViewIntegrationTest extends TestCase
     <span class="dots">...</span>
     <a href="/pagerfanta-view?page=10">10</a>
     <a href="/pagerfanta-view?page=2" rel="next">Next</a>
-</nav>
-'
+</nav>'
         ];
 
         yield 'default template at page 5 with first page omitted' => [
@@ -113,8 +112,7 @@ final class TwigViewIntegrationTest extends TestCase
     <span class="dots">...</span>
     <a href="/pagerfanta-view?page=10">10</a>
     <a href="/pagerfanta-view?page=6" rel="next">Next</a>
-</nav>
-'
+</nav>'
         ];
 
         yield 'Semantic UI template at page 1' => [
@@ -131,8 +129,7 @@ final class TwigViewIntegrationTest extends TestCase
     <div class="item disabled">&hellip;</div>
     <a class="item" href="/pagerfanta-view?page=10">10</a>
     <a class="item next" href="/pagerfanta-view?page=2">Next</a>
-</div>
-'
+</div>'
         ];
 
         yield 'Semantic UI template at page 5 with first page omitted' => [
@@ -151,8 +148,47 @@ final class TwigViewIntegrationTest extends TestCase
     <div class="item disabled">&hellip;</div>
     <a class="item" href="/pagerfanta-view?page=10">10</a>
     <a class="item next" href="/pagerfanta-view?page=6">Next</a>
-</div>
-'
+</div>'
+        ];
+
+        yield 'Twitter Bootstrap template at page 1' => [
+            '@BabDevPagerfantaBundle/twitter_bootstrap.html.twig',
+            1,
+            false,
+            '<div class="pagination">
+    <ul>
+        <li class="prev disabled"><span>&larr; Previous</span></li>
+        <li class="active"><span>1</span></li>
+        <li><a href="/pagerfanta-view?page=2">2</a></li>
+        <li><a href="/pagerfanta-view?page=3">3</a></li>
+        <li><a href="/pagerfanta-view?page=4">4</a></li>
+        <li><a href="/pagerfanta-view?page=5">5</a></li>
+        <li class="disabled"><span>&hellip;</span></li>
+        <li><a href="/pagerfanta-view?page=10">10</a></li>
+        <li class="next"><a href="/pagerfanta-view?page=2" rel="next">Next &rarr;</a></li>
+    </ul>
+</div>'
+        ];
+
+        yield 'Twitter Bootstrap template at page 5 with first page omitted' => [
+            '@BabDevPagerfantaBundle/twitter_bootstrap.html.twig',
+            5,
+            true,
+            '<div class="pagination">
+    <ul>
+        <li class="prev"><a href="/pagerfanta-view?page=4" rel="prev">&larr; Previous</a></li>
+        <li><a href="/pagerfanta-view">1</a></li>
+        <li><a href="/pagerfanta-view?page=2">2</a></li>
+        <li><a href="/pagerfanta-view?page=3">3</a></li>
+        <li><a href="/pagerfanta-view?page=4">4</a></li>
+        <li class="active"><span>5</span></li>
+        <li><a href="/pagerfanta-view?page=6">6</a></li>
+        <li><a href="/pagerfanta-view?page=7">7</a></li>
+        <li class="disabled"><span>&hellip;</span></li>
+        <li><a href="/pagerfanta-view?page=10">10</a></li>
+        <li class="next"><a href="/pagerfanta-view?page=6" rel="next">Next &rarr;</a></li>
+    </ul>
+</div>'
         ];
     }
 
