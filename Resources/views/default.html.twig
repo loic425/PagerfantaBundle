@@ -25,7 +25,7 @@
         {# Page Links #}
         {% for page in range(start_page, end_page) %}
             {% if page == current_page %}
-                <span class="current">{{ page }}</span>
+                <span class="current" aria-current="page">{{ page }}</span>
             {% else %}
                 <a href="{{ route_generator.route(page) }}">{{ page }}</a>
             {% endif %}

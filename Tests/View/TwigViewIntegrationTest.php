@@ -85,7 +85,7 @@ final class TwigViewIntegrationTest extends TestCase
             false,
             '<nav>
     <span class="disabled">Previous</span>
-    <span class="current">1</span>
+    <span class="current" aria-current="page">1</span>
     <a href="/pagerfanta-view?page=2">2</a>
     <a href="/pagerfanta-view?page=3">3</a>
     <a href="/pagerfanta-view?page=4">4</a>
@@ -106,7 +106,7 @@ final class TwigViewIntegrationTest extends TestCase
     <a href="/pagerfanta-view?page=2">2</a>
     <a href="/pagerfanta-view?page=3">3</a>
     <a href="/pagerfanta-view?page=4">4</a>
-    <span class="current">5</span>
+    <span class="current" aria-current="page">5</span>
     <a href="/pagerfanta-view?page=6">6</a>
     <a href="/pagerfanta-view?page=7">7</a>
     <span class="dots">...</span>
