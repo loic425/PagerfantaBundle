@@ -226,6 +226,42 @@ final class TwigViewIntegrationTest extends TestCase
     <li class="next"><a href="/pagerfanta-view?page=6" rel="next">Next &rarr;</a></li>
 </ul>'
         ];
+
+        yield 'Twitter Bootstrap 4 template at page 1' => [
+            '@BabDevPagerfantaBundle/twitter_bootstrap4.html.twig',
+            1,
+            false,
+            '<ul class="pagination">
+    <li class="page-item disabled"><span class="page-link">Previous</span></li>
+    <li class="page-item active" aria-current="page"><span class="page-link">1</span></li>
+    <li class="page-item"><a class="page-link" href="/pagerfanta-view?page=2">2</a></li>
+    <li class="page-item"><a class="page-link" href="/pagerfanta-view?page=3">3</a></li>
+    <li class="page-item"><a class="page-link" href="/pagerfanta-view?page=4">4</a></li>
+    <li class="page-item"><a class="page-link" href="/pagerfanta-view?page=5">5</a></li>
+    <li class="page-item disabled"><span class="page-link">&hellip;</span></li>
+    <li class="page-item"><a class="page-link" href="/pagerfanta-view?page=10">10</a></li>
+    <li class="page-item"><a class="page-link" href="/pagerfanta-view?page=2" rel="next">Next</a></li>
+</ul>'
+        ];
+
+        yield 'Twitter Bootstrap 4 template at page 5 with first page omitted' => [
+            '@BabDevPagerfantaBundle/twitter_bootstrap4.html.twig',
+            5,
+            true,
+            '<ul class="pagination">
+    <li class="page-item"><a class="page-link" href="/pagerfanta-view?page=4" rel="prev">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="/pagerfanta-view">1</a></li>
+    <li class="page-item"><a class="page-link" href="/pagerfanta-view?page=2">2</a></li>
+    <li class="page-item"><a class="page-link" href="/pagerfanta-view?page=3">3</a></li>
+    <li class="page-item"><a class="page-link" href="/pagerfanta-view?page=4">4</a></li>
+    <li class="page-item active" aria-current="page"><span class="page-link">5</span></li>
+    <li class="page-item"><a class="page-link" href="/pagerfanta-view?page=6">6</a></li>
+    <li class="page-item"><a class="page-link" href="/pagerfanta-view?page=7">7</a></li>
+    <li class="page-item disabled"><span class="page-link">&hellip;</span></li>
+    <li class="page-item"><a class="page-link" href="/pagerfanta-view?page=10">10</a></li>
+    <li class="page-item"><a class="page-link" href="/pagerfanta-view?page=6" rel="next">Next</a></li>
+</ul>'
+        ];
     }
 
     /**
