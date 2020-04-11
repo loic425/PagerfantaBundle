@@ -49,6 +49,12 @@
             <tag name="pagerfanta.view" alias="semantic_ui_translated" />
         </service>
 
+        <service id="pagerfanta.view.twig" class="BabDev\PagerfantaBundle\View\TwigView" public="false">
+            <argument type="service" id="twig" />
+            <argument>%babdev_pagerfanta.default_twig_template%</argument>
+            <tag name="pagerfanta.view" alias="twig" />
+        </service>
+
         <service id="pagerfanta.view.twitter_bootstrap" class="Pagerfanta\View\TwitterBootstrapView" public="false">
             <tag name="pagerfanta.view" alias="twitter_bootstrap" />
         </service>
