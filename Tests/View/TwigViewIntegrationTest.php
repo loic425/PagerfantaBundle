@@ -77,16 +77,12 @@ final class TwigViewIntegrationTest extends TestCase
         return new Pagerfanta(new FixedAdapter(100, range(1, 100)));
     }
 
-    public function testTheDefaultPagerfantaViewIsRendered(): void
+    public function dataPagerfantaRenderer(): \Generator
     {
-        $request = Request::create('/');
-        $request->attributes->set('_route', 'pagerfanta_view');
-        $request->attributes->set('_route_params', []);
-
-        $this->requestStack->push($request);
-
-        $this->assertViewOutputMatches(
-            $this->twig->render('integration.html.twig', ['pager' => $this->createPagerfanta(), 'options' => []]),
+        yield 'default template at page 1' => [
+            '@BabDevPagerfantaBundle/default.html.twig',
+            1,
+            false,
             '<nav>
     <span class="disabled">Previous</span>
     <span class="current">1</span>
@@ -99,22 +95,12 @@ final class TwigViewIntegrationTest extends TestCase
     <a href="/pagerfanta-view?page=2" rel="next">Next</a>
 </nav>
 '
-        );
-    }
+        ];
 
-    public function testTheDefaultPagerfantaViewIsRenderedFromALaterPageWithFirstPageOmitted(): void
-    {
-        $request = Request::create('/');
-        $request->attributes->set('_route', 'pagerfanta_view');
-        $request->attributes->set('_route_params', []);
-
-        $this->requestStack->push($request);
-
-        $pagerfanta = $this->createPagerfanta();
-        $pagerfanta->setCurrentPage(5);
-
-        $this->assertViewOutputMatches(
-            $this->twig->render('integration.html.twig', ['pager' => $pagerfanta, 'options' => ['omitFirstPage' => true]]),
+        yield 'default template at page 5 with first page omitted' => [
+            '@BabDevPagerfantaBundle/default.html.twig',
+            5,
+            true,
             '<nav>
     <a href="/pagerfanta-view?page=4" rel="prev">Previous</a>
     <a href="/pagerfanta-view">1</a>
@@ -129,6 +115,26 @@ final class TwigViewIntegrationTest extends TestCase
     <a href="/pagerfanta-view?page=6" rel="next">Next</a>
 </nav>
 '
+        ];
+    }
+
+    /**
+     * @dataProvider dataPagerfantaRenderer
+     */
+    public function testPagerfantaRendering(string $template, int $page, bool $omitFirstPage, string $testOutput): void
+    {
+        $request = Request::create('/');
+        $request->attributes->set('_route', 'pagerfanta_view');
+        $request->attributes->set('_route_params', []);
+
+        $this->requestStack->push($request);
+
+        $pagerfanta = $this->createPagerfanta();
+        $pagerfanta->setCurrentPage($page);
+
+        $this->assertViewOutputMatches(
+            $this->twig->render('integration.html.twig', ['pager' => $pagerfanta, 'options' => ['omitFirstPage' => $omitFirstPage, 'template' => $template]]),
+            $testOutput
         );
     }
 
