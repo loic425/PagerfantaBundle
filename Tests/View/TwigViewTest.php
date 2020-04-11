@@ -3,7 +3,9 @@
 namespace BabDev\PagerfantaBundle\Tests\View;
 
 use BabDev\PagerfantaBundle\View\TwigView;
-use Pagerfanta\PagerfantaInterface;
+use Pagerfanta\Adapter\FixedAdapter;
+use Pagerfanta\Exception\InvalidArgumentException;
+use Pagerfanta\Pagerfanta;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Twig\Environment;
@@ -22,73 +24,62 @@ final class TwigViewTest extends TestCase
 
     public function testRendersWithATemplateSpecifiedInTheOptions(): void
     {
-        $pagerfanta = $this->createPagerfantaMock();
-        $routeGenerator = $this->createRouteGenerator();
         $options = ['template' => 'test.html.twig'];
 
         $this->twig->expects($this->once())
             ->method('render')
-            ->with(
-                $options['template'],
-                [
-                    'pagerfanta' => $pagerfanta,
-                    'route_generator' => $routeGenerator,
-                    'options' => $options,
-                ]
-            )
+            ->with($options['template'])
             ->willReturn('Twig template');
 
-        $this->assertSame('Twig template', (new TwigView($this->twig, 'constructor.html.twig'))->render($pagerfanta, $routeGenerator, $options));
+        $this->assertSame(
+            'Twig template',
+            (new TwigView($this->twig, 'constructor.html.twig'))->render($this->createPagerfanta(), $this->createRouteGenerator(), $options)
+        );
     }
 
     public function testRendersWithATemplateSpecifiedInTheConstructorWhenNotSetInTheOptions(): void
     {
-        $pagerfanta = $this->createPagerfantaMock();
-        $routeGenerator = $this->createRouteGenerator();
-        $options = [];
-
         $this->twig->expects($this->once())
             ->method('render')
-            ->with(
-                'constructor.html.twig',
-                [
-                    'pagerfanta' => $pagerfanta,
-                    'route_generator' => $routeGenerator,
-                    'options' => $options,
-                ]
-            )
+            ->with('constructor.html.twig')
             ->willReturn('Twig template');
 
-        $this->assertSame('Twig template', (new TwigView($this->twig, 'constructor.html.twig'))->render($pagerfanta, $routeGenerator, $options));
+        $this->assertSame(
+            'Twig template',
+            (new TwigView($this->twig, 'constructor.html.twig'))->render($this->createPagerfanta(), $this->createRouteGenerator())
+        );
     }
 
     public function testRendersWithTheDefaultTemplateWhenNotSetInConstructorOrOptions(): void
     {
-        $pagerfanta = $this->createPagerfantaMock();
-        $routeGenerator = $this->createRouteGenerator();
-        $options = [];
-
         $this->twig->expects($this->once())
             ->method('render')
-            ->with(
-                TwigView::DEFAULT_TEMPLATE,
-                [
-                    'pagerfanta' => $pagerfanta,
-                    'route_generator' => $routeGenerator,
-                    'options' => $options,
-                ]
-            )
+            ->with(TwigView::DEFAULT_TEMPLATE)
             ->willReturn('Twig template');
 
-        $this->assertSame('Twig template', (new TwigView($this->twig))->render($pagerfanta, $routeGenerator, $options));
+        $this->assertSame(
+            'Twig template',
+            (new TwigView($this->twig))->render($this->createPagerfanta(), $this->createRouteGenerator())
+        );
     }
 
-    /**
-     * @return MockObject|PagerfantaInterface
-     */
-    private function createPagerfantaMock(): MockObject
+    public function testRejectsANonCallableRouteGenerator(): void
     {
-        return $this->createMock(PagerfantaInterface::class);
+        $this->expectException(InvalidArgumentException::class);
+
+        $pagerfanta = $this->createPagerfanta();
+        $routeGenerator = new \stdClass;
+        $options = [];
+
+        $this->twig->expects($this->never())
+            ->method('render');
+
+        (new TwigView($this->twig))->render($pagerfanta, $routeGenerator, $options);
+    }
+
+    private function createPagerfanta(): Pagerfanta
+    {
+        return new Pagerfanta(new FixedAdapter(100, range(1, 100)));
     }
 
     private function createRouteGenerator(): callable

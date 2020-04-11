@@ -21,6 +21,7 @@
         "friendsofphp/php-cs-fixer": "^2.16",
         "matthiasnoback/symfony-dependency-injection-test": "^4.1",
         "phpunit/phpunit": "^8.5 || ^9.0",
+        "symfony/twig-bridge": "^3.4 || ^4.4 || ^5.0",
         "twig/twig": "^1.34 || ^2.4 || ^3.0"
     },
     "conflict": {

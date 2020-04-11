@@ -126,7 +126,7 @@ final class PagerfantaRuntime
             $options['routeParams'] = array_merge($defaultRouteParams, $options['routeParams']);
         }
 
-        return function ($page) use ($options): string {
+        return function (int $page) use ($options): string {
             $pagePropertyPath = new PropertyPath($options['pageParameter']);
             $propertyAccessor = PropertyAccess::createPropertyAccessor();
 
