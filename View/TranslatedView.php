@@ -7,6 +7,11 @@ use Pagerfanta\View\ViewInterface;
 use Symfony\Component\Translation\TranslatorInterface as LegacyTranslatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+@trigger_error(sprintf('The "%s" class is deprecated and will be removed in BabDevPagerfantaBundle 3.0. Use the "%s" class instead.', TranslatedView::class, TwigView::class));
+
+/**
+ * @deprecated to be removed in BabDevPagerfantaBundle 3.0. Use the Twig view class instead.
+ */
 abstract class TranslatedView implements ViewInterface
 {
     /**
