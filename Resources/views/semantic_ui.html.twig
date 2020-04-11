@@ -1,10 +1,10 @@
 {% apply spaceless %}
-    <div class="ui stackable fluid pagination menu">
+    <div class="ui pagination menu">
         {# Previous Page Link #}
         {% if pagerfanta.hasPreviousPage() %}
-            <a class="item prev" href="{{ route_generator.route(pagerfanta.getPreviousPage()) }}">{{ 'previous'|trans([], 'pagerfanta') }}</a>
+            <a class="item" href="{{ route_generator.route(pagerfanta.getPreviousPage()) }}" rel="prev">{{ 'previous'|trans([], 'pagerfanta') }}</a>
         {% else %}
-            <div class="item disabled">{{ 'previous'|trans([], 'pagerfanta') }}</div>
+            <div class="disabled item">{{ 'previous'|trans([], 'pagerfanta') }}</div>
         {% endif %}
 
         {# First Page Link #}
@@ -19,13 +19,13 @@
 
         {# Separator, creates a "..." separator to limit the number of items if we are starting beyond page 3 #}
         {% if start_page > 3 %}
-            <div class="item disabled">&hellip;</div>
+            <div class="disabled item">&hellip;</div>
         {% endif %}
 
         {# Page Links #}
         {% for page in range(start_page, end_page) %}
             {% if page == current_page %}
-                <div class="item active">{{ page }}</div>
+                <div class="active item" aria-current="page">{{ page }}</div>
             {% else %}
                 <a class="item" href="{{ route_generator.route(page) }}">{{ page }}</a>
             {% endif %}
@@ -33,7 +33,7 @@
 
         {# Separator, creates a "..." separator to limit the number of items if we are over 3 pages away from the last page #}
         {% if end_page < (nb_pages - (3 - 1)) %}
-            <div class="item disabled">&hellip;</div>
+            <div class="disabled item">&hellip;</div>
         {% endif %}
 
         {# Second to Last Page Link, displays if we are on the third from last page #}
@@ -48,9 +48,9 @@
 
         {# Next Page Link #}
         {% if pagerfanta.hasNextPage() %}
-            <a class="item next" href="{{ route_generator.route(pagerfanta.getNextPage()) }}">{{ 'next'|trans([], 'pagerfanta') }}</a>
+            <a class="item" href="{{ route_generator.route(pagerfanta.getNextPage()) }}" rel="next">{{ 'next'|trans([], 'pagerfanta') }}</a>
         {% else %}
-            <div class="item disabled">{{ 'next'|trans([], 'pagerfanta') }}</div>
+            <div class="disabled item">{{ 'next'|trans([], 'pagerfanta') }}</div>
         {% endif %}
     </div>
 {% endapply %}

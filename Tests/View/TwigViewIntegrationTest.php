@@ -119,16 +119,16 @@ final class TwigViewIntegrationTest extends TestCase
             '@BabDevPagerfantaBundle/semantic_ui.html.twig',
             1,
             false,
-            '<div class="ui stackable fluid pagination menu">
-    <div class="item disabled">Previous</div>
-    <div class="item active">1</div>
+            '<div class="ui pagination menu">
+    <div class="disabled item">Previous</div>
+    <div class="active item" aria-current="page">1</div>
     <a class="item" href="/pagerfanta-view?page=2">2</a>
     <a class="item" href="/pagerfanta-view?page=3">3</a>
     <a class="item" href="/pagerfanta-view?page=4">4</a>
     <a class="item" href="/pagerfanta-view?page=5">5</a>
-    <div class="item disabled">&hellip;</div>
+    <div class="disabled item">&hellip;</div>
     <a class="item" href="/pagerfanta-view?page=10">10</a>
-    <a class="item next" href="/pagerfanta-view?page=2">Next</a>
+    <a class="item" href="/pagerfanta-view?page=2" rel="next">Next</a>
 </div>'
         ];
 
@@ -136,18 +136,18 @@ final class TwigViewIntegrationTest extends TestCase
             '@BabDevPagerfantaBundle/semantic_ui.html.twig',
             5,
             true,
-            '<div class="ui stackable fluid pagination menu">
-    <a class="item prev" href="/pagerfanta-view?page=4">Previous</a>
+            '<div class="ui pagination menu">
+    <a class="item" href="/pagerfanta-view?page=4" rel="prev">Previous</a>
     <a class="item" href="/pagerfanta-view">1</a>
     <a class="item" href="/pagerfanta-view?page=2">2</a>
     <a class="item" href="/pagerfanta-view?page=3">3</a>
     <a class="item" href="/pagerfanta-view?page=4">4</a>
-    <div class="item active">5</div>
+    <div class="active item" aria-current="page">5</div>
     <a class="item" href="/pagerfanta-view?page=6">6</a>
     <a class="item" href="/pagerfanta-view?page=7">7</a>
-    <div class="item disabled">&hellip;</div>
+    <div class="disabled item">&hellip;</div>
     <a class="item" href="/pagerfanta-view?page=10">10</a>
-    <a class="item next" href="/pagerfanta-view?page=6">Next</a>
+    <a class="item" href="/pagerfanta-view?page=6" rel="next">Next</a>
 </div>'
         ];
 
@@ -157,15 +157,15 @@ final class TwigViewIntegrationTest extends TestCase
             false,
             '<div class="pagination">
     <ul>
-        <li class="prev disabled"><span>&larr; Previous</span></li>
-        <li class="active"><span>1</span></li>
+        <li class="disabled"><span>Previous</span></li>
+        <li class="active" aria-current="page"><span>1</span></li>
         <li><a href="/pagerfanta-view?page=2">2</a></li>
         <li><a href="/pagerfanta-view?page=3">3</a></li>
         <li><a href="/pagerfanta-view?page=4">4</a></li>
         <li><a href="/pagerfanta-view?page=5">5</a></li>
         <li class="disabled"><span>&hellip;</span></li>
         <li><a href="/pagerfanta-view?page=10">10</a></li>
-        <li class="next"><a href="/pagerfanta-view?page=2" rel="next">Next &rarr;</a></li>
+        <li><a href="/pagerfanta-view?page=2" rel="next">Next</a></li>
     </ul>
 </div>'
         ];
@@ -176,17 +176,17 @@ final class TwigViewIntegrationTest extends TestCase
             true,
             '<div class="pagination">
     <ul>
-        <li class="prev"><a href="/pagerfanta-view?page=4" rel="prev">&larr; Previous</a></li>
+        <li><a href="/pagerfanta-view?page=4" rel="prev">Previous</a></li>
         <li><a href="/pagerfanta-view">1</a></li>
         <li><a href="/pagerfanta-view?page=2">2</a></li>
         <li><a href="/pagerfanta-view?page=3">3</a></li>
         <li><a href="/pagerfanta-view?page=4">4</a></li>
-        <li class="active"><span>5</span></li>
+        <li class="active" aria-current="page"><span>5</span></li>
         <li><a href="/pagerfanta-view?page=6">6</a></li>
         <li><a href="/pagerfanta-view?page=7">7</a></li>
         <li class="disabled"><span>&hellip;</span></li>
         <li><a href="/pagerfanta-view?page=10">10</a></li>
-        <li class="next"><a href="/pagerfanta-view?page=6" rel="next">Next &rarr;</a></li>
+        <li><a href="/pagerfanta-view?page=6" rel="next">Next</a></li>
     </ul>
 </div>'
         ];
@@ -196,15 +196,15 @@ final class TwigViewIntegrationTest extends TestCase
             1,
             false,
             '<ul class="pagination">
-    <li class="prev disabled"><span>&larr; Previous</span></li>
-    <li class="active"><span>1</span></li>
+    <li class="disabled"><span>Previous</span></li>
+    <li class="active" aria-current="page"><span>1</span></li>
     <li><a href="/pagerfanta-view?page=2">2</a></li>
     <li><a href="/pagerfanta-view?page=3">3</a></li>
     <li><a href="/pagerfanta-view?page=4">4</a></li>
     <li><a href="/pagerfanta-view?page=5">5</a></li>
     <li class="disabled"><span>&hellip;</span></li>
     <li><a href="/pagerfanta-view?page=10">10</a></li>
-    <li class="next"><a href="/pagerfanta-view?page=2" rel="next">Next &rarr;</a></li>
+    <li><a href="/pagerfanta-view?page=2" rel="next">Next</a></li>
 </ul>'
         ];
 
@@ -213,17 +213,17 @@ final class TwigViewIntegrationTest extends TestCase
             5,
             true,
             '<ul class="pagination">
-    <li class="prev"><a href="/pagerfanta-view?page=4" rel="prev">&larr; Previous</a></li>
+    <li><a href="/pagerfanta-view?page=4" rel="prev">Previous</a></li>
     <li><a href="/pagerfanta-view">1</a></li>
     <li><a href="/pagerfanta-view?page=2">2</a></li>
     <li><a href="/pagerfanta-view?page=3">3</a></li>
     <li><a href="/pagerfanta-view?page=4">4</a></li>
-    <li class="active"><span>5</span></li>
+    <li class="active" aria-current="page"><span>5</span></li>
     <li><a href="/pagerfanta-view?page=6">6</a></li>
     <li><a href="/pagerfanta-view?page=7">7</a></li>
     <li class="disabled"><span>&hellip;</span></li>
     <li><a href="/pagerfanta-view?page=10">10</a></li>
-    <li class="next"><a href="/pagerfanta-view?page=6" rel="next">Next &rarr;</a></li>
+    <li><a href="/pagerfanta-view?page=6" rel="next">Next</a></li>
 </ul>'
         ];
 
