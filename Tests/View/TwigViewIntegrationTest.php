@@ -116,6 +116,44 @@ final class TwigViewIntegrationTest extends TestCase
 </nav>
 '
         ];
+
+        yield 'Semantic UI template at page 1' => [
+            '@BabDevPagerfantaBundle/semantic_ui.html.twig',
+            1,
+            false,
+            '<div class="ui stackable fluid pagination menu">
+    <div class="item disabled">Previous</div>
+    <div class="item active">1</div>
+    <a class="item" href="/pagerfanta-view?page=2">2</a>
+    <a class="item" href="/pagerfanta-view?page=3">3</a>
+    <a class="item" href="/pagerfanta-view?page=4">4</a>
+    <a class="item" href="/pagerfanta-view?page=5">5</a>
+    <div class="item disabled">&hellip;</div>
+    <a class="item" href="/pagerfanta-view?page=10">10</a>
+    <a class="item next" href="/pagerfanta-view?page=2">Next</a>
+</div>
+'
+        ];
+
+        yield 'Semantic UI template at page 5 with first page omitted' => [
+            '@BabDevPagerfantaBundle/semantic_ui.html.twig',
+            5,
+            true,
+            '<div class="ui stackable fluid pagination menu">
+    <a class="item prev" href="/pagerfanta-view?page=4">Previous</a>
+    <a class="item" href="/pagerfanta-view">1</a>
+    <a class="item" href="/pagerfanta-view?page=2">2</a>
+    <a class="item" href="/pagerfanta-view?page=3">3</a>
+    <a class="item" href="/pagerfanta-view?page=4">4</a>
+    <div class="item active">5</div>
+    <a class="item" href="/pagerfanta-view?page=6">6</a>
+    <a class="item" href="/pagerfanta-view?page=7">7</a>
+    <div class="item disabled">&hellip;</div>
+    <a class="item" href="/pagerfanta-view?page=10">10</a>
+    <a class="item next" href="/pagerfanta-view?page=6">Next</a>
+</div>
+'
+        ];
     }
 
     /**
