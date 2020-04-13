@@ -4,6 +4,7 @@ namespace BabDev\PagerfantaBundle;
 
 use BabDev\PagerfantaBundle\DependencyInjection\BabDevPagerfantaExtension;
 use BabDev\PagerfantaBundle\DependencyInjection\CompilerPass\AddPagerfantasPass;
+use BabDev\PagerfantaBundle\DependencyInjection\CompilerPass\MaybeRemoveTranslatedViewsPass;
 use BabDev\PagerfantaBundle\DependencyInjection\CompilerPass\MaybeRemoveTwigServicesPass;
 use BabDev\PagerfantaBundle\DependencyInjection\CompilerPass\MaybeRemoveTwigViewPass;
 use Symfony\Component\DependencyInjection\Compiler\PassConfig;
@@ -17,6 +18,7 @@ final class BabDevPagerfantaBundle extends Bundle
         parent::build($container);
 
         // MaybeRemoveTwigServicesPass must be run before the TwigEnvironmentPass from TwigBundle
+        $container->addCompilerPass(new MaybeRemoveTranslatedViewsPass());
         $container->addCompilerPass(new AddPagerfantasPass());
         $container->addCompilerPass(new MaybeRemoveTwigViewPass(), PassConfig::TYPE_BEFORE_OPTIMIZATION, 10);
         $container->addCompilerPass(new MaybeRemoveTwigServicesPass(), PassConfig::TYPE_BEFORE_OPTIMIZATION, 1);
