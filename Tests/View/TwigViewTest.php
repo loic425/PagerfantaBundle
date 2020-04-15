@@ -46,10 +46,6 @@ final class TwigViewTest extends TestCase
             ->method('mergeGlobals')
             ->willReturn([]);
 
-        $this->twig->expects($this->once())
-            ->method('isDebug')
-            ->willReturn(false);
-
         $this->assertSame(
             'Twig template',
             (new TwigView($this->twig, 'constructor.html.twig'))->render(
@@ -80,10 +76,6 @@ final class TwigViewTest extends TestCase
             ->method('mergeGlobals')
             ->willReturn([]);
 
-        $this->twig->expects($this->once())
-            ->method('isDebug')
-            ->willReturn(false);
-
         $this->assertSame(
             'Twig template',
             (new TwigView($this->twig, 'constructor.html.twig'))->render(
@@ -112,10 +104,6 @@ final class TwigViewTest extends TestCase
         $this->twig->expects($this->once())
             ->method('mergeGlobals')
             ->willReturn([]);
-
-        $this->twig->expects($this->once())
-            ->method('isDebug')
-            ->willReturn(false);
 
         $this->assertSame(
             'Twig template',
