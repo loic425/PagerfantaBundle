@@ -1,56 +1,99 @@
-{% apply spaceless %}
+{%- block pager_widget -%}
     <nav>
-        {# Previous Page Link #}
-        {% if pagerfanta.hasPreviousPage() %}
-            <a href="{{ route_generator.route(pagerfanta.getPreviousPage()) }}" rel="prev">{{ 'previous'|trans([], 'pagerfanta') }}</a>
-        {% else %}
-            <span class="disabled">{{ 'previous'|trans([], 'pagerfanta') }}</span>
-        {% endif %}
-
-        {# First Page Link #}
-        {% if start_page > 1 %}
-            <a href="{{ route_generator.route(1) }}">1</a>
-        {% endif %}
-
-        {# Second Page Link, displays if we are on page 3 #}
-        {% if start_page == 3 %}
-            <a href="{{ route_generator.route(2) }}">2</a>
-        {% endif %}
-
-        {# Separator, creates a "..." separator to limit the number of items if we are starting beyond page 3 #}
-        {% if start_page > 3 %}
-            <span class="dots">...</span>
-        {% endif %}
-
-        {# Page Links #}
-        {% for page in range(start_page, end_page) %}
-            {% if page == current_page %}
-                <span class="current" aria-current="page">{{ page }}</span>
-            {% else %}
-                <a href="{{ route_generator.route(page) }}">{{ page }}</a>
-            {% endif %}
-        {% endfor %}
-
-        {# Separator, creates a "..." separator to limit the number of items if we are over 3 pages away from the last page #}
-        {% if end_page < (nb_pages - (3 - 1)) %}
-            <span class="dots">...</span>
-        {% endif %}
-
-        {# Second to Last Page Link, displays if we are on the third from last page #}
-        {% if end_page == (nb_pages - (3 - 1)) %}
-            <a href="{{ route_generator.route((nb_pages - (2 - 1))) }}">{{ (nb_pages - (2 - 1)) }}</a>
-        {% endif %}
-
-        {# Last Page Link #}
-        {% if nb_pages > end_page %}
-            <a href="{{ route_generator.route(nb_pages) }}">{{ nb_pages }}</a>
-        {% endif %}
-
-        {# Next Page Link #}
-        {% if pagerfanta.hasNextPage() %}
-            <a href="{{ route_generator.route(pagerfanta.getNextPage()) }}" rel="next">{{ 'next'|trans([], 'pagerfanta') }}</a>
-        {% else %}
-            <span class="disabled">{{ 'next'|trans([], 'pagerfanta') }}</span>
-        {% endif %}
+        {{- block('pager') -}}
     </nav>
-{% endapply %}
+{%- endblock pager_widget -%}
+
+{%- block pager -%}
+    {# Previous Page Link #}
+    {%- if pagerfanta.hasPreviousPage() -%}
+        {%- set path = route_generator.route(pagerfanta.getPreviousPage()) -%}
+        {{ block('previous_page_link') }}
+    {%- else -%}
+        {{ block('previous_page_link_disabled') }}
+    {%- endif -%}
+
+    {# First Page Link #}
+    {%- if start_page > 1 -%}
+        {%- set page = 1 -%}
+        {%- set path = route_generator.route(page) -%}
+        {{ block('page_link') }}
+    {%- endif -%}
+
+    {# Second Page Link, displays if we are on page 3 #}
+    {%- if start_page == 3 -%}
+        {%- set page = 2 -%}
+        {%- set path = route_generator.route(page) -%}
+        {{ block('page_link') }}
+    {%- endif -%}
+
+    {# Separator, creates a "..." separator to limit the number of items if we are starting beyond page 3 #}
+    {%- if start_page > 3 -%}
+        {{ block('ellipsis') }}
+    {%- endif -%}
+
+    {# Page Links #}
+    {%- for page in range(start_page, end_page) -%}
+        {%- set path = route_generator.route(page) -%}
+        {%- if page == current_page -%}
+            {{ block('current_page_link') }}
+        {%- else -%}
+            {{ block('page_link') }}
+        {%- endif -%}
+    {%- endfor -%}
+
+    {# Separator, creates a "..." separator to limit the number of items if we are over 3 pages away from the last page #}
+    {%- if end_page < (nb_pages - (3 - 1)) -%}
+        {{ block('ellipsis') }}
+    {%- endif -%}
+
+    {# Second to Last Page Link, displays if we are on the third from last page #}
+    {%- if end_page == (nb_pages - 2) -%}
+        {%- set page = (nb_pages - 1) -%}
+        {%- set path = route_generator.route(page) -%}
+        {{ block('page_link') }}
+    {%- endif -%}
+
+    {# Last Page Link #}
+    {%- if nb_pages > end_page -%}
+        {%- set page = nb_pages -%}
+        {%- set path = route_generator.route(page) -%}
+        {{ block('page_link') }}
+    {%- endif -%}
+
+    {# Next Page Link #}
+    {%- if pagerfanta.hasNextPage() -%}
+        {%- set path = route_generator.route(pagerfanta.getNextPage()) -%}
+        {{ block('next_page_link') }}
+    {%- else -%}
+        {{ block('next_page_link_disabled') }}
+    {%- endif -%}
+{%- endblock pager -%}
+
+{%- block page_link -%}
+    <a href="{{ path }}">{{ page }}</a>
+{%- endblock page_link -%}
+
+{%- block current_page_link -%}
+    <span class="current" aria-current="page">{{ page }}</span>
+{%- endblock current_page_link -%}
+
+{%- block previous_page_link -%}
+    <a href="{{ path }}" rel="prev">{{ 'previous'|trans([], 'pagerfanta') }}</a>
+{%- endblock previous_page_link -%}
+
+{%- block previous_page_link_disabled -%}
+    <span class="disabled">{{ 'previous'|trans([], 'pagerfanta') }}</span>
+{%- endblock previous_page_link_disabled -%}
+
+{%- block next_page_link -%}
+    <a href="{{ path }}" rel="next">{{ 'next'|trans([], 'pagerfanta') }}</a>
+{%- endblock next_page_link -%}
+
+{%- block next_page_link_disabled -%}
+    <span class="disabled">{{ 'next'|trans([], 'pagerfanta') }}</span>
+{%- endblock next_page_link_disabled -%}
+
+{%- block ellipsis -%}
+    <span class="dots">...</span>
+{%- endblock ellipsis -%}

@@ -75,8 +75,9 @@ final class TwigView implements ViewInterface
 
         $this->calculateStartAndEndPage();
 
-        return $this->twig->render(
-            $this->template,
+        $template = $this->twig->load($this->template);
+        return $template->renderBlock(
+            'pager_widget',
             [
                 'pagerfanta' => $pagerfanta,
                 'route_generator' => $this->decorateRouteGenerator($routeGenerator),
