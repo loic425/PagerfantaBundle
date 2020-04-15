@@ -1,10 +1,8 @@
 {% extends '@BabDevPagerfantaBundle/default.html.twig' %}
 {%- block pager_widget -%}
-    {%- apply spaceless -%}
-        <ul class="pagination">
-            {{- block('pager') -}}
-        </ul>
-    {%- endapply -%}
+    <ul class="pagination">
+        {{- block('pager') -}}
+    </ul>
 {%- endblock pager_widget -%}
 
 {%- block page_link -%}
