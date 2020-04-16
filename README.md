@@ -159,6 +159,8 @@ The below table lists the available templates and the CSS framework they corresp
 | `@BabDevPagerfantaBundle/twitter_bootstrap3.html.twig` | [Bootstrap](https://getbootstrap.com) (version 3.x)  |
 | `@BabDevPagerfantaBundle/twitter_bootstrap4.html.twig` | [Bootstrap](https://getbootstrap.com) (version 4.x)  |
 
+Labels of Previous and Next buttons are localizable in all of these Twig templates.
+
 When rendering a Twig view, the following options are passed into the template for use:
 
 - `pagerfanta` - The `Pagerfanta\Pagerfanta` object
@@ -170,10 +172,14 @@ When rendering a Twig view, the following options are passed into the template f
 - `current_page` - The current page in the paginated list
 - `nb_pages` - The total number of pages in the paginated list
 
-Additionally, for all page blocks (`previous_page_link`, `previous_page_link_disabled`, `page_link`, `current_page_link`, `next_page_link`, and `next_page_link_disabled`), there are two additional variables available:
+Additionally, for most page blocks (`previous_page_link`, `page_link`, `current_page_link`, and `next_page_link`), there are two additional variables available:
 
 - `page` - The current page in the pager
 - `path` - The generated URL for the item
+
+Note: these variables are irrelevant and should not be considered available in `previous_page_link_disabled` and `next_page_link_disabled` blocks.
+
+If you want to create your own Twig template, the quickest and easiest way to do that is to extend one of the supplied templates (typically the default one). Have a look at `semantic_ui.html.twig` to see the blocks you will likely want to override.
 
 ### Translated Views
 
