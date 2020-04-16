@@ -17,10 +17,10 @@ final class BabDevPagerfantaBundle extends Bundle
     {
         parent::build($container);
 
-        // MaybeRemoveTwigServicesPass must be run before the TwigEnvironmentPass from TwigBundle
+        // MaybeRemoveTranslatedViewsPass must be run before the AddPagerfantasPass
+        // MaybeRemoveTwigServicesPass must be run before the TwigEnvironmentPass from TwigBundle and AddPagerfantasPass
         $container->addCompilerPass(new MaybeRemoveTranslatedViewsPass());
         $container->addCompilerPass(new AddPagerfantasPass());
-        $container->addCompilerPass(new MaybeRemoveTwigViewPass(), PassConfig::TYPE_BEFORE_OPTIMIZATION, 10);
         $container->addCompilerPass(new MaybeRemoveTwigServicesPass(), PassConfig::TYPE_BEFORE_OPTIMIZATION, 1);
     }
 

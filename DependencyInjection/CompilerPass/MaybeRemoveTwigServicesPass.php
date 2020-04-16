@@ -12,6 +12,7 @@ final class MaybeRemoveTwigServicesPass implements CompilerPassInterface
         if (!$container->hasDefinition('twig')) {
             $container->removeDefinition('pagerfanta.twig_extension');
             $container->removeDefinition('pagerfanta.twig_runtime');
+            $container->removeDefinition('pagerfanta.view.twig');
         }
     }
 }
