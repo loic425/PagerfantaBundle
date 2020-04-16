@@ -2,7 +2,7 @@
 
 namespace BabDev\PagerfantaBundle\RouteGenerator;
 
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Pagerfanta\Exception\InvalidArgumentException;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyPath;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -19,49 +19,35 @@ final class RouterAwareRouteGenerator implements RouteGeneratorInterface
      */
     private $options;
 
+    /**
+     * @throws InvalidArgumentException if missing required options
+     */
     public function __construct(UrlGeneratorInterface $router, array $options)
     {
+        // Check missing options
+        if (!isset($options['routeName'])) {
+            throw new InvalidArgumentException(sprintf('The "%s" class options requires a "routeName" parameter to be set.', self::class));
+        }
+
         $this->router = $router;
-        $this->options = $this->resolveOptions($options);
+        $this->options = $options;
     }
 
     public function __invoke(int $page): string
     {
-        $pagePropertyPath = new PropertyPath($this->options['pageParameter']);
+        $pageParameter = $this->options['pageParameter'] ?? '[page]';
+        $omitFirstPage = $this->options['omitFirstPage'] ?? false;
+        $routeParams = $this->options['routeParams'] ?? [];
+
+        $pagePropertyPath = new PropertyPath($pageParameter);
         $propertyAccessor = PropertyAccess::createPropertyAccessor();
 
-        if ($this->options['omitFirstPage']) {
-            $propertyAccessor->setValue($this->options['routeParams'], $pagePropertyPath, $page > 1 ? $page : null);
+        if ($omitFirstPage) {
+            $propertyAccessor->setValue($routeParams, $pagePropertyPath, $page > 1 ? $page : null);
         } else {
-            $propertyAccessor->setValue($this->options['routeParams'], $pagePropertyPath, $page);
+            $propertyAccessor->setValue($routeParams, $pagePropertyPath, $page);
         }
 
-        return $this->router->generate($this->options['routeName'], $this->options['routeParams']);
-    }
-
-    private function resolveOptions(array $options): array
-    {
-        $resolver = new OptionsResolver();
-
-        $resolver->setRequired(
-            [
-                'routeName',
-            ]
-        );
-
-        $resolver->setDefaults(
-            [
-                'routeParams' => [],
-                'pageParameter' => '[page]',
-                'omitFirstPage' => false,
-            ]
-        );
-
-        $resolver->setAllowedTypes('routeName', 'string');
-        $resolver->setAllowedTypes('routeParams', 'array');
-        $resolver->setAllowedTypes('pageParameter', 'string');
-        $resolver->setAllowedTypes('omitFirstPage', 'boolean');
-
-        return $resolver->resolve($options);
+        return $this->router->generate($this->options['routeName'], $routeParams);
     }
 }

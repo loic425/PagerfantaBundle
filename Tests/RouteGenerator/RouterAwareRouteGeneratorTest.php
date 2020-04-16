@@ -3,8 +3,8 @@
 namespace BabDev\PagerfantaBundle\Tests\RouteGenerator;
 
 use BabDev\PagerfantaBundle\RouteGenerator\RouterAwareRouteGenerator;
+use Pagerfanta\Exception\InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\OptionsResolver\Exception\MissingOptionsException;
 use Symfony\Component\Routing\Generator\UrlGenerator;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RequestContext;
@@ -60,7 +60,7 @@ final class RouterAwareRouteGeneratorTest extends TestCase
 
     public function testARouteIsNotGeneratedWhenTheRouteNameParameterIsMissing(): void
     {
-        $this->expectException(MissingOptionsException::class);
+        $this->expectException(InvalidArgumentException::class);
 
         $generator = new RouterAwareRouteGenerator(
             $this->createRouter(),
