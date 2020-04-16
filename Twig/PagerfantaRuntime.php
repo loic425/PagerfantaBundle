@@ -2,15 +2,12 @@
 
 namespace BabDev\PagerfantaBundle\Twig;
 
+use BabDev\PagerfantaBundle\RouteGenerator\RouteGeneratorFactoryInterface;
+use BabDev\PagerfantaBundle\RouteGenerator\RouteGeneratorInterface;
 use Pagerfanta\Exception\OutOfRangeCurrentPageException;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\PagerfantaInterface;
 use Pagerfanta\View\ViewFactoryInterface;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\PropertyAccess\PropertyAccess;
-use Symfony\Component\PropertyAccess\PropertyPath;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 final class PagerfantaRuntime
 {
@@ -25,21 +22,15 @@ final class PagerfantaRuntime
     private $viewFactory;
 
     /**
-     * @var UrlGeneratorInterface
+     * @var RouteGeneratorFactoryInterface
      */
-    private $router;
+    private $routeGeneratorFactory;
 
-    /**
-     * @var RequestStack
-     */
-    private $requestStack;
-
-    public function __construct(string $defaultView, ViewFactoryInterface $viewFactory, UrlGeneratorInterface $router, RequestStack $requestStack)
+    public function __construct(string $defaultView, ViewFactoryInterface $viewFactory, RouteGeneratorFactoryInterface $routeGeneratorFactory)
     {
         $this->defaultView = $defaultView;
         $this->viewFactory = $viewFactory;
-        $this->router = $router;
-        $this->requestStack = $requestStack;
+        $this->routeGeneratorFactory = $routeGeneratorFactory;
     }
 
     /**
@@ -96,52 +87,8 @@ final class PagerfantaRuntime
         return $routeGenerator($page);
     }
 
-    /**
-     * @throws \RuntimeException if attempting to guess a route name during a sub-request
-     */
-    private function createRouteGenerator(array $options = []): callable
+    private function createRouteGenerator(array $options = []): RouteGeneratorInterface
     {
-        $options = array_replace(
-            [
-                'routeName' => null,
-                'routeParams' => [],
-                'pageParameter' => '[page]',
-                'omitFirstPage' => false,
-            ],
-            $options
-        );
-
-        if (null === $options['routeName']) {
-            $request = $this->getRequest();
-
-            if (null !== $this->requestStack->getParentRequest()) {
-                throw new \RuntimeException('The Twig functions of BabDevPagerfantaBundle can not guess the route when used in a sub-request, pass the "routeName" option to use the pager.');
-            }
-
-            $options['routeName'] = $request->attributes->get('_route');
-
-            // Make sure we read the route parameters from the passed option array
-            $defaultRouteParams = array_merge($request->query->all(), $request->attributes->get('_route_params', []));
-
-            $options['routeParams'] = array_merge($defaultRouteParams, $options['routeParams']);
-        }
-
-        return function (int $page) use ($options): string {
-            $pagePropertyPath = new PropertyPath($options['pageParameter']);
-            $propertyAccessor = PropertyAccess::createPropertyAccessor();
-
-            if ($options['omitFirstPage']) {
-                $propertyAccessor->setValue($options['routeParams'], $pagePropertyPath, $page > 1 ? $page : null);
-            } else {
-                $propertyAccessor->setValue($options['routeParams'], $pagePropertyPath, $page);
-            }
-
-            return $this->router->generate($options['routeName'], $options['routeParams']);
-        };
-    }
-
-    private function getRequest(): ?Request
-    {
-        return $this->requestStack->getCurrentRequest();
+        return $this->routeGeneratorFactory->create($options);
     }
 }
