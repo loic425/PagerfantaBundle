@@ -30,6 +30,10 @@ abstract class TranslatedViewTestCase extends TestCase
      * @var MockObject|Pagerfanta
      */
     private $pagerfanta;
+
+    /**
+     * @var callable
+     */
     private $routeGenerator;
 
     protected function setUp(): void
@@ -122,7 +126,7 @@ abstract class TranslatedViewTestCase extends TestCase
 
     private function createRouteGenerator(): callable
     {
-        return function (): void { };
+        return static function (): void { };
     }
 
     private function translatorExpectsPreviousAt($at): void

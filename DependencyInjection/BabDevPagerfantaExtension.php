@@ -18,6 +18,7 @@ final class BabDevPagerfantaExtension extends Extension
     public function load(array $configs, ContainerBuilder $container): void
     {
         $config = $this->processConfiguration($this->getConfiguration($configs, $container), $configs);
+        $container->setParameter('babdev_pagerfanta.default_twig_template', $config['default_twig_template']);
         $container->setParameter('babdev_pagerfanta.default_view', $config['default_view']);
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));

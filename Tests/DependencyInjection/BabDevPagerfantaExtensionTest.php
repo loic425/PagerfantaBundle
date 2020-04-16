@@ -15,9 +15,23 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
         $this->load();
 
         $this->assertContainerBuilderHasParameter('babdev_pagerfanta.default_view');
+        $this->assertContainerBuilderHasParameter('babdev_pagerfanta.default_twig_template');
 
         $this->assertContainerBuilderHasAlias(ViewFactory::class, 'pagerfanta.view_factory');
         $this->assertContainerBuilderHasAlias(ViewFactoryInterface::class, 'pagerfanta.view_factory');
+
+        $deprecatedViews = [
+            'pagerfanta.view.default_translated',
+            'pagerfanta.view.semantic_ui_translated',
+            'pagerfanta.view.twitter_bootstrap_translated',
+            'pagerfanta.view.twitter_bootstrap3_translated',
+            'pagerfanta.view.twitter_bootstrap4_translated',
+        ];
+
+        foreach ($deprecatedViews as $deprecatedView) {
+            $this->assertContainerBuilderHasService($deprecatedView);
+            $this->assertTrue($this->container->getDefinition($deprecatedView)->isDeprecated());
+        }
 
         $listeners = [
             'pagerfanta.event_listener.convert_not_valid_max_per_page_to_not_found',
@@ -49,9 +63,23 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
         $this->load($bundleConfig);
 
         $this->assertContainerBuilderHasParameter('babdev_pagerfanta.default_view');
+        $this->assertContainerBuilderHasParameter('babdev_pagerfanta.default_twig_template');
 
         $this->assertContainerBuilderHasAlias(ViewFactory::class, 'pagerfanta.view_factory');
         $this->assertContainerBuilderHasAlias(ViewFactoryInterface::class, 'pagerfanta.view_factory');
+
+        $deprecatedViews = [
+            'pagerfanta.view.default_translated',
+            'pagerfanta.view.semantic_ui_translated',
+            'pagerfanta.view.twitter_bootstrap_translated',
+            'pagerfanta.view.twitter_bootstrap3_translated',
+            'pagerfanta.view.twitter_bootstrap4_translated',
+        ];
+
+        foreach ($deprecatedViews as $deprecatedView) {
+            $this->assertContainerBuilderHasService($deprecatedView);
+            $this->assertTrue($this->container->getDefinition($deprecatedView)->isDeprecated());
+        }
 
         $listeners = [
             'pagerfanta.event_listener.convert_not_valid_max_per_page_to_not_found',

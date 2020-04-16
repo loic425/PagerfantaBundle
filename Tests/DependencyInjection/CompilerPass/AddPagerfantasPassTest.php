@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 final class AddPagerfantasPassTest extends AbstractCompilerPassTestCase
 {
-    public function testPeriodicHandlersAreAddedToTheRegistry(): void
+    public function testViewsAreAddedToTheRegistry(): void
     {
         $this->registerService('pagerfanta.view_factory', ViewFactory::class);
         $this->registerService('pagerfanta.view.default', DefaultView::class)
