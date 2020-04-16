@@ -14,6 +14,13 @@
             <!-- conditionally tagged based on the bundle configuration -->
         </service>
 
+        <!-- Route Generator Factory -->
+        <service id="pagerfanta.route_generator_factory" class="BabDev\PagerfantaBundle\RouteGenerator\RequestAwareRouteGeneratorFactory">
+            <argument type="service" id="router" />
+            <argument type="service" id="request_stack" />
+        </service>
+        <service id="BabDev\PagerfantaBundle\RouteGenerator\RouteGeneratorFactoryInterface" alias="pagerfanta.route_generator_factory" />
+
         <!-- Twig Extension -->
         <service id="pagerfanta.twig_extension" class="BabDev\PagerfantaBundle\Twig\PagerfantaExtension" public="false">
             <tag name="twig.extension" />
