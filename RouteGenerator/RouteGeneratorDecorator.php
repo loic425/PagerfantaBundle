@@ -2,7 +2,7 @@
 
 namespace BabDev\PagerfantaBundle\RouteGenerator;
 
-final class RouteGeneratorDecorator
+final class RouteGeneratorDecorator implements RouteGeneratorInterface
 {
     /**
      * @var callable
