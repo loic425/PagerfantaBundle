@@ -1,4 +1,5 @@
-{% extends '@BabDevPagerfantaBundle/default.html.twig' %}
+{%- extends '@BabDevPagerfantaBundle/default.html.twig' -%}
+
 {%- block pager_widget -%}
     <div class="pagination"><ul>
         {{- block('pager') -}}
@@ -14,19 +15,19 @@
 {%- endblock current_page_link -%}
 
 {%- block previous_page_link -%}
-    <li><a href="{{ path }}" rel="prev">{{ 'previous'|trans([], 'pagerfanta') }}</a></li>
+    <li><a href="{{ path }}" rel="prev">{{ block('previous_page_message') }}</a></li>
 {%- endblock previous_page_link -%}
 
 {%- block previous_page_link_disabled -%}
-    <li class="disabled"><span>{{ 'previous'|trans([], 'pagerfanta') }}</span></li>
+    <li class="disabled"><span>{{ block('previous_page_message') }}</span></li>
 {%- endblock previous_page_link_disabled -%}
 
 {%- block next_page_link -%}
-    <li><a href="{{ path }}" rel="next">{{ 'next'|trans([], 'pagerfanta') }}</a></li>
+    <li><a href="{{ path }}" rel="next">{{ block('next_page_message') }}</a></li>
 {%- endblock next_page_link -%}
 
 {%- block next_page_link_disabled -%}
-    <li class="disabled"><span>{{ 'next'|trans([], 'pagerfanta') }}</span></li>
+    <li class="disabled"><span>{{ block('next_page_message') }}</span></li>
 {%- endblock next_page_link_disabled -%}
 
 {%- block ellipsis -%}
