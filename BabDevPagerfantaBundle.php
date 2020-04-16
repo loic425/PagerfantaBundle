@@ -6,7 +6,6 @@ use BabDev\PagerfantaBundle\DependencyInjection\BabDevPagerfantaExtension;
 use BabDev\PagerfantaBundle\DependencyInjection\CompilerPass\AddPagerfantasPass;
 use BabDev\PagerfantaBundle\DependencyInjection\CompilerPass\MaybeRemoveTranslatedViewsPass;
 use BabDev\PagerfantaBundle\DependencyInjection\CompilerPass\MaybeRemoveTwigServicesPass;
-use BabDev\PagerfantaBundle\DependencyInjection\CompilerPass\MaybeRemoveTwigViewPass;
 use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
