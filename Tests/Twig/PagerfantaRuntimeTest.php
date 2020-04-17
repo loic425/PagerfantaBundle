@@ -2,6 +2,8 @@
 
 namespace BabDev\PagerfantaBundle\Tests\Twig;
 
+use BabDev\PagerfantaBundle\RouteGenerator\RequestAwareRouteGeneratorFactory;
+use BabDev\PagerfantaBundle\RouteGenerator\RouteGeneratorFactoryInterface;
 use BabDev\PagerfantaBundle\Twig\PagerfantaRuntime;
 use Pagerfanta\Adapter\FixedAdapter;
 use Pagerfanta\Exception\OutOfRangeCurrentPageException;
@@ -33,6 +35,11 @@ final class PagerfantaRuntimeTest extends TestCase
     private $requestStack;
 
     /**
+     * @var RouteGeneratorFactoryInterface
+     */
+    private $routeGeneratorFactory;
+
+    /**
      * @var PagerfantaRuntime
      */
     private $extension;
@@ -46,11 +53,12 @@ final class PagerfantaRuntimeTest extends TestCase
 
         $this->requestStack = new RequestStack();
 
+        $this->routeGeneratorFactory = $this->createRouteGeneratorFactory();
+
         $this->extension = new PagerfantaRuntime(
             'default',
             $this->viewFactory,
-            $this->router,
-            $this->requestStack
+            $this->routeGeneratorFactory
         );
     }
 
@@ -84,6 +92,14 @@ final class PagerfantaRuntimeTest extends TestCase
             });
 
         return $router;
+    }
+
+    private function createRouteGeneratorFactory(): RouteGeneratorFactoryInterface
+    {
+        return new RequestAwareRouteGeneratorFactory(
+            $this->router,
+            $this->requestStack
+        );
     }
 
     private function createPagerfanta(): Pagerfanta
@@ -219,23 +235,6 @@ final class PagerfantaRuntimeTest extends TestCase
     <a href="/my-page?foo%5Bpage%5D=2" rel="next">Next</a>
 </nav>'
         );
-    }
-
-    public function testTheDefaultPagerfantaViewIsNotRenderedWhenASubrequestIsActiveAndARouteNameIsNotSpecified(): void
-    {
-        $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessage('The Twig functions of BabDevPagerfantaBundle can not guess the route when used in a sub-request, pass the "routeName" option to use the pager.');
-
-        $masterRequest = Request::create('/');
-        $masterRequest->attributes->set('_route', 'pagerfanta_view');
-        $masterRequest->attributes->set('_route_params', []);
-
-        $subRequest = Request::create('/_internal');
-
-        $this->requestStack->push($masterRequest);
-        $this->requestStack->push($subRequest);
-
-        $this->extension->renderPagerfanta($this->createPagerfanta());
     }
 
     public function testTheDefaultPagerfantaViewIsNotRenderedWhenAnInvalidTypeIsGivenForTheViewNameArgument(): void

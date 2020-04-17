@@ -2,6 +2,7 @@
 
 namespace BabDev\PagerfantaBundle\Tests\View;
 
+use BabDev\PagerfantaBundle\RouteGenerator\RequestAwareRouteGeneratorFactory;
 use BabDev\PagerfantaBundle\Twig\PagerfantaExtension;
 use BabDev\PagerfantaBundle\Twig\PagerfantaRuntime;
 use BabDev\PagerfantaBundle\View\TwigView;
@@ -315,11 +316,15 @@ final class TwigViewIntegrationTest extends TestCase
                         $viewFactory = new ViewFactory();
                         $viewFactory->set('twig', new TwigView($this->testCase->twig));
 
+                        $routeGeneratorFactory = new RequestAwareRouteGeneratorFactory(
+                            $this->testCase->router,
+                            $this->testCase->requestStack
+                        );
+
                         return new PagerfantaRuntime(
                             'twig',
                             $viewFactory,
-                            $this->testCase->router,
-                            $this->testCase->requestStack
+                            $routeGeneratorFactory
                         );
 
                     default:
