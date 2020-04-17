@@ -291,6 +291,22 @@ final class TwigViewIntegrationTest extends TestCase
         );
     }
 
+    public function testPagerfantaRenderingWithEmptyOptions(): void
+    {
+        $request = Request::create('/');
+        $request->attributes->set('_route', 'pagerfanta_view');
+        $request->attributes->set('_route_params', []);
+
+        $this->requestStack->push($request);
+
+        $this->assertNotEmpty(
+            (new TwigView($this->twig))->render(
+                $this->createPagerfanta(),
+                (new RequestAwareRouteGeneratorFactory($this->router, $this->requestStack))->create()
+            )
+        );
+    }
+
     private function createRouter(): UrlGeneratorInterface
     {
         $routeCollection = new RouteCollection();
