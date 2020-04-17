@@ -28,7 +28,7 @@
         "white-october/pagerfanta-bundle": "*"
     },
     "suggest": {
-        "symfony/translation": "To use the Pagerfanta views with translation support",
+        "symfony/translation": "To use the Twig templates with translation support",
         "twig/twig": "To integrate Pagerfanta with Twig through extensions"
     },
     "autoload": {
