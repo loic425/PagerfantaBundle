@@ -2,6 +2,11 @@
 
 namespace BabDev\PagerfantaBundle\View;
 
+@trigger_error(sprintf('The "%s" class is deprecated and will be removed in BabDevPagerfantaBundle 3.0. Use the "%s" class instead.', SemanticUiTranslatedView::class, TwigView::class));
+
+/**
+ * @deprecated to be removed in BabDevPagerfantaBundle 3.0. Use the Twig view class instead with the `semantic_ui.html.twig` template.
+ */
 class SemanticUiTranslatedView extends TranslatedView
 {
     protected function previousMessageOption(): string

@@ -114,7 +114,7 @@ abstract class TranslatedViewTestCase extends TestCase
 
     private function createRouteGenerator(): \Closure
     {
-        return function (): void { };
+        return static function (): void { };
     }
 
     private function translatorExpectsPreviousAt($at): void

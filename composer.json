@@ -12,20 +12,24 @@
         "symfony/http-foundation": "^4.4 || ^5.0",
         "symfony/http-kernel": "^4.4 || ^5.0",
         "symfony/property-access": "^4.4 || ^5.0",
-        "symfony/routing": "^4.4 || ^5.0",
-        "symfony/translation": "^4.4 || ^5.0",
-        "symfony/twig-bundle": "^4.4 || ^5.0"
+        "symfony/routing": "^4.4 || ^5.0"
     },
     "require-dev": {
         "doctrine/annotations": "^1.8",
         "friendsofphp/php-cs-fixer": "^2.16",
         "matthiasnoback/symfony-dependency-injection-test": "^4.1",
         "phpunit/phpunit": "^8.5 || ^9.0",
+        "symfony/twig-bridge": "^4.4 || ^5.0",
+        "symfony/translation": "^4.4 || ^5.0",
         "twig/twig": "^1.34 || ^2.4 || ^3.0"
     },
     "conflict": {
         "twig/twig": "<1.34 || >=2.0,<2.4",
         "white-october/pagerfanta-bundle": "*"
+    },
+    "suggest": {
+        "symfony/translation": "To use the Pagerfanta views with translation support",
+        "twig/twig": "To integrate Pagerfanta with Twig through extensions"
     },
     "autoload": {
         "psr-4": {
