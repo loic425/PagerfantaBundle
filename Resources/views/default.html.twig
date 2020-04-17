@@ -87,7 +87,7 @@
 {%- endblock previous_page_link_disabled -%}
 
 {%- block previous_page_message -%}
-    {%- if options['prev_message'] is not empty -%}
+    {%- if options['prev_message'] is defined -%}
         {{- options['prev_message'] -}}
     {%- else -%}
         {{- 'previous'|trans([], 'pagerfanta') -}}
@@ -103,7 +103,7 @@
 {%- endblock next_page_link_disabled -%}
 
 {%- block next_page_message -%}
-    {%- if options['next_message'] is not empty -%}
+    {%- if options['next_message'] is defined -%}
         {{- options['next_message'] -}}
     {%- else -%}
         {{- 'next'|trans([], 'pagerfanta') -}}
