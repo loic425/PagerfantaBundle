@@ -176,7 +176,13 @@ The below table lists the available templates and the CSS framework they corresp
 
 Labels of Previous and Next buttons are localizable in all of these Twig templates.
 
-When rendering a Twig view, the following options are passed into the template for use:
+If creating a custom template, you are encouraged to extend the `default.html.twig` template and override only the blocks needed.
+
+Generally, the `pager_widget` block should only be extended if you need to change the wrapping HTML for the paginator. The `pager` block should still be rendered from your extended block.
+
+The `pager` block is designed to hold the structure of the pager and generally should not be extended unless the intent is to change the logic involved in rendering the paginator (such as removing the ellipsis separators or changing to only display previous/next buttons).
+
+When rendering a Twig view, the following options are passed into the template for use. Note that for the most part, only the `pager` block will use these variables.
 
 - `pagerfanta` - The `Pagerfanta\Pagerfanta` object
 - `route_generator` - A `BabDev\PagerfantaBundle\RouteGenerator\RouteGeneratorDecorator` object which decorates the route generator created by the `pagerfanta()` Twig function
