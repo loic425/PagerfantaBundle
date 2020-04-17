@@ -55,7 +55,7 @@ final class TwigViewIntegrationTest extends TestCase
     protected function setUp(): void
     {
         $filesystemLoader = new FilesystemLoader();
-        $filesystemLoader->addPath(__DIR__.'/../../Resources/views', 'BabDevPagerfantaBundle');
+        $filesystemLoader->addPath(__DIR__.'/../../templates', 'BabDevPagerfantaBundle');
 
         $this->twig = new Environment(new ChainLoader([new ArrayLoader(['integration.html.twig' => '{{ pagerfanta(pager, options) }}']), $filesystemLoader]));
         $this->twig->addExtension(new PagerfantaExtension());
@@ -354,7 +354,7 @@ final class TwigViewIntegrationTest extends TestCase
     {
         $translator = new Translator('en');
         $translator->addLoader('xliff', new XliffFileLoader());
-        $translator->addResource('xliff', __DIR__.'/../../Resources/translations/pagerfanta.en.xliff', 'en', 'pagerfanta');
+        $translator->addResource('xliff', __DIR__.'/../../translations/pagerfanta.en.xliff', 'en', 'pagerfanta');
 
         return $translator;
     }
