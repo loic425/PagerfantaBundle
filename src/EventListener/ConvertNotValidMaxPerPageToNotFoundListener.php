@@ -13,9 +13,7 @@ final class ConvertNotValidMaxPerPageToNotFoundListener
         $throwable = $event->getThrowable();
 
         if ($throwable instanceof NotValidMaxPerPageException) {
-            $notFoundHttpException = new NotFoundHttpException('Page Not Found', $throwable);
-
-            $event->setThrowable($notFoundHttpException);
+            $event->setThrowable(new NotFoundHttpException('Page Not Found', $throwable));
         }
     }
 }
