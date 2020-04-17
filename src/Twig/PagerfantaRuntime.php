@@ -12,11 +12,7 @@ final class PagerfantaRuntime
 {
     private string $defaultView;
     private ViewFactoryInterface $viewFactory;
-
-    /**
-     * @var RouteGeneratorFactoryInterface
-     */
-    private $routeGeneratorFactory;
+    private RouteGeneratorFactoryInterface $routeGeneratorFactory;
 
     public function __construct(string $defaultView, ViewFactoryInterface $viewFactory, RouteGeneratorFactoryInterface $routeGeneratorFactory)
     {

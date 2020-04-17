@@ -9,15 +9,8 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 final class RouterAwareRouteGenerator implements RouteGeneratorInterface
 {
-    /**
-     * @var UrlGeneratorInterface
-     */
-    private $router;
-
-    /**
-     * @var array
-     */
-    private $options;
+    private UrlGeneratorInterface $router;
+    private array $options;
 
     /**
      * @throws InvalidArgumentException if missing required options

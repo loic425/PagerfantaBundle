@@ -12,50 +12,16 @@ final class TwigView implements ViewInterface
 {
     public const DEFAULT_TEMPLATE = '@BabDevPagerfantaBundle/default.html.twig';
 
-    /**
-     * @var Environment
-     */
-    private $twig;
+    private Environment $twig;
+    private ?string $defaultTemplate = null;
 
-    /**
-     * @var string|null
-     */
-    private $defaultTemplate;
-
-    /**
-     * @var string
-     */
-    private $template;
-
-    /**
-     * @var PagerfantaInterface
-     */
-    private $pagerfanta;
-
-    /**
-     * @var int
-     */
-    private $proximity;
-
-    /**
-     * @var int
-     */
-    private $currentPage;
-
-    /**
-     * @var int
-     */
-    private $nbPages;
-
-    /**
-     * @var int
-     */
-    private $startPage;
-
-    /**
-     * @var int
-     */
-    private $endPage;
+    private ?string $template = null;
+    private ?PagerfantaInterface $pagerfanta = null;
+    private ?int $proximity = null;
+    private ?int $currentPage = null;
+    private ?int $nbPages = null;
+    private ?int $startPage = null;
+    private ?int $endPage = null;
 
     public function __construct(Environment $twig, ?string $defaultTemplate = null)
     {

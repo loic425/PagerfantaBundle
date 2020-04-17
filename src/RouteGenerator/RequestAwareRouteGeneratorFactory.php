@@ -8,15 +8,8 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 final class RequestAwareRouteGeneratorFactory implements RouteGeneratorFactoryInterface
 {
-    /**
-     * @var UrlGeneratorInterface
-     */
-    private $router;
-
-    /**
-     * @var RequestStack
-     */
-    private $requestStack;
+    private UrlGeneratorInterface $router;
+    private RequestStack $requestStack;
 
     public function __construct(UrlGeneratorInterface $router, RequestStack $requestStack)
     {
