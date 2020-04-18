@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.2.0 (TBD)
+## 2.2.0 (2020-04-18)
 
 - Added a `Pagerfanta\View\ViewInterface` implementation which supports rendering Twig templates
 - Deprecated `BabDev\PagerfantaBundle\View\TranslatedView` and all child classes in favor of the Twig view and the respective Twig template for the translated view
