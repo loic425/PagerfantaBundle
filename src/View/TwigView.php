@@ -10,7 +10,7 @@ use Twig\Environment;
 
 final class TwigView implements ViewInterface
 {
-    public const DEFAULT_TEMPLATE = '@BabDevPagerfantaBundle/default.html.twig';
+    public const DEFAULT_TEMPLATE = '@BabDevPagerfanta/default.html.twig';
 
     private Environment $twig;
     private ?string $defaultTemplate = null;

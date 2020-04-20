@@ -166,13 +166,13 @@ This bundle provides a Pagerfanta view which renders a Twig template.
 
 The below table lists the available templates and the CSS framework they correspond to.
 
-| Template Name                                          | Framework                                            |
-| ------------------------------------------------------ | ---------------------------------------------------- |
-| `@BabDevPagerfantaBundle/default.html.twig`            | None (Pagerfanta's default view)                     |
-| `@BabDevPagerfantaBundle/semantic_ui.html.twig`        | [Semantic UI](https://semantic-ui.com) (version 2.x) |
-| `@BabDevPagerfantaBundle/twitter_bootstrap.html.twig`  | [Bootstrap](https://getbootstrap.com) (version 2.x)  |
-| `@BabDevPagerfantaBundle/twitter_bootstrap3.html.twig` | [Bootstrap](https://getbootstrap.com) (version 3.x)  |
-| `@BabDevPagerfantaBundle/twitter_bootstrap4.html.twig` | [Bootstrap](https://getbootstrap.com) (version 4.x)  |
+| Template Name                                    | Framework                                            |
+| ------------------------------------------------ | ---------------------------------------------------- |
+| `@BabDevPagerfanta/default.html.twig`            | None (Pagerfanta's default view)                     |
+| `@BabDevPagerfanta/semantic_ui.html.twig`        | [Semantic UI](https://semantic-ui.com) (version 2.x) |
+| `@BabDevPagerfanta/twitter_bootstrap.html.twig`  | [Bootstrap](https://getbootstrap.com) (version 2.x)  |
+| `@BabDevPagerfanta/twitter_bootstrap3.html.twig` | [Bootstrap](https://getbootstrap.com) (version 3.x)  |
+| `@BabDevPagerfanta/twitter_bootstrap4.html.twig` | [Bootstrap](https://getbootstrap.com) (version 4.x)  |
 
 Labels of Previous and Next buttons are localizable in all of these Twig templates.
 
@@ -333,7 +333,7 @@ babdev_pagerfanta:
 ```
 
 ### Default Twig Template
-The default Twig template for Twig views in your application can be set with the `default_twig_template` configuration node. This defaults to "`@BabDevPagerfantaBundle/default.html.twig`".
+The default Twig template for Twig views in your application can be set with the `default_twig_template` configuration node. This defaults to "`@BabDevPagerfanta/default.html.twig`".
 
 ```yaml
 // app/config/config.yml for Symfony Standard applications
