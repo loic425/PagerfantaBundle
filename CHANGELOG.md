@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.1 (2020-04-20)
+
+- Corrected namespace for Twig templates
+
 ## 2.2.0 (2020-04-18)
 
 - Added a `Pagerfanta\View\ViewInterface` implementation which supports rendering Twig templates

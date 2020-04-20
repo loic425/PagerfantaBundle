@@ -55,7 +55,7 @@ final class TwigViewIntegrationTest extends TestCase
     protected function setUp(): void
     {
         $filesystemLoader = new FilesystemLoader();
-        $filesystemLoader->addPath(__DIR__.'/../../Resources/views', 'BabDevPagerfantaBundle');
+        $filesystemLoader->addPath(__DIR__.'/../../Resources/views', 'BabDevPagerfanta');
 
         $this->twig = new Environment(new ChainLoader([new ArrayLoader(['integration.html.twig' => '{{ pagerfanta(pager, options) }}']), $filesystemLoader]));
         $this->twig->addExtension(new PagerfantaExtension());
@@ -82,7 +82,7 @@ final class TwigViewIntegrationTest extends TestCase
     {
         yield 'default template at page 1' => [
             1,
-            ['omitFirstPage' => false, 'template' => '@BabDevPagerfantaBundle/default.html.twig'],
+            ['omitFirstPage' => false, 'template' => '@BabDevPagerfanta/default.html.twig'],
             '<nav>
     <span class="disabled">Previous</span>
     <span class="current" aria-current="page">1</span>
@@ -98,7 +98,7 @@ final class TwigViewIntegrationTest extends TestCase
 
         yield 'default template at page 1 with translated labels' => [
             1,
-            ['omitFirstPage' => false, 'template' => '@BabDevPagerfantaBundle/default.html.twig', 'prev_message' => 'Previous Page', 'next_message' => 'Next Page'],
+            ['omitFirstPage' => false, 'template' => '@BabDevPagerfanta/default.html.twig', 'prev_message' => 'Previous Page', 'next_message' => 'Next Page'],
             '<nav>
     <span class="disabled">Previous Page</span>
     <span class="current" aria-current="page">1</span>
@@ -114,7 +114,7 @@ final class TwigViewIntegrationTest extends TestCase
 
         yield 'default template at page 5 with first page omitted' => [
             5,
-            ['omitFirstPage' => true, 'template' => '@BabDevPagerfantaBundle/default.html.twig'],
+            ['omitFirstPage' => true, 'template' => '@BabDevPagerfanta/default.html.twig'],
             '<nav>
     <a href="/pagerfanta-view?page=4" rel="prev">Previous</a>
     <a href="/pagerfanta-view">1</a>
@@ -132,7 +132,7 @@ final class TwigViewIntegrationTest extends TestCase
 
         yield 'Semantic UI template at page 1' => [
             1,
-            ['omitFirstPage' => false, 'template' => '@BabDevPagerfantaBundle/semantic_ui.html.twig'],
+            ['omitFirstPage' => false, 'template' => '@BabDevPagerfanta/semantic_ui.html.twig'],
             '<div class="ui pagination menu">
     <div class="disabled item">Previous</div>
     <div class="active item" aria-current="page">1</div>
@@ -148,7 +148,7 @@ final class TwigViewIntegrationTest extends TestCase
 
         yield 'Semantic UI template at page 5 with first page omitted' => [
             5,
-            ['omitFirstPage' => true, 'template' => '@BabDevPagerfantaBundle/semantic_ui.html.twig'],
+            ['omitFirstPage' => true, 'template' => '@BabDevPagerfanta/semantic_ui.html.twig'],
             '<div class="ui pagination menu">
     <a class="item" href="/pagerfanta-view?page=4" rel="prev">Previous</a>
     <a class="item" href="/pagerfanta-view">1</a>
@@ -166,7 +166,7 @@ final class TwigViewIntegrationTest extends TestCase
 
         yield 'Twitter Bootstrap template at page 1' => [
             1,
-            ['omitFirstPage' => false, 'template' => '@BabDevPagerfantaBundle/twitter_bootstrap.html.twig'],
+            ['omitFirstPage' => false, 'template' => '@BabDevPagerfanta/twitter_bootstrap.html.twig'],
             '<div class="pagination">
     <ul>
         <li class="disabled"><span>Previous</span></li>
@@ -184,7 +184,7 @@ final class TwigViewIntegrationTest extends TestCase
 
         yield 'Twitter Bootstrap template at page 5 with first page omitted' => [
             5,
-            ['omitFirstPage' => true, 'template' => '@BabDevPagerfantaBundle/twitter_bootstrap.html.twig'],
+            ['omitFirstPage' => true, 'template' => '@BabDevPagerfanta/twitter_bootstrap.html.twig'],
             '<div class="pagination">
     <ul>
         <li><a href="/pagerfanta-view?page=4" rel="prev">Previous</a></li>
@@ -204,7 +204,7 @@ final class TwigViewIntegrationTest extends TestCase
 
         yield 'Twitter Bootstrap 3 template at page 1' => [
             1,
-            ['omitFirstPage' => false, 'template' => '@BabDevPagerfantaBundle/twitter_bootstrap3.html.twig'],
+            ['omitFirstPage' => false, 'template' => '@BabDevPagerfanta/twitter_bootstrap3.html.twig'],
             '<ul class="pagination">
     <li class="disabled"><span>Previous</span></li>
     <li class="active" aria-current="page"><span>1</span></li>
@@ -220,7 +220,7 @@ final class TwigViewIntegrationTest extends TestCase
 
         yield 'Twitter Bootstrap 3 template at page 5 with first page omitted' => [
             5,
-            ['omitFirstPage' => true, 'template' => '@BabDevPagerfantaBundle/twitter_bootstrap3.html.twig'],
+            ['omitFirstPage' => true, 'template' => '@BabDevPagerfanta/twitter_bootstrap3.html.twig'],
             '<ul class="pagination">
     <li><a href="/pagerfanta-view?page=4" rel="prev">Previous</a></li>
     <li><a href="/pagerfanta-view">1</a></li>
@@ -238,7 +238,7 @@ final class TwigViewIntegrationTest extends TestCase
 
         yield 'Twitter Bootstrap 4 template at page 1' => [
             1,
-            ['omitFirstPage' => false, 'template' => '@BabDevPagerfantaBundle/twitter_bootstrap4.html.twig'],
+            ['omitFirstPage' => false, 'template' => '@BabDevPagerfanta/twitter_bootstrap4.html.twig'],
             '<ul class="pagination">
     <li class="page-item disabled"><span class="page-link">Previous</span></li>
     <li class="page-item active" aria-current="page"><span class="page-link">1</span></li>
@@ -254,7 +254,7 @@ final class TwigViewIntegrationTest extends TestCase
 
         yield 'Twitter Bootstrap 4 template at page 5 with first page omitted' => [
             5,
-            ['omitFirstPage' => true, 'template' => '@BabDevPagerfantaBundle/twitter_bootstrap4.html.twig'],
+            ['omitFirstPage' => true, 'template' => '@BabDevPagerfanta/twitter_bootstrap4.html.twig'],
             '<ul class="pagination">
     <li class="page-item"><a class="page-link" href="/pagerfanta-view?page=4" rel="prev">Previous</a></li>
     <li class="page-item"><a class="page-link" href="/pagerfanta-view">1</a></li>
