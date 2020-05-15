@@ -6,13 +6,13 @@ Bundle to use [Pagerfanta](https://github.com/whiteoctober/Pagerfanta) with [Sym
 
 This bundle is a continuation of the [WhiteOctoberPagerfantaBundle](https://github.com/whiteoctober/WhiteOctoberPagerfantaBundle).
 
-## Contributing
+## Documentation
 
-We welcome contributions to this project, including pull requests and issues (and discussions on existing issues).
+Please see the [BabDev website](https://www.babdev.com/open-source/packages/babdevpagerfantabundle/docs/2.x) for detailed information on how to use this bundle.
 
-If you'd like to contribute code but aren't sure what, the [issues list](https://github.com/BabDev/BabDevPagerfantaBundle/issues) is a good place to start.
-You can also look at the [original bundle issues](https://github.com/whiteoctober/WhiteOctoberPagerfantaBundle/issues) for any items which are still open from there.
-If you're a first-time code contributor, you may find Github's guide to [forking projects](https://guides.github.com/activities/forking/) helpful.
+## Security
+
+If you believe you have discovered a security issue with this bundle, please email michael.babker@gmail.com with information about the issue.  Do **NOT** use the public issue tracker for security issues.
 
 ## Acknowledgements
 
