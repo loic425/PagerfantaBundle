@@ -2,7 +2,7 @@
 
 Views are added to the service container with the `pagerfanta.view` tag. You can also specify an alias which is used as the view's name in a `Pagerfanta\View\ViewFactoryInterface` instance, but if one is not given then the service ID is used instead.
 
-{note} It is recommended that view services are *NOT* public services, the `ViewFactoryInterface` should be used to [retrieve views](/open-source/packages/babdevpagerfantabundle/docs/2.x/retrieving-views)
+<div class="docs-note">It is recommended that view services are <strong>NOT</strong> public services, the <code>ViewFactoryInterface</code>> should be used to <a href="/open-source/packages/babdevpagerfantabundle/docs/2.x/retrieving-views">retrieve views</a>.</div>
 
 ## XML Configuration
 

@@ -12,4 +12,4 @@ The bundle includes:
 - A flexible API to customize paginated routing
 - Default CSS for the `Pagerfanta\View\DefaultView` class
 
-{note} The documentation covers only the features added by this bundle, please review the Pagerfanta documentation for more information about how to use the library.
+<div class="docs-note">The documentation covers only the features added by this bundle, please review the Pagerfanta documentation for more information about how to use the library.</div>
