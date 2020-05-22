@@ -41,13 +41,12 @@ final class Configuration implements ConfigurationInterface
                             ->validate()
                                 ->ifTrue(static function ($v) { return !\in_array($v, [self::EXCEPTION_STRATEGY_CUSTOM, self::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND]); })
                                 ->then(static function ($v) {
-                                    @trigger_error(
-                                        sprintf(
-                                            'Setting the "babdev_pagerfanta.exceptions_strategy.out_of_range_page" configuration option to "%s" is deprecated since BabDevPagerfantaBundle 2.2, set the option to one of the allowed values: [%s]',
-                                            $v,
-                                            implode(', ', [self::EXCEPTION_STRATEGY_CUSTOM, self::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND])
-                                        ),
-                                        E_USER_DEPRECATED
+                                    trigger_deprecation(
+                                        'babdev/pagerfanta-bundle',
+                                        '2.2',
+                                        'Setting the "babdev_pagerfanta.exceptions_strategy.out_of_range_page" configuration option to "%s" is deprecated and will not be allowed in 3.0, set the option to one of the allowed values: [%s]',
+                                        $v,
+                                        implode(', ', [self::EXCEPTION_STRATEGY_CUSTOM, self::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND])
                                     );
 
                                     return $v;
@@ -60,13 +59,12 @@ final class Configuration implements ConfigurationInterface
                             ->validate()
                                 ->ifTrue(static function ($v) { return !\in_array($v, [self::EXCEPTION_STRATEGY_CUSTOM, self::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND]); })
                                 ->then(static function ($v) {
-                                    @trigger_error(
-                                        sprintf(
-                                            'Setting the "babdev_pagerfanta.exceptions_strategy.not_valid_current_page" configuration option to "%s" is deprecated since BabDevPagerfantaBundle 2.2, set the option to one of the allowed values: [%s]',
-                                            $v,
-                                            implode(', ', [self::EXCEPTION_STRATEGY_CUSTOM, self::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND])
-                                        ),
-                                        E_USER_DEPRECATED
+                                    trigger_deprecation(
+                                        'babdev/pagerfanta-bundle',
+                                        '2.2',
+                                        'Setting the "babdev_pagerfanta.exceptions_strategy.not_valid_current_page" configuration option to "%s" is deprecated and will not be allowed in 3.0, set the option to one of the allowed values: [%s]',
+                                        $v,
+                                        implode(', ', [self::EXCEPTION_STRATEGY_CUSTOM, self::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND])
                                     );
 
                                     return $v;

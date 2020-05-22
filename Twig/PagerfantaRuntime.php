@@ -47,13 +47,12 @@ final class PagerfantaRuntime
         }
 
         if (!($pagerfanta instanceof Pagerfanta)) {
-            @trigger_error(
-                sprintf(
-                    'The "pagerfanta" Twig function will no longer accept "%1$s" implementations that are not a subclass of "%2$s" as of BabDevPagerfantaBundle 3.0. Ensure your pager is a subclass of "%2$s".',
-                    PagerfantaInterface::class,
-                    Pagerfanta::class
-                ),
-                E_USER_DEPRECATED
+            trigger_deprecation(
+                'babdev/pagerfanta-bundle',
+                '2.1',
+                'The "pagerfanta" Twig function will no longer accept "%1$s" implementations that are not a subclass of "%2$s" as of 3.0. Ensure your pager is a subclass of "%2$s".',
+                PagerfantaInterface::class,
+                Pagerfanta::class
             );
         }
 
@@ -68,13 +67,12 @@ final class PagerfantaRuntime
     public function getPageUrl(PagerfantaInterface $pagerfanta, int $page, array $options = []): string
     {
         if (!($pagerfanta instanceof Pagerfanta)) {
-            @trigger_error(
-                sprintf(
-                    'The "pagerfanta_page_url" Twig function will no longer accept "%1$s" implementations that are not a subclass of "%2$s" as of BabDevPagerfantaBundle 3.0. Ensure your pager is a subclass of "%2$s".',
-                    PagerfantaInterface::class,
-                    Pagerfanta::class
-                ),
-                E_USER_DEPRECATED
+            trigger_deprecation(
+                'babdev/pagerfanta-bundle',
+                '2.1',
+                'The "pagerfanta_page_url" Twig function will no longer accept "%1$s" implementations that are not a subclass of "%2$s" as of 3.0. Ensure your pager is a subclass of "%2$s".',
+                PagerfantaInterface::class,
+                Pagerfanta::class
             );
         }
 

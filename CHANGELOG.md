@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.2 (2020-??-??)
+
+- Use the `symfony/deprecation-contracts` to trigger runtime deprecation notices
+
 ## 2.2.1 (2020-04-20)
 
 - Corrected namespace for Twig templates

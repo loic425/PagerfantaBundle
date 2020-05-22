@@ -5,7 +5,7 @@ namespace BabDev\PagerfantaBundle\DependencyInjection\CompilerPass;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-@trigger_error(sprintf('The "%s" class is deprecated and will be removed in BabDevPagerfantaBundle 3.0.', MaybeRemoveTranslatedViewsPass::class));
+trigger_deprecation('babdev/pagerfanta-bundle', '2.2', 'The "%s" class is deprecated and will be removed in 3.0.', MaybeRemoveTranslatedViewsPass::class);
 
 /**
  * @deprecated to be removed in BabDevPagerfantaBundle 3.0.
