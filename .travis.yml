@@ -21,13 +21,17 @@ matrix:
     - php: 7.4
       env: SYMFONY_REQUIRE="5.0.*"
     - php: 7.4
-      env: SYMFONY_REQUIRE="5.1.*@dev" COVERAGE="no"
+      env: SYMFONY_REQUIRE="5.1.*@rc" COVERAGE="no"
+    - php: 7.4
+      env: SYMFONY_REQUIRE="5.2.*@dev" COVERAGE="no"
     - php: nightly
       env: SYMFONY_REQUIRE="4.4.*" COVERAGE="no"
   allow_failures:
     # Allow failures on next Symfony minor, should always be tested on newest stable PHP branch
     - php: 7.4
-      env: SYMFONY_REQUIRE="5.1.*@dev" COVERAGE="no"
+      env: SYMFONY_REQUIRE="5.1.*@rc" COVERAGE="no"
+    - php: 7.4
+      env: SYMFONY_REQUIRE="5.2.*@dev" COVERAGE="no"
     - php: nightly
       env: SYMFONY_REQUIRE="4.4.*" COVERAGE="no"
 
