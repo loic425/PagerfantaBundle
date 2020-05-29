@@ -1,6 +1,6 @@
 # Generating Paginated Routes
 
-When rendering a Pagerfanta view, a route generator callable is required to generate the URLs for each item in the pagination list. As of BabDevPagerfantaBundle 2.2, the route generator can be customized for use within your application if you need to adjust the routing logic.
+When rendering a Pagerfanta view, a route generator callable is required to generate the URLs for each item in the pagination list. The route generator can be customized for use within your application if you need to adjust the routing logic.
 
 The route generators are defined by two interfaces, with their default implementations noted below:
 
