@@ -1,8 +1,9 @@
 # Changelog
 
-## 2.2.2 (2020-??-??)
+## 2.3.0 (2020-??-??)
 
 - Use the `symfony/deprecation-contracts` to trigger runtime deprecation notices
+- Added a Tailwind CSS Twig View (based on the similar view added to Laravel's Pagination component)
 
 ## 2.2.1 (2020-04-20)
 
