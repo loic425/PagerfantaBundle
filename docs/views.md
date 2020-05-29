@@ -22,13 +22,14 @@ This bundle provides a Pagerfanta view which renders a Twig template.
 
 The below table lists the available templates and the CSS framework they correspond to.
 
-| Template Name                                    | Framework                                            |
-| ------------------------------------------------ | ---------------------------------------------------- |
-| `@BabDevPagerfanta/default.html.twig`            | None (Pagerfanta's default view)                     |
-| `@BabDevPagerfanta/semantic_ui.html.twig`        | [Semantic UI](https://semantic-ui.com) (version 2.x) |
-| `@BabDevPagerfanta/twitter_bootstrap.html.twig`  | [Bootstrap](https://getbootstrap.com) (version 2.x)  |
-| `@BabDevPagerfanta/twitter_bootstrap3.html.twig` | [Bootstrap](https://getbootstrap.com) (version 3.x)  |
-| `@BabDevPagerfanta/twitter_bootstrap4.html.twig` | [Bootstrap](https://getbootstrap.com) (version 4.x)  |
+| Template Name                                    | Framework                                            | Since Bundle Version |
+| ------------------------------------------------ | ---------------------------------------------------- | -------------------- |
+| `@BabDevPagerfanta/default.html.twig`            | None (Pagerfanta's default view)                     | 2.2                  |
+| `@BabDevPagerfanta/semantic_ui.html.twig`        | [Semantic UI](https://semantic-ui.com) (version 2.x) | 2.2                  |
+| `@BabDevPagerfanta/tailwind.html.twig`           | [Tailwind CSS](https://tailwindcss.com/)             | 2.3                  |
+| `@BabDevPagerfanta/twitter_bootstrap.html.twig`  | [Bootstrap](https://getbootstrap.com) (version 2.x)  | 2.2                  |
+| `@BabDevPagerfanta/twitter_bootstrap3.html.twig` | [Bootstrap](https://getbootstrap.com) (version 3.x)  | 2.2                  |
+| `@BabDevPagerfanta/twitter_bootstrap4.html.twig` | [Bootstrap](https://getbootstrap.com) (version 4.x)  | 2.2                  |
 
 The labels of the "Previous" and "Next" buttons are localizable in the Twig templates.
 
