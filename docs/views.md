@@ -16,20 +16,18 @@ The below table lists the view names and the corresponding class.
 
 ## Twig View
 
-<div class="docs-note docs-note--new-feature">This feature was introduced in BabDevPagerfantaBundle 2.2.</div>
-
 This bundle provides a Pagerfanta view which renders a Twig template.
 
 The below table lists the available templates and the CSS framework they correspond to.
 
-| Template Name                                    | Framework                                            | Since Bundle Version |
-| ------------------------------------------------ | ---------------------------------------------------- | -------------------- |
-| `@BabDevPagerfanta/default.html.twig`            | None (Pagerfanta's default view)                     | 2.2                  |
-| `@BabDevPagerfanta/semantic_ui.html.twig`        | [Semantic UI](https://semantic-ui.com) (version 2.x) | 2.2                  |
-| `@BabDevPagerfanta/tailwind.html.twig`           | [Tailwind CSS](https://tailwindcss.com/)             | 2.3                  |
-| `@BabDevPagerfanta/twitter_bootstrap.html.twig`  | [Bootstrap](https://getbootstrap.com) (version 2.x)  | 2.2                  |
-| `@BabDevPagerfanta/twitter_bootstrap3.html.twig` | [Bootstrap](https://getbootstrap.com) (version 3.x)  | 2.2                  |
-| `@BabDevPagerfanta/twitter_bootstrap4.html.twig` | [Bootstrap](https://getbootstrap.com) (version 4.x)  | 2.2                  |
+| Template Name                                    | Framework                                            |
+| ------------------------------------------------ | ---------------------------------------------------- |
+| `@BabDevPagerfanta/default.html.twig`            | None (Pagerfanta's default view)                     |
+| `@BabDevPagerfanta/semantic_ui.html.twig`        | [Semantic UI](https://semantic-ui.com) (version 2.x) |
+| `@BabDevPagerfanta/tailwind.html.twig`           | [Tailwind CSS](https://tailwindcss.com/)             |
+| `@BabDevPagerfanta/twitter_bootstrap.html.twig`  | [Bootstrap](https://getbootstrap.com) (version 2.x)  |
+| `@BabDevPagerfanta/twitter_bootstrap3.html.twig` | [Bootstrap](https://getbootstrap.com) (version 3.x)  |
+| `@BabDevPagerfanta/twitter_bootstrap4.html.twig` | [Bootstrap](https://getbootstrap.com) (version 4.x)  |
 
 The labels of the "Previous" and "Next" buttons are localizable in the Twig templates.
 
@@ -58,22 +56,6 @@ Additionally, for most page blocks (`previous_page_link`, `page_link`, `current_
 - `path` - The generated URL for the item
 
 If you want to create your own Twig template, the quickest and easiest way to do that is to extend one of the supplied templates (typically the default one). Have a look at `semantic_ui.html.twig` to see the blocks you will likely want to override.
-
-## Translated Views
-
-<div class="docs-note docs-note--deprecated-feature">This feature is deprecated as of BabDevPagerfantaBundle 2.2 and will be removed in 3.0.</div>
-
-This bundle also provides translated views, which allows using translation messages for the "Previous" and "Next" text items. The translated views act as decorators around the base view to automatically set the appropriate view options with the translated text.
-
-The below lists the view names, the corresponding class, and the class the view decorates. 
-
-| View Name                       | Class Name                                                     | Decorated Class Name                    |
-| ------------------------------- | -------------------------------------------------------------- | --------------------------------------- |
-| `default_translated`            | `BabDev\PagerfantaBundle\View\DefaultTranslatedView`           | `Pagerfanta\View\DefaultView`           |
-| `semantic_ui_translated`        | `BabDev\PagerfantaBundle\View\SemanticUiTranslatedView`        | `Pagerfanta\View\SemanticUiView`        |
-| `twitter_bootstrap_translated`  | `BabDev\PagerfantaBundle\View\TwitterBootstrapTranslatedView`  | `Pagerfanta\View\TwitterBootstrapView`  |
-| `twitter_bootstrap3_translated` | `BabDev\PagerfantaBundle\View\TwitterBootstrap3TranslatedView` | `Pagerfanta\View\TwitterBootstrap3View` |
-| `twitter_bootstrap4_translated` | `BabDev\PagerfantaBundle\View\TwitterBootstrap4TranslatedView` | `Pagerfanta\View\TwitterBootstrap4View` |
 
 ## Default View CSS
 
