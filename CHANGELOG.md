@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.3.2 (2020-05-31)
+
+- [#13](https://github.com/BabDev/BabDevPagerfantaBundle/pull/13) Suppress runtime deprecation for `MaybeRemoveTranslatedViewsPass` (Fixes [#12](https://github.com/BabDev/BabDevPagerfantaBundle/issues/12))
+
 ## 2.3.1 (2020-05-31)
 
 - Fix deprecation in Symfony 5.1 when marking services deprecated
