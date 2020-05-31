@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.3.1 (2020-05-31)
+
+- Fix deprecation in Symfony 5.1 when marking services deprecated
+
 ## 2.3.0 (2020-05-29)
 
 - Use the `symfony/deprecation-contracts` to trigger runtime deprecation notices
