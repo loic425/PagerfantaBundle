@@ -18,7 +18,7 @@ final class BabDevPagerfantaBundle extends Bundle
 
         // MaybeRemoveTranslatedViewsPass must be run before the AddPagerfantasPass
         // MaybeRemoveTwigServicesPass must be run before the TwigEnvironmentPass from TwigBundle and AddPagerfantasPass
-        $container->addCompilerPass(new MaybeRemoveTranslatedViewsPass());
+        $container->addCompilerPass(new MaybeRemoveTranslatedViewsPass(true));
         $container->addCompilerPass(new AddPagerfantasPass());
         $container->addCompilerPass(new MaybeRemoveTwigServicesPass(), PassConfig::TYPE_BEFORE_OPTIMIZATION, 1);
     }
