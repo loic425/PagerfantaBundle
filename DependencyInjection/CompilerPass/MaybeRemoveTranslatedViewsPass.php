@@ -10,10 +10,15 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  */
 final class MaybeRemoveTranslatedViewsPass implements CompilerPassInterface
 {
-    /** @var bool */
+    /**
+     * @var bool
+     */
     private $internalUse;
 
-    public function __construct($internalUse = false)
+    /**
+     * @param bool $internalUse Flag indicating the pass was created by an internal bundle call (used to suppress runtime deprecations)
+     */
+    public function __construct(bool $internalUse = false)
     {
         $this->internalUse = $internalUse;
     }
