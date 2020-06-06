@@ -5,10 +5,10 @@ namespace BabDev\PagerfantaBundle\View;
 use BabDev\PagerfantaBundle\RouteGenerator\RouteGeneratorDecorator;
 use Pagerfanta\Exception\InvalidArgumentException;
 use Pagerfanta\PagerfantaInterface;
-use Pagerfanta\View\ViewInterface;
+use Pagerfanta\View\View;
 use Twig\Environment;
 
-final class TwigView implements ViewInterface
+final class TwigView extends View
 {
     public const DEFAULT_TEMPLATE = '@BabDevPagerfanta/default.html.twig';
 
@@ -16,12 +16,6 @@ final class TwigView implements ViewInterface
     private ?string $defaultTemplate = null;
 
     private ?string $template = null;
-    private ?PagerfantaInterface $pagerfanta = null;
-    private ?int $proximity = null;
-    private ?int $currentPage = null;
-    private ?int $nbPages = null;
-    private ?int $startPage = null;
-    private ?int $endPage = null;
 
     public function __construct(Environment $twig, ?string $defaultTemplate = null)
     {
@@ -64,15 +58,7 @@ final class TwigView implements ViewInterface
         return new RouteGeneratorDecorator($routeGenerator);
     }
 
-    private function initializePagerfanta(PagerfantaInterface $pagerfanta): void
-    {
-        $this->pagerfanta = $pagerfanta;
-
-        $this->currentPage = $pagerfanta->getCurrentPage();
-        $this->nbPages = $pagerfanta->getNbPages();
-    }
-
-    private function initializeOptions(array $options): void
+    protected function initializeOptions(array $options): void
     {
         if (isset($options['template'])) {
             $this->template = $options['template'];
@@ -82,45 +68,6 @@ final class TwigView implements ViewInterface
             $this->template = self::DEFAULT_TEMPLATE;
         }
 
-        $this->proximity = isset($options['proximity']) ? (int) $options['proximity'] : 2;
-    }
-
-    private function calculateStartAndEndPage(): void
-    {
-        $startPage = $this->currentPage - $this->proximity;
-        $endPage = $this->currentPage + $this->proximity;
-
-        if ($this->startPageUnderflow($startPage)) {
-            $endPage = $this->calculateEndPageForStartPageUnderflow($startPage, $endPage);
-            $startPage = 1;
-        }
-
-        if ($this->endPageOverflow($endPage)) {
-            $startPage = $this->calculateStartPageForEndPageOverflow($startPage, $endPage);
-            $endPage = $this->nbPages;
-        }
-
-        $this->startPage = $startPage;
-        $this->endPage = $endPage;
-    }
-
-    private function startPageUnderflow(int $startPage): bool
-    {
-        return $startPage < 1;
-    }
-
-    private function endPageOverflow(int $endPage): bool
-    {
-        return $endPage > $this->nbPages;
-    }
-
-    private function calculateEndPageForStartPageUnderflow(int $startPage, int $endPage): int
-    {
-        return min($endPage + (1 - $startPage), $this->nbPages);
-    }
-
-    private function calculateStartPageForEndPageOverflow(int $startPage, int $endPage): int
-    {
-        return max($startPage - ($endPage - $this->nbPages), 1);
+        parent::initializeOptions($options);
     }
 }
