@@ -3,8 +3,7 @@
 namespace BabDev\PagerfantaBundle\View;
 
 use BabDev\PagerfantaBundle\RouteGenerator\RouteGeneratorDecorator;
-use Pagerfanta\Exception\InvalidArgumentException;
-use Pagerfanta\PagerfantaInterface;
+use Pagerfanta\Pagerfanta;
 use Pagerfanta\View\View;
 use Twig\Environment;
 
@@ -23,12 +22,12 @@ final class TwigView extends View
         $this->defaultTemplate = $defaultTemplate;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return 'twig';
     }
 
-    public function render(PagerfantaInterface $pagerfanta, $routeGenerator, array $options = [])
+    public function render(Pagerfanta $pagerfanta, callable $routeGenerator, array $options = []): string
     {
         $this->initializePagerfanta($pagerfanta);
         $this->initializeOptions($options);
@@ -49,12 +48,8 @@ final class TwigView extends View
         );
     }
 
-    private function decorateRouteGenerator($routeGenerator): RouteGeneratorDecorator
+    private function decorateRouteGenerator(callable $routeGenerator): RouteGeneratorDecorator
     {
-        if (!\is_callable($routeGenerator)) {
-            throw new InvalidArgumentException(sprintf('The route generator for "%s" must be a callable, a "%s" was given.', self::class, \gettype($routeGenerator)));
-        }
-
         return new RouteGeneratorDecorator($routeGenerator);
     }
 

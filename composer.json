@@ -6,7 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.4",
-        "babdev/pagerfanta": "^2.2.1",
+        "babdev/pagerfanta": "^3.0",
         "symfony/config": "^4.4 || ^5.0",
         "symfony/dependency-injection": "^4.4 || ^5.0",
         "symfony/http-foundation": "^4.4 || ^5.0",

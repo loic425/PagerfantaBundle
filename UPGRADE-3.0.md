@@ -6,6 +6,7 @@ The below guide will assist in upgrading from the 2.x versions to 3.0.
 
 - Symfony 4.4, or any 5.x release
 - PHP 7.4 or later
+- Pagerfanta 3.0
 
 ## General Changes
 
