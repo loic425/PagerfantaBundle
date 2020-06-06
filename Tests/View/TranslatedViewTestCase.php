@@ -126,7 +126,7 @@ abstract class TranslatedViewTestCase extends TestCase
 
     private function createRouteGenerator(): callable
     {
-        return static function (): void { };
+        return static function (int $page): string { return ''; };
     }
 
     private function translatorExpectsPreviousAt($at): void
