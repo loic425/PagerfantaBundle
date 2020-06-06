@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.4.0 (2020-??-??)
+## 2.4.0 (2020-06-06)
 
 - Change `pagerfanta/pagerfanta` dependency to `babdev/pagerfanta` (direct replacement/upgrade without B/C breaks)
 
