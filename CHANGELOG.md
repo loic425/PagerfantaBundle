@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.4.0 (2020-??-??)
+
+- Change `pagerfanta/pagerfanta` dependency to `babdev/pagerfanta` (direct replacement/upgrade without B/C breaks)
+
 ## 2.3.2 (2020-05-31)
 
 - [#13](https://github.com/BabDev/BabDevPagerfantaBundle/pull/13) Suppress runtime deprecation for `MaybeRemoveTranslatedViewsPass` (Fixes [#12](https://github.com/BabDev/BabDevPagerfantaBundle/issues/12))
