@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.4.2 (2020-06-09)
+
+- Fix `pagerfanta/pagerfanta` minimum version
+
 ## 2.4.1 (2020-06-09)
 
 - Change `babdev/pagerfanta` dependency back to `pagerfanta/pagerfanta`
