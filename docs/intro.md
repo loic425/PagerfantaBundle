@@ -1,6 +1,6 @@
 # BabDevPagerfantaBundle
 
-The BabDevPagerfantaBundle is a [Symfony](https://symfony.com/) bundle integrating [Pagerfanta](/open-source/packages/pagerfanta/docs/intro) into an application.
+The BabDevPagerfantaBundle is a [Symfony](https://symfony.com/) bundle integrating [Pagerfanta](/open-source/packages/pagerfanta/docs) into an application.
     
 This bundle is a continuation of the [`WhiteOctoberPagerfantaBundle`](https://github.com/whiteoctober/WhiteOctoberPagerfantaBundle).
 
