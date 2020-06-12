@@ -31,6 +31,7 @@ final class RouterAwareRouteGenerator implements RouteGeneratorInterface
         $pageParameter = $this->options['pageParameter'] ?? '[page]';
         $omitFirstPage = $this->options['omitFirstPage'] ?? false;
         $routeParams = $this->options['routeParams'] ?? [];
+        $referenceType = $this->options['referenceType'] ?? UrlGeneratorInterface::ABSOLUTE_PATH;
 
         $pagePropertyPath = new PropertyPath($pageParameter);
         $propertyAccessor = PropertyAccess::createPropertyAccessor();
@@ -41,6 +42,6 @@ final class RouterAwareRouteGenerator implements RouteGeneratorInterface
             $propertyAccessor->setValue($routeParams, $pagePropertyPath, $page);
         }
 
-        return $this->router->generate($this->options['routeName'], $routeParams);
+        return $this->router->generate($this->options['routeName'], $routeParams, $referenceType);
     }
 }
