@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.5.0 (2020-??-??)
+
+- Add the `referenceType` option to the `RouterAwareRouteGenerator` to allow specifying the `$referenceType` parameter when calling `Symfony\Component\Routing\Generator\UrlGeneratorInterface::generate()`
+
 ## 2.4.2 (2020-06-09)
 
 - Fix `pagerfanta/pagerfanta` minimum version

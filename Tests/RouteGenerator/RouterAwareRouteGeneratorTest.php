@@ -58,6 +58,16 @@ final class RouterAwareRouteGeneratorTest extends TestCase
         $this->assertSame('/pagerfanta-view?hello=world&page=1', $generator(1));
     }
 
+    public function testARouteIsGeneratedWithAnAbsoluteUrl(): void
+    {
+        $generator = new RouterAwareRouteGenerator(
+            $this->createRouter(),
+            ['routeName' => 'pagerfanta_view', 'referenceType' => UrlGeneratorInterface::ABSOLUTE_URL]
+        );
+
+        $this->assertSame('http://localhost/pagerfanta-view?page=1', $generator(1));
+    }
+
     public function testARouteIsNotGeneratedWhenTheRouteNameParameterIsMissing(): void
     {
         $this->expectException(InvalidArgumentException::class);
