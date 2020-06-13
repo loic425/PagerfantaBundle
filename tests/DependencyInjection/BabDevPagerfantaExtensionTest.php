@@ -4,7 +4,6 @@ namespace BabDev\PagerfantaBundle\Tests\DependencyInjection;
 
 use BabDev\PagerfantaBundle\DependencyInjection\BabDevPagerfantaExtension;
 use BabDev\PagerfantaBundle\DependencyInjection\Configuration;
-use BabDev\PagerfantaBundle\RouteGenerator\RouteGeneratorFactoryInterface;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Pagerfanta\View\ViewFactory;
 use Pagerfanta\View\ViewFactoryInterface;
@@ -21,15 +20,6 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
 
         $this->assertContainerBuilderHasAlias(ViewFactory::class, 'pagerfanta.view_factory');
         $this->assertContainerBuilderHasAlias(ViewFactoryInterface::class, 'pagerfanta.view_factory');
-
-        $deprecatedAliases = [
-            RouteGeneratorFactoryInterface::class,
-        ];
-
-        foreach ($deprecatedAliases as $deprecatedAlias) {
-            $this->assertContainerBuilderHasAlias($deprecatedAlias);
-            $this->assertTrue($this->container->getAlias($deprecatedAlias)->isDeprecated());
-        }
 
         $listeners = [
             'pagerfanta.event_listener.convert_not_valid_max_per_page_to_not_found',
@@ -65,15 +55,6 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
 
         $this->assertContainerBuilderHasAlias(ViewFactory::class, 'pagerfanta.view_factory');
         $this->assertContainerBuilderHasAlias(ViewFactoryInterface::class, 'pagerfanta.view_factory');
-
-        $deprecatedAliases = [
-            RouteGeneratorFactoryInterface::class,
-        ];
-
-        foreach ($deprecatedAliases as $deprecatedAlias) {
-            $this->assertContainerBuilderHasAlias($deprecatedAlias);
-            $this->assertTrue($this->container->getAlias($deprecatedAlias)->isDeprecated());
-        }
 
         $listeners = [
             'pagerfanta.event_listener.convert_not_valid_max_per_page_to_not_found',

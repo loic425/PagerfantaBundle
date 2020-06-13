@@ -17,3 +17,4 @@ The below guide will assist in upgrading from the 2.x versions to 3.0.
 ## Removed Features
 
 - Removed the translated view classes, use the Twig view instead (note, the default Twig templates use translations for the Previous and Next messages)
+- Removed the `RouteGeneratorFactoryInterface` and `RouteGeneratorInterface` from the bundle in favor of the interfaces from the base Pagerfanta package
