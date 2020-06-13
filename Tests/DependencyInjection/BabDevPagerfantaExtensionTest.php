@@ -7,6 +7,7 @@ use BabDev\PagerfantaBundle\RouteGenerator\RouteGeneratorFactoryInterface;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Pagerfanta\View\ViewFactory;
 use Pagerfanta\View\ViewFactoryInterface;
+use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
@@ -34,13 +35,15 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
             $this->assertTrue($this->container->getDefinition($deprecatedView)->isDeprecated());
         }
 
-        $deprecatedAliases = [
-            RouteGeneratorFactoryInterface::class,
-        ];
+        if (method_exists(Alias::class, 'setDeprecated')) {
+            $deprecatedAliases = [
+                RouteGeneratorFactoryInterface::class,
+            ];
 
-        foreach ($deprecatedAliases as $deprecatedAlias) {
-            $this->assertContainerBuilderHasAlias($deprecatedAlias);
-            $this->assertTrue($this->container->getAlias($deprecatedAlias)->isDeprecated());
+            foreach ($deprecatedAliases as $deprecatedAlias) {
+                $this->assertContainerBuilderHasAlias($deprecatedAlias);
+                $this->assertTrue($this->container->getAlias($deprecatedAlias)->isDeprecated());
+            }
         }
 
         $listeners = [
@@ -91,13 +94,15 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
             $this->assertTrue($this->container->getDefinition($deprecatedView)->isDeprecated());
         }
 
-        $deprecatedAliases = [
-            RouteGeneratorFactoryInterface::class,
-        ];
+        if (method_exists(Alias::class, 'setDeprecated')) {
+            $deprecatedAliases = [
+                RouteGeneratorFactoryInterface::class,
+            ];
 
-        foreach ($deprecatedAliases as $deprecatedAlias) {
-            $this->assertContainerBuilderHasAlias($deprecatedAlias);
-            $this->assertTrue($this->container->getAlias($deprecatedAlias)->isDeprecated());
+            foreach ($deprecatedAliases as $deprecatedAlias) {
+                $this->assertContainerBuilderHasAlias($deprecatedAlias);
+                $this->assertTrue($this->container->getAlias($deprecatedAlias)->isDeprecated());
+            }
         }
 
         $listeners = [
