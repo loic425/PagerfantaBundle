@@ -2,8 +2,6 @@
 
 namespace BabDev\PagerfantaBundle\DependencyInjection;
 
-use BabDev\PagerfantaBundle\RouteGenerator\RouteGeneratorFactoryInterface as BundleRouteGeneratorFactoryInterface;
-use Pagerfanta\RouteGenerator\RouteGeneratorFactoryInterface as PagerfantaRouteGeneratorFactoryInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -13,23 +11,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
 
 final class BabDevPagerfantaExtension extends Extension
 {
-<<<<<<< HEAD:src/DependencyInjection/BabDevPagerfantaExtension.php
     public function getAlias(): string
-=======
-    private const DEPRECATED_ALIASES = [
-        BundleRouteGeneratorFactoryInterface::class => PagerfantaRouteGeneratorFactoryInterface::class,
-    ];
-
-    private const DEPRECATED_VIEW_SERVICES = [
-        'pagerfanta.view.default_translated' => 'default.html.twig',
-        'pagerfanta.view.semantic_ui_translated' => 'semantic_ui.html.twig',
-        'pagerfanta.view.twitter_bootstrap_translated' => 'twitter_bootstrap.html.twig',
-        'pagerfanta.view.twitter_bootstrap3_translated' => 'twitter_bootstrap3.html.twig',
-        'pagerfanta.view.twitter_bootstrap4_translated' => 'twitter_bootstrap.4html.twig',
-    ];
-
-    public function getAlias()
->>>>>>> 2.x:DependencyInjection/BabDevPagerfantaExtension.php
     {
         return 'babdev_pagerfanta';
     }
@@ -70,55 +52,5 @@ final class BabDevPagerfantaExtension extends Extension
         } else {
             $container->removeDefinition('pagerfanta.event_listener.convert_not_valid_current_page_to_not_found');
         }
-<<<<<<< HEAD:src/DependencyInjection/BabDevPagerfantaExtension.php
-=======
-
-        $this->deprecateAliases($container);
-        $this->deprecateServices($container);
-    }
-
-    private function deprecateAliases(ContainerBuilder $container): void
-    {
-        $usesSymfony51Api = method_exists(Alias::class, 'getDeprecation');
-
-        foreach (self::DEPRECATED_ALIASES as $aliasId => $replacementAlias) {
-            $service = $container->getAlias($aliasId);
-
-            if ($usesSymfony51Api) {
-                $service->setDeprecated(
-                    'babdev/pagerfanta-bundle',
-                    '2.5',
-                    str_replace('%replacement_alias_id%', $replacementAlias, 'The "%alias_id%" alias is deprecated and will be removed in BabDevPagerfantaBundle 3.0. Use the "%replacement_alias_id%" alias instead.')
-                );
-            } else {
-                $service->setDeprecated(
-                    true,
-                    str_replace('%replacement_alias_id%', $replacementAlias, 'The "%alias_id%" alias is deprecated and will be removed in BabDevPagerfantaBundle 3.0. Use the "%replacement_alias_id%" alias instead.')
-                );
-            }
-        }
-    }
-
-    private function deprecateServices(ContainerBuilder $container): void
-    {
-        $usesSymfony51Api = method_exists(Definition::class, 'getDeprecation');
-
-        foreach (self::DEPRECATED_VIEW_SERVICES as $serviceId => $replacementTemplate) {
-            $service = $container->getDefinition($serviceId);
-
-            if ($usesSymfony51Api) {
-                $service->setDeprecated(
-                    'babdev/pagerfanta-bundle',
-                    '2.2',
-                    str_replace('%template%', $replacementTemplate, 'The "%service_id%" service is deprecated and will be removed in BabDevPagerfantaBundle 3.0. Use the "pagerfanta.view.twig" service with the "@BabDevPagerfanta/%template%" template instead.')
-                );
-            } else {
-                $service->setDeprecated(
-                    true,
-                    str_replace('%template%', $replacementTemplate, 'The "%service_id%" service is deprecated and will be removed in BabDevPagerfantaBundle 3.0. Use the "pagerfanta.view.twig" service with the "@BabDevPagerfanta/%template%" template instead.')
-                );
-            }
-        }
->>>>>>> 2.x:DependencyInjection/BabDevPagerfantaExtension.php
     }
 }
