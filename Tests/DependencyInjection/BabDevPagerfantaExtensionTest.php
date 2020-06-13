@@ -3,6 +3,7 @@
 namespace BabDev\PagerfantaBundle\Tests\DependencyInjection;
 
 use BabDev\PagerfantaBundle\DependencyInjection\BabDevPagerfantaExtension;
+use BabDev\PagerfantaBundle\RouteGenerator\RouteGeneratorFactoryInterface;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Pagerfanta\View\ViewFactory;
 use Pagerfanta\View\ViewFactoryInterface;
@@ -31,6 +32,15 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
         foreach ($deprecatedViews as $deprecatedView) {
             $this->assertContainerBuilderHasService($deprecatedView);
             $this->assertTrue($this->container->getDefinition($deprecatedView)->isDeprecated());
+        }
+
+        $deprecatedAliases = [
+            RouteGeneratorFactoryInterface::class,
+        ];
+
+        foreach ($deprecatedAliases as $deprecatedAlias) {
+            $this->assertContainerBuilderHasAlias($deprecatedAlias);
+            $this->assertTrue($this->container->getAlias($deprecatedAlias)->isDeprecated());
         }
 
         $listeners = [
@@ -79,6 +89,15 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
         foreach ($deprecatedViews as $deprecatedView) {
             $this->assertContainerBuilderHasService($deprecatedView);
             $this->assertTrue($this->container->getDefinition($deprecatedView)->isDeprecated());
+        }
+
+        $deprecatedAliases = [
+            RouteGeneratorFactoryInterface::class,
+        ];
+
+        foreach ($deprecatedAliases as $deprecatedAlias) {
+            $this->assertContainerBuilderHasAlias($deprecatedAlias);
+            $this->assertTrue($this->container->getAlias($deprecatedAlias)->isDeprecated());
         }
 
         $listeners = [

@@ -2,7 +2,10 @@
 
 namespace BabDev\PagerfantaBundle\DependencyInjection;
 
+use BabDev\PagerfantaBundle\RouteGenerator\RouteGeneratorFactoryInterface as BundleRouteGeneratorFactoryInterface;
+use Pagerfanta\RouteGenerator\RouteGeneratorFactoryInterface as PagerfantaRouteGeneratorFactoryInterface;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Extension\Extension;
@@ -11,6 +14,10 @@ use Symfony\Component\HttpKernel\KernelEvents;
 
 final class BabDevPagerfantaExtension extends Extension
 {
+    private const DEPRECATED_ALIASES = [
+        BundleRouteGeneratorFactoryInterface::class => PagerfantaRouteGeneratorFactoryInterface::class,
+    ];
+
     private const DEPRECATED_VIEW_SERVICES = [
         'pagerfanta.view.default_translated' => 'default.html.twig',
         'pagerfanta.view.semantic_ui_translated' => 'semantic_ui.html.twig',
@@ -61,6 +68,34 @@ final class BabDevPagerfantaExtension extends Extension
             $container->removeDefinition('pagerfanta.event_listener.convert_not_valid_current_page_to_not_found');
         }
 
+        $this->deprecateAliases($container);
+        $this->deprecateServices($container);
+    }
+
+    private function deprecateAliases(ContainerBuilder $container): void
+    {
+        $usesSymfony51Api = method_exists(Alias::class, 'getDeprecation');
+
+        foreach (self::DEPRECATED_ALIASES as $aliasId => $replacementAlias) {
+            $service = $container->getAlias($aliasId);
+
+            if ($usesSymfony51Api) {
+                $service->setDeprecated(
+                    'babdev/pagerfanta-bundle',
+                    '2.5',
+                    str_replace('%replacement_alias_id%', $replacementAlias, 'The "%alias_id%" alias is deprecated and will be removed in BabDevPagerfantaBundle 3.0. Use the "%replacement_alias_id%" alias instead.')
+                );
+            } else {
+                $service->setDeprecated(
+                    true,
+                    str_replace('%replacement_alias_id%', $replacementAlias, 'The "%alias_id%" alias is deprecated and will be removed in BabDevPagerfantaBundle 3.0. Use the "%replacement_alias_id%" alias instead.')
+                );
+            }
+        }
+    }
+
+    private function deprecateServices(ContainerBuilder $container): void
+    {
         $usesSymfony51Api = method_exists(Definition::class, 'getDeprecation');
 
         foreach (self::DEPRECATED_VIEW_SERVICES as $serviceId => $replacementTemplate) {

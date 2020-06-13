@@ -2,6 +2,8 @@
 
 namespace BabDev\PagerfantaBundle\RouteGenerator;
 
+use Pagerfanta\RouteGenerator\RouteGeneratorFactoryInterface;
+use Pagerfanta\RouteGenerator\RouteGeneratorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;

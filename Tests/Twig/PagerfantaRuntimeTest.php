@@ -3,11 +3,11 @@
 namespace BabDev\PagerfantaBundle\Tests\Twig;
 
 use BabDev\PagerfantaBundle\RouteGenerator\RequestAwareRouteGeneratorFactory;
-use BabDev\PagerfantaBundle\RouteGenerator\RouteGeneratorFactoryInterface;
 use BabDev\PagerfantaBundle\Twig\PagerfantaRuntime;
 use Pagerfanta\Adapter\FixedAdapter;
 use Pagerfanta\Exception\OutOfRangeCurrentPageException;
 use Pagerfanta\Pagerfanta;
+use Pagerfanta\RouteGenerator\RouteGeneratorFactoryInterface;
 use Pagerfanta\View\DefaultView;
 use Pagerfanta\View\ViewFactory;
 use Pagerfanta\View\ViewFactoryInterface;

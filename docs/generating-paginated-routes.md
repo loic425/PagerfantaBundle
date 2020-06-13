@@ -4,9 +4,9 @@ When rendering a Pagerfanta view, a route generator callable is required to gene
 
 The route generators are defined by two interfaces, with their default implementations noted below:
 
-- `BabDev\PagerfantaBundle\RouteGenerator\RouteGeneratorInterface` - The class type that is used to generate routes
+- `Pagerfanta\RouteGenerator\RouteGeneratorInterface` - The class type that is used to generate routes
     - `BabDev\PagerfantaBundle\RouteGenerator\RouterAwareRouteGenerator` is used by default, which uses the Symfony Routing component to generate routes
-- `BabDev\PagerfantaBundle\RouteGenerator\RouteGeneratorFactoryInterface` - A factory service that is used to generate a `RouteGeneratorInterface` at runtime
+- `Pagerfanta\RouteGenerator\RouteGeneratorFactoryInterface` - A factory service that is used to generate a `RouteGeneratorInterface` at runtime
     - `BabDev\PagerfantaBundle\RouteGenerator\RequestAwareRouteGeneratorFactory` is used by default, which uses the `Symfony\Component\HttpFoundation\Request` object to attempt to set the default route name and route parameters, this creates a `RouterAwareRouteGenerator`
 
 The Twig integration uses a `RouteGeneratorFactoryInterface` instance to create the route generator used when rendering a Pagerfanta view.
