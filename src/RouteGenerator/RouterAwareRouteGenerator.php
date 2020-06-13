@@ -3,6 +3,7 @@
 namespace BabDev\PagerfantaBundle\RouteGenerator;
 
 use Pagerfanta\Exception\InvalidArgumentException;
+use Pagerfanta\RouteGenerator\RouteGeneratorInterface;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyPath;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;

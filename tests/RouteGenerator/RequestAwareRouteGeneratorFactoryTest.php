@@ -3,7 +3,7 @@
 namespace BabDev\PagerfantaBundle\Tests\RouteGenerator;
 
 use BabDev\PagerfantaBundle\RouteGenerator\RequestAwareRouteGeneratorFactory;
-use BabDev\PagerfantaBundle\RouteGenerator\RouteGeneratorInterface;
+use Pagerfanta\RouteGenerator\RouteGeneratorInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;

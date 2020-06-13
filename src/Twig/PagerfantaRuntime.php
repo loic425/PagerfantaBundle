@@ -2,10 +2,10 @@
 
 namespace BabDev\PagerfantaBundle\Twig;
 
-use BabDev\PagerfantaBundle\RouteGenerator\RouteGeneratorFactoryInterface;
-use BabDev\PagerfantaBundle\RouteGenerator\RouteGeneratorInterface;
 use Pagerfanta\Exception\OutOfRangeCurrentPageException;
 use Pagerfanta\Pagerfanta;
+use Pagerfanta\RouteGenerator\RouteGeneratorFactoryInterface;
+use Pagerfanta\RouteGenerator\RouteGeneratorInterface;
 use Pagerfanta\View\ViewFactoryInterface;
 
 final class PagerfantaRuntime

@@ -2,6 +2,8 @@
 
 namespace BabDev\PagerfantaBundle\RouteGenerator;
 
+use Pagerfanta\RouteGenerator\RouteGeneratorInterface;
+
 final class RouteGeneratorDecorator implements RouteGeneratorInterface
 {
     /**

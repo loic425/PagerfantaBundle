@@ -20,6 +20,7 @@
             <argument type="service" id="request_stack" />
         </service>
         <service id="BabDev\PagerfantaBundle\RouteGenerator\RouteGeneratorFactoryInterface" alias="pagerfanta.route_generator_factory" />
+        <service id="Pagerfanta\RouteGenerator\RouteGeneratorFactoryInterface" alias="pagerfanta.route_generator_factory" />
 
         <!-- Twig Extension -->
         <service id="pagerfanta.twig_extension" class="BabDev\PagerfantaBundle\Twig\PagerfantaExtension" public="false">
