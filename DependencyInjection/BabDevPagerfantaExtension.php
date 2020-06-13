@@ -74,19 +74,23 @@ final class BabDevPagerfantaExtension extends Extension
 
     private function deprecateAliases(ContainerBuilder $container): void
     {
+        if (!method_exists(Alias::class, 'setDeprecated')) {
+            return;
+        }
+
         $usesSymfony51Api = method_exists(Alias::class, 'getDeprecation');
 
         foreach (self::DEPRECATED_ALIASES as $aliasId => $replacementAlias) {
-            $service = $container->getAlias($aliasId);
+            $alias = $container->getAlias($aliasId);
 
             if ($usesSymfony51Api) {
-                $service->setDeprecated(
+                $alias->setDeprecated(
                     'babdev/pagerfanta-bundle',
                     '2.5',
                     str_replace('%replacement_alias_id%', $replacementAlias, 'The "%alias_id%" alias is deprecated and will be removed in BabDevPagerfantaBundle 3.0. Use the "%replacement_alias_id%" alias instead.')
                 );
             } else {
-                $service->setDeprecated(
+                $alias->setDeprecated(
                     true,
                     str_replace('%replacement_alias_id%', $replacementAlias, 'The "%alias_id%" alias is deprecated and will be removed in BabDevPagerfantaBundle 3.0. Use the "%replacement_alias_id%" alias instead.')
                 );
