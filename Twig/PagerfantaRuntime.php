@@ -7,8 +7,14 @@ use Pagerfanta\Pagerfanta;
 use Pagerfanta\PagerfantaInterface;
 use Pagerfanta\RouteGenerator\RouteGeneratorFactoryInterface;
 use Pagerfanta\RouteGenerator\RouteGeneratorInterface;
+use Pagerfanta\Twig\PagerfantaRuntime as PagerfantaPagerfantaRuntime;
 use Pagerfanta\View\ViewFactoryInterface;
 
+trigger_deprecation('babdev/pagerfanta-bundle', '2.5', 'The "%s" class is deprecated and will be removed in 3.0. Use the "%s" class instead.', PagerfantaRuntime::class, PagerfantaPagerfantaRuntime::class);
+
+/**
+ * @deprecated to be removed in BabDevPagerfantaBundle 3.0. Use `Pagerfanta\Twig\PagerfantaRuntime` instead.
+ */
 final class PagerfantaRuntime
 {
     /**
