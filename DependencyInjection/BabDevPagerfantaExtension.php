@@ -40,6 +40,12 @@ final class BabDevPagerfantaExtension extends Extension
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('pagerfanta.xml');
 
+        $bundles = $container->getParameter('kernel.bundles');
+
+        if (isset($bundles['TwigBundle'])) {
+            $loader->load('twig.xml');
+        }
+
         if (Configuration::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND === $config['exceptions_strategy']['out_of_range_page']) {
             $container->getDefinition('pagerfanta.event_listener.convert_not_valid_max_per_page_to_not_found')
                 ->addTag(
