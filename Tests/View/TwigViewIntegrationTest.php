@@ -54,8 +54,12 @@ final class TwigViewIntegrationTest extends TestCase
 
     protected function setUp(): void
     {
+        $refl = new \ReflectionClass(Pagerfanta::class);
+        $path = \dirname($refl->getFileName()).'/../templates';
+
         $filesystemLoader = new FilesystemLoader();
         $filesystemLoader->addPath(__DIR__.'/../../Resources/views', 'BabDevPagerfanta');
+        $filesystemLoader->addPath($path, 'Pagerfanta');
 
         $this->twig = new Environment(new ChainLoader([new ArrayLoader(['integration.html.twig' => '{{ pagerfanta(pager, options) }}']), $filesystemLoader]));
         $this->twig->addExtension(new PagerfantaExtension());
