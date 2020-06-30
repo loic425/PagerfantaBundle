@@ -5,6 +5,10 @@
 - Add the `referenceType` option to the `RouterAwareRouteGenerator` to allow specifying the `$referenceType` parameter when calling `Symfony\Component\Routing\Generator\UrlGeneratorInterface::generate()`
 - Deprecate the `RouteGeneratorFactoryInterface` and `RouteGeneratorInterface` in favor of the interfaces from the base Pagerfanta package
 
+## 2.4.3 (2020-06-30)
+
+- [#13](https://github.com/BabDev/BabDevPagerfantaBundle/pull/18) Translated views are always removed from the container (Fixes [#17](https://github.com/BabDev/BabDevPagerfantaBundle/issues/17))
+
 ## 2.4.2 (2020-06-09)
 
 - Fix `pagerfanta/pagerfanta` minimum version
