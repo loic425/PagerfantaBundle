@@ -29,7 +29,7 @@ final class MaybeRemoveTranslatedViewsPass implements CompilerPassInterface
             trigger_deprecation('babdev/pagerfanta-bundle', '2.2', 'The "%s" class is deprecated and will be removed in 3.0.', MaybeRemoveTranslatedViewsPass::class);
         }
 
-        if (!$container->hasDefinition('translator')) {
+        if (!$container->has('translator')) {
             $container->removeDefinition('pagerfanta.view.default_translated');
             $container->removeDefinition('pagerfanta.view.semantic_ui_translated');
             $container->removeDefinition('pagerfanta.view.twitter_bootstrap_translated');

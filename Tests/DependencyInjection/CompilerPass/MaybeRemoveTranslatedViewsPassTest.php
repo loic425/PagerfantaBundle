@@ -52,6 +52,25 @@ final class MaybeRemoveTranslatedViewsPassTest extends AbstractCompilerPassTestC
         }
     }
 
+    public function testTheTranslatedViewsAreNotRemovedWhenTheTranslatorAliasIsRegistered(): void
+    {
+        $this->registerService('my-translator', Translator::class);
+        $this->container->addAliases([
+            'translator' => 'my-translator',
+        ]);
+
+        foreach (self::TRANSLATED_VIEWS as $serviceId => $serviceClass) {
+            $this->registerService($serviceId, $serviceClass)
+                 ->addTag('pagerfanta.view');
+        }
+
+        $this->compile();
+
+        foreach (array_keys(self::TRANSLATED_VIEWS) as $serviceId) {
+            $this->assertContainerBuilderHasService($serviceId);
+        }
+    }
+
     protected function registerCompilerPass(ContainerBuilder $container): void
     {
         $container->addCompilerPass(new MaybeRemoveTranslatedViewsPass());
