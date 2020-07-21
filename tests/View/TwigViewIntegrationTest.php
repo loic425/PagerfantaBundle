@@ -3,12 +3,11 @@
 namespace BabDev\PagerfantaBundle\Tests\View;
 
 use BabDev\PagerfantaBundle\RouteGenerator\RequestAwareRouteGeneratorFactory;
-use BabDev\PagerfantaBundle\Twig\PagerfantaExtension;
-use BabDev\PagerfantaBundle\Twig\PagerfantaRuntime;
-use BabDev\PagerfantaBundle\View\TwigView;
 use Pagerfanta\Adapter\FixedAdapter;
 use Pagerfanta\Pagerfanta;
-use Pagerfanta\Twig\Extension\PagerfantaExtension as CorePagerfantaExtension;
+use Pagerfanta\Twig\Extension\PagerfantaExtension;
+use Pagerfanta\Twig\Extension\PagerfantaRuntime;
+use Pagerfanta\Twig\View\TwigView;
 use Pagerfanta\View\ViewFactory;
 use Pagerfanta\View\ViewFactoryInterface;
 use PHPUnit\Framework\TestCase;
@@ -55,7 +54,7 @@ final class TwigViewIntegrationTest extends TestCase
 
     protected function setUp(): void
     {
-        $refl = new \ReflectionClass(CorePagerfantaExtension::class);
+        $refl = new \ReflectionClass(PagerfantaExtension::class);
         $path = \dirname($refl->getFileName(), 2).'/templates';
 
         $filesystemLoader = new FilesystemLoader();
