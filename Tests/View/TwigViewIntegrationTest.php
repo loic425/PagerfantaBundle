@@ -8,6 +8,7 @@ use BabDev\PagerfantaBundle\Twig\PagerfantaRuntime;
 use BabDev\PagerfantaBundle\View\TwigView;
 use Pagerfanta\Adapter\FixedAdapter;
 use Pagerfanta\Pagerfanta;
+use Pagerfanta\Twig\Extension\PagerfantaExtension as CorePagerfantaExtension;
 use Pagerfanta\View\ViewFactory;
 use Pagerfanta\View\ViewFactoryInterface;
 use PHPUnit\Framework\TestCase;
@@ -54,8 +55,8 @@ final class TwigViewIntegrationTest extends TestCase
 
     protected function setUp(): void
     {
-        $refl = new \ReflectionClass(Pagerfanta::class);
-        $path = \dirname($refl->getFileName()).'/../templates';
+        $refl = new \ReflectionClass(CorePagerfantaExtension::class);
+        $path = \dirname($refl->getFileName(), 2).'/templates';
 
         $filesystemLoader = new FilesystemLoader();
         $filesystemLoader->addPath(__DIR__.'/../../Resources/views', 'BabDevPagerfanta');

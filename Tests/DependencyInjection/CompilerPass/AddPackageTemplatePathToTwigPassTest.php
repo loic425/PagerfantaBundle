@@ -4,7 +4,7 @@ namespace BabDev\PagerfantaBundle\Tests\DependencyInjection\CompilerPass;
 
 use BabDev\PagerfantaBundle\DependencyInjection\CompilerPass\AddPackageTemplatePathToTwigPass;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractCompilerPassTestCase;
-use Pagerfanta\Pagerfanta;
+use Pagerfanta\Twig\Extension\PagerfantaExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Twig\Loader\FilesystemLoader;
 
@@ -16,8 +16,8 @@ final class AddPackageTemplatePathToTwigPassTest extends AbstractCompilerPassTes
 
         $this->compile();
 
-        $refl = new \ReflectionClass(Pagerfanta::class);
-        $path = \dirname($refl->getFileName()).'/../templates';
+        $refl = new \ReflectionClass(PagerfantaExtension::class);
+        $path = \dirname($refl->getFileName(), 2).'/templates';
 
         $this->assertContainerBuilderHasServiceDefinitionWithMethodCall(
             'twig.loader.native_filesystem',

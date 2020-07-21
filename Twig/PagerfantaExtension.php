@@ -2,14 +2,14 @@
 
 namespace BabDev\PagerfantaBundle\Twig;
 
-use Pagerfanta\Twig\PagerfantaExtension as PagerfantaPagerfantaExtension;
+use Pagerfanta\Twig\Extension\PagerfantaExtension as PagerfantaPagerfantaExtension;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 trigger_deprecation('babdev/pagerfanta-bundle', '2.5', 'The "%s" class is deprecated and will be removed in 3.0. Use the "%s" class instead.', PagerfantaExtension::class, PagerfantaPagerfantaExtension::class);
 
 /**
- * @deprecated to be removed in BabDevPagerfantaBundle 3.0. Use `Pagerfanta\Twig\PagerfantaExtension` instead.
+ * @deprecated to be removed in BabDevPagerfantaBundle 3.0. Use `Pagerfanta\Twig\Extension\PagerfantaExtension` instead.
  */
 final class PagerfantaExtension extends AbstractExtension
 {

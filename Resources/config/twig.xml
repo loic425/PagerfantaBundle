@@ -6,12 +6,12 @@
 
     <services>
         <!-- Twig Extension -->
-        <service id="pagerfanta.twig_extension" class="Pagerfanta\Twig\PagerfantaExtension" public="false">
+        <service id="pagerfanta.twig_extension" class="Pagerfanta\Twig\Extension\PagerfantaExtension" public="false">
             <tag name="twig.extension" />
         </service>
 
         <!-- Twig Runtime -->
-        <service id="pagerfanta.twig_runtime" class="Pagerfanta\Twig\PagerfantaRuntime" public="false">
+        <service id="pagerfanta.twig_runtime" class="Pagerfanta\Twig\Extension\PagerfantaRuntime" public="false">
             <argument>%babdev_pagerfanta.default_view%</argument>
             <argument type="service" id="pagerfanta.view_factory" />
             <argument type="service" id="pagerfanta.route_generator_factory" />
@@ -19,7 +19,7 @@
         </service>
 
         <!-- Pagerfanta View -->
-        <service id="pagerfanta.view.twig" class="Pagerfanta\View\TwigView" public="false">
+        <service id="pagerfanta.view.twig" class="Pagerfanta\Twig\View\TwigView" public="false">
             <argument type="service" id="twig" />
             <argument>%babdev_pagerfanta.default_twig_template%</argument>
             <tag name="pagerfanta.view" alias="twig" />
