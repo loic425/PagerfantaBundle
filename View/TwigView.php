@@ -5,9 +5,15 @@ namespace BabDev\PagerfantaBundle\View;
 use BabDev\PagerfantaBundle\RouteGenerator\RouteGeneratorDecorator;
 use Pagerfanta\Exception\InvalidArgumentException;
 use Pagerfanta\PagerfantaInterface;
+use Pagerfanta\View\TwigView as PagerfantaTwigView;
 use Pagerfanta\View\View;
 use Twig\Environment;
 
+trigger_deprecation('babdev/pagerfanta-bundle', '2.5', 'The "%s" class is deprecated and will be removed in 3.0. Use the "%s" class instead.', TwigView::class, PagerfantaTwigView::class);
+
+/**
+ * @deprecated to be removed in BabDevPagerfantaBundle 3.0. Use `Pagerfanta\View\TwigView` instead.
+ */
 final class TwigView extends View
 {
     public const DEFAULT_TEMPLATE = '@BabDevPagerfanta/default.html.twig';

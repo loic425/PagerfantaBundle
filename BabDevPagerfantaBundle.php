@@ -3,6 +3,7 @@
 namespace BabDev\PagerfantaBundle;
 
 use BabDev\PagerfantaBundle\DependencyInjection\BabDevPagerfantaExtension;
+use BabDev\PagerfantaBundle\DependencyInjection\CompilerPass\AddPackageTemplatePathToTwigPass;
 use BabDev\PagerfantaBundle\DependencyInjection\CompilerPass\AddPagerfantasPass;
 use BabDev\PagerfantaBundle\DependencyInjection\CompilerPass\MaybeRemoveTranslatedViewsPass;
 use BabDev\PagerfantaBundle\DependencyInjection\CompilerPass\MaybeRemoveTwigServicesPass;
@@ -21,6 +22,7 @@ final class BabDevPagerfantaBundle extends Bundle
         $container->addCompilerPass(new MaybeRemoveTranslatedViewsPass(true));
         $container->addCompilerPass(new AddPagerfantasPass());
         $container->addCompilerPass(new MaybeRemoveTwigServicesPass(), PassConfig::TYPE_BEFORE_OPTIMIZATION, 1);
+        $container->addCompilerPass(new AddPackageTemplatePathToTwigPass(), PassConfig::TYPE_BEFORE_OPTIMIZATION, 1);
     }
 
     public function getContainerExtension()

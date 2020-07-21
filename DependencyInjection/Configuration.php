@@ -30,7 +30,7 @@ final class Configuration implements ConfigurationInterface
                 ->end()
                 ->scalarNode('default_twig_template')
                     ->info('The default Twig template to use when using the Twig Pagerfanta view')
-                    ->defaultValue(TwigView::DEFAULT_TEMPLATE)
+                    ->defaultValue('@BabDevPagerfanta/default.html.twig')
                 ->end()
                 ->arrayNode('exceptions_strategy')
                     ->addDefaultsIfNotSet()
