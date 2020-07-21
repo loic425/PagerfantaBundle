@@ -15,7 +15,7 @@
         </service>
 
         <!-- Route Generator Factory -->
-        <service id="pagerfanta.route_generator_factory" class="BabDev\PagerfantaBundle\RouteGenerator\RequestAwareRouteGeneratorFactory">
+        <service id="pagerfanta.route_generator_factory" class="BabDev\PagerfantaBundle\RouteGenerator\RequestAwareRouteGeneratorFactory" public="true">
             <argument type="service" id="router" />
             <argument type="service" id="request_stack" />
         </service>
