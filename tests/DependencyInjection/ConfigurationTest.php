@@ -3,7 +3,7 @@
 namespace BabDev\PagerfantaBundle\Tests\DependencyInjection;
 
 use BabDev\PagerfantaBundle\DependencyInjection\Configuration;
-use BabDev\PagerfantaBundle\View\TwigView;
+use Pagerfanta\Twig\View\TwigView;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Config\Definition\Processor;
 
