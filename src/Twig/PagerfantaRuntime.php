@@ -6,9 +6,16 @@ use Pagerfanta\Exception\OutOfRangeCurrentPageException;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\RouteGenerator\RouteGeneratorFactoryInterface;
 use Pagerfanta\RouteGenerator\RouteGeneratorInterface;
+use Pagerfanta\Twig\Extension\PagerfantaRuntime as PagerfantaPagerfantaRuntime;
 use Pagerfanta\View\ViewFactoryInterface;
+use Twig\Extension\RuntimeExtensionInterface;
 
-final class PagerfantaRuntime
+trigger_deprecation('babdev/pagerfanta-bundle', '2.5', 'The "%s" class is deprecated and will be removed in 3.0. Use the "%s" class instead.', PagerfantaRuntime::class, PagerfantaPagerfantaRuntime::class);
+
+/**
+ * @deprecated to be removed in BabDevPagerfantaBundle 3.0. Use `Pagerfanta\Twig\Extension\PagerfantaRuntime` instead.
+ */
+final class PagerfantaRuntime implements RuntimeExtensionInterface
 {
     private string $defaultView;
     private ViewFactoryInterface $viewFactory;

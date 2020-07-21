@@ -21,19 +21,6 @@
         </service>
         <service id="Pagerfanta\RouteGenerator\RouteGeneratorFactoryInterface" alias="pagerfanta.route_generator_factory" />
 
-        <!-- Twig Extension -->
-        <service id="pagerfanta.twig_extension" class="BabDev\PagerfantaBundle\Twig\PagerfantaExtension" public="false">
-            <tag name="twig.extension" />
-        </service>
-
-        <!-- Twig Runtime -->
-        <service id="pagerfanta.twig_runtime" class="BabDev\PagerfantaBundle\Twig\PagerfantaRuntime" public="false">
-            <argument>%babdev_pagerfanta.default_view%</argument>
-            <argument type="service" id="pagerfanta.view_factory" />
-            <argument type="service" id="pagerfanta.route_generator_factory" />
-            <tag name="twig.runtime" />
-        </service>
-
         <!-- Pagerfanta Views -->
         <service id="pagerfanta.view.default" class="Pagerfanta\View\DefaultView" public="false">
             <tag name="pagerfanta.view" alias="default" />
@@ -41,12 +28,6 @@
 
         <service id="pagerfanta.view.semantic_ui" class="Pagerfanta\View\SemanticUiView" public="false">
             <tag name="pagerfanta.view" alias="semantic_ui" />
-        </service>
-
-        <service id="pagerfanta.view.twig" class="BabDev\PagerfantaBundle\View\TwigView" public="false">
-            <argument type="service" id="twig" />
-            <argument>%babdev_pagerfanta.default_twig_template%</argument>
-            <tag name="pagerfanta.view" alias="twig" />
         </service>
 
         <service id="pagerfanta.view.twitter_bootstrap" class="Pagerfanta\View\TwitterBootstrapView" public="false">

@@ -2,7 +2,7 @@
 
 namespace BabDev\PagerfantaBundle\DependencyInjection;
 
-use BabDev\PagerfantaBundle\View\TwigView;
+use Pagerfanta\Twig\View\TwigView;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
