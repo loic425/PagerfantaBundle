@@ -379,13 +379,21 @@ final class TwigViewIntegrationTest extends TestCase
     private function createRuntimeLoader(): RuntimeLoaderInterface
     {
         return new class($this) implements RuntimeLoaderInterface {
-            private TwigViewIntegrationTest $testCase;
+            /**
+             * @var TwigViewIntegrationTest
+             */
+            private $testCase;
 
             public function __construct(TwigViewIntegrationTest $testCase)
             {
                 $this->testCase = $testCase;
             }
 
+            /**
+             * @param string $class
+             *
+             * @return object|null
+             */
             public function load($class)
             {
                 switch ($class) {
