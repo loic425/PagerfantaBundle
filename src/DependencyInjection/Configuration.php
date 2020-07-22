@@ -3,6 +3,7 @@
 namespace BabDev\PagerfantaBundle\DependencyInjection;
 
 use Pagerfanta\Twig\View\TwigView;
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -13,9 +14,12 @@ final class Configuration implements ConfigurationInterface
 
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder('babdev_pagerfanta', 'array');
+        $treeBuilder = new TreeBuilder('babdev_pagerfanta');
 
-        $treeBuilder->getRootNode()
+        /** @var ArrayNodeDefinition $root */
+        $root = $treeBuilder->getRootNode();
+
+        $root
             ->children()
                 ->scalarNode('default_view')->defaultValue('default')->end()
                 ->scalarNode('default_twig_template')->defaultValue(TwigView::DEFAULT_TEMPLATE)->end()

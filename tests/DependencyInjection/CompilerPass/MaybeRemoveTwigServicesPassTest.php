@@ -3,10 +3,10 @@
 namespace BabDev\PagerfantaBundle\Tests\DependencyInjection\CompilerPass;
 
 use BabDev\PagerfantaBundle\DependencyInjection\CompilerPass\MaybeRemoveTwigServicesPass;
-use BabDev\PagerfantaBundle\Twig\PagerfantaExtension;
-use BabDev\PagerfantaBundle\Twig\PagerfantaRuntime;
-use BabDev\PagerfantaBundle\View\TwigView;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractCompilerPassTestCase;
+use Pagerfanta\Twig\Extension\PagerfantaExtension;
+use Pagerfanta\Twig\Extension\PagerfantaRuntime;
+use Pagerfanta\Twig\View\TwigView;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Twig\Environment;
 
