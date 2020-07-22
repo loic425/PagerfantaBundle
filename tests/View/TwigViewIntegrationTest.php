@@ -378,7 +378,7 @@ final class TwigViewIntegrationTest extends TestCase
     private function createRuntimeLoader(): RuntimeLoaderInterface
     {
         return new class($this) implements RuntimeLoaderInterface {
-            private $testCase;
+            private TwigViewIntegrationTest $testCase;
 
             public function __construct(TwigViewIntegrationTest $testCase)
             {
@@ -404,7 +404,7 @@ final class TwigViewIntegrationTest extends TestCase
                         );
 
                     default:
-                        return;
+                        return null;
                 }
             }
         };
@@ -424,7 +424,7 @@ final class TwigViewIntegrationTest extends TestCase
         $this->assertSame($this->removeWhitespacesBetweenTags($expected), $view);
     }
 
-    private function removeWhitespacesBetweenTags($string)
+    private function removeWhitespacesBetweenTags(string $string): string
     {
         return preg_replace('/>\s+</', '><', $string);
     }
