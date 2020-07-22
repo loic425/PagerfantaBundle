@@ -283,7 +283,7 @@ final class PagerfantaRuntimeTest extends TestCase
         $this->assertSame($this->removeWhitespacesBetweenTags($expected), $view);
     }
 
-    private function removeWhitespacesBetweenTags($string)
+    private function removeWhitespacesBetweenTags(string $string): string
     {
         return preg_replace('/>\s+</', '><', $string);
     }

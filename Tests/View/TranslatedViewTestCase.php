@@ -17,7 +17,7 @@ abstract class TranslatedViewTestCase extends TestCase
     private $view;
 
     /**
-     * @var MockObject|LegacyTranslatorInterface|TranslatorInterface
+     * @var (MockObject&LegacyTranslatorInterface)|(MockObject&TranslatorInterface)
      */
     private $translator;
 
@@ -100,10 +100,11 @@ abstract class TranslatedViewTestCase extends TestCase
     }
 
     /**
-     * @return MockObject|LegacyTranslatorInterface|TranslatorInterface
+     * @return (MockObject&LegacyTranslatorInterface)|(MockObject&TranslatorInterface)
      */
     private function createTranslatorMock(): MockObject
     {
+        /** @var class-string $translator */
         $translator = interface_exists(TranslatorInterface::class) ? TranslatorInterface::class : LegacyTranslatorInterface::class;
 
         return $this->createMock($translator);
@@ -129,29 +130,27 @@ abstract class TranslatedViewTestCase extends TestCase
         return static function (int $page): string { return ''; };
     }
 
-    private function translatorExpectsPreviousAt($at): void
+    private function translatorExpectsPreviousAt(int $at): void
     {
         $previous = $this->previous();
 
-        $this->translator
-            ->expects($this->at($at))
+        $this->translator->expects($this->at($at))
             ->method('trans')
             ->with('previous', [], 'pagerfanta')
             ->willReturn($previous);
     }
 
-    private function translatorExpectsNextAt($at): void
+    private function translatorExpectsNextAt(int $at): void
     {
         $next = $this->next();
 
-        $this->translator
-            ->expects($this->at($at))
+        $this->translator->expects($this->at($at))
             ->method('trans')
             ->with('next', [], 'pagerfanta')
             ->willReturn($next);
     }
 
-    private function assertRender($options): void
+    private function assertRender(array $options): void
     {
         $previousMessageOption = $this->previousMessageOption();
         $nextMessageOption = $this->nextMessageOption();
