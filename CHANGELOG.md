@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.5.0 (2020-??-??)
+## 2.5.0 (2020-07-25)
 
 - Add the `referenceType` option to the `RouterAwareRouteGenerator` to allow specifying the `$referenceType` parameter when calling `Symfony\Component\Routing\Generator\UrlGeneratorInterface::generate()`
 - Deprecate the `RouteGeneratorFactoryInterface` and `RouteGeneratorInterface` in favor of the interfaces from the `pagerfanta/core` package
