@@ -1,11 +1,11 @@
-# BabDevPagerfantaBundle
+# PagerfantaBundle
 
-The BabDevPagerfantaBundle is a [Symfony](https://symfony.com/) bundle integrating [Pagerfanta](/open-source/packages/pagerfanta/docs) into an application.
+The PagerfantaBundle is a [Symfony](https://symfony.com/) bundle integrating [Pagerfanta](/open-source/packages/pagerfanta/docs) into an application.
     
 This bundle is a continuation of the [`WhiteOctoberPagerfantaBundle`](https://github.com/whiteoctober/WhiteOctoberPagerfantaBundle).
 
 The bundle includes:
-    
+
 - A [Twig](https://twig.symfony.com/) function to render Pagerfanta objects with views and options
 - Pagerfanta view which supports Twig templates
 - Services to easily use Pagerfanta views anywhere in your application

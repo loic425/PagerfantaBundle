@@ -1,4 +1,4 @@
-# BabDevPagerfantaBundle
+# PagerfantaBundle
 
 [![Latest Stable Version](https://poser.pugx.org/babdev/pagerfanta-bundle/v/stable)](https://packagist.org/packages/babdev/pagerfanta-bundle) [![Latest Unstable Version](https://poser.pugx.org/babdev/pagerfanta-bundle/v/unstable)](https://packagist.org/packages/babdev/pagerfanta-bundle) [![Total Downloads](https://poser.pugx.org/babdev/pagerfanta-bundle/downloads)](https://packagist.org/packages/babdev/pagerfanta-bundle) [![License](https://poser.pugx.org/babdev/pagerfanta-bundle/license)](https://packagist.org/packages/babdev/pagerfanta-bundle) ![Run Tests](https://github.com/BabDev/BabDevPagerfantaBundle/workflows/Run%20Tests/badge.svg?branch=2.x) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/BabDev/BabDevPagerfantaBundle/badges/quality-score.png?b=2.x)](https://scrutinizer-ci.com/g/BabDev/BabDevPagerfantaBundle/?branch=2.x) [![Code Coverage](https://scrutinizer-ci.com/g/BabDev/BabDevPagerfantaBundle/badges/coverage.png?b=2.x)](https://scrutinizer-ci.com/g/BabDev/BabDevPagerfantaBundle/?branch=2.x)
 

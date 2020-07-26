@@ -1,6 +1,6 @@
 # Generating Paginated Routes
 
-When rendering a Pagerfanta view, a route generator callable is required to generate the URLs for each item in the pagination list. As of BabDevPagerfantaBundle 2.2, the route generator can be customized for use within your application if you need to adjust the routing logic.
+When rendering a Pagerfanta view, a route generator callable is required to generate the URLs for each item in the pagination list. As of PagerfantaBundle 2.2, the route generator can be customized for use within your application if you need to adjust the routing logic.
 
 The route generators are defined by two interfaces, with their default implementations noted below:
 
@@ -21,4 +21,4 @@ The following options may be passed through a route generator factory when using
 - `pageParameter` - Defaults to "`[page]`", specifies the name of the routing parameter to use for the page, note that the page parameter *MUST* be wrapped in brackets (i.e. `[other_page]`) for the route generator to correctly function
 - `omitFirstPage` - Defaults to `false`, a boolean value indicating whether the first page should omit the pagination parameter (if true, `?page=1` will not be part of the paginated URL for page 1 of your list)
 - `routeParams` - Defaults to an empty array, an array of additional parameters to pass to the router for generating the URL
-- `referenceType` - Defaults to `Symfony\Component\Routing\Generator\UrlGeneratorInterface::ABSOLUTE_PATH`, allows specifying the `$referenceType` parameter when calling `Symfony\Component\Routing\Generator\UrlGeneratorInterface::generate()` (this option was added in BabDevPagerfantaBundle 2.5)
+- `referenceType` - Defaults to `Symfony\Component\Routing\Generator\UrlGeneratorInterface::ABSOLUTE_PATH`, allows specifying the `$referenceType` parameter when calling `Symfony\Component\Routing\Generator\UrlGeneratorInterface::generate()` (this option was added in PagerfantaBundle 2.5)

@@ -16,7 +16,7 @@ The below table lists the view names and the corresponding class.
 
 ## Twig View
 
-<div class="docs-note docs-note--new-feature">This feature was introduced in BabDevPagerfantaBundle 2.2.</div>
+<div class="docs-note docs-note--new-feature">This feature was introduced in PagerfantaBundle 2.2.</div>
 
 This bundle provides a Pagerfanta view which renders a Twig template.
 
@@ -61,7 +61,7 @@ If you want to create your own Twig template, the quickest and easiest way to do
 
 ## Translated Views
 
-<div class="docs-note docs-note--deprecated-feature">This feature is deprecated as of BabDevPagerfantaBundle 2.2 and will be removed in 3.0.</div>
+<div class="docs-note docs-note--deprecated-feature">This feature is deprecated as of PagerfantaBundle 2.2 and will be removed in 3.0.</div>
 
 This bundle also provides translated views, which allows using translation messages for the "Previous" and "Next" text items. The translated views act as decorators around the base view to automatically set the appropriate view options with the translated text.
 
