@@ -8,7 +8,7 @@
 
 ## 2.4.3 (2020-06-30)
 
-- [#13](https://github.com/BabDev/BabDevPagerfantaBundle/pull/18) Translated views are always removed from the container (Fixes [#17](https://github.com/BabDev/BabDevPagerfantaBundle/issues/17))
+- [#13](https://github.com/BabDev/PagerfantaBundle/pull/18) Translated views are always removed from the container (Fixes [#17](https://github.com/BabDev/BabDevPagerfantaBundle/issues/17))
 
 ## 2.4.2 (2020-06-09)
 
@@ -24,7 +24,7 @@
 
 ## 2.3.2 (2020-05-31)
 
-- [#13](https://github.com/BabDev/BabDevPagerfantaBundle/pull/13) Suppress runtime deprecation for `MaybeRemoveTranslatedViewsPass` (Fixes [#12](https://github.com/BabDev/BabDevPagerfantaBundle/issues/12))
+- [#13](https://github.com/BabDev/PagerfantaBundle/pull/13) Suppress runtime deprecation for `MaybeRemoveTranslatedViewsPass` (Fixes [#12](https://github.com/BabDev/BabDevPagerfantaBundle/issues/12))
 
 ## 2.3.1 (2020-05-31)
 
