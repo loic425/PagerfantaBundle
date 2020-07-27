@@ -3,6 +3,7 @@
 namespace BabDev\PagerfantaBundle\View;
 
 use Pagerfanta\PagerfantaInterface;
+use Pagerfanta\Twig\View\TwigView;
 use Pagerfanta\View\ViewInterface;
 use Symfony\Component\Translation\TranslatorInterface as LegacyTranslatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;

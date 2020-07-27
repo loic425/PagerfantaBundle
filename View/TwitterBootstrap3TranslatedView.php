@@ -2,6 +2,8 @@
 
 namespace BabDev\PagerfantaBundle\View;
 
+use Pagerfanta\Twig\View\TwigView;
+
 trigger_deprecation('babdev/pagerfanta-bundle', '2.2', 'The "%s" class is deprecated and will be removed in 3.0. Use the "%s" class instead.', TwitterBootstrap3TranslatedView::class, TwigView::class);
 
 /**
