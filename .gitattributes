@@ -9,4 +9,4 @@ CHANGELOG.md export-ignore
 phpstan.neon export-ignore
 phpunit.xml.dist export-ignore
 README.md export-ignore
-UPGRADE-2.0.md export-ignore
+UPGRADE-3.0.md export-ignore
