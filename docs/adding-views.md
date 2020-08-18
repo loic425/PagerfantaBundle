@@ -8,15 +8,17 @@ Views are added to the service container with the `pagerfanta.view` tag. You can
 
 ```xml
 <container>
-    <!-- Use in Twig by calling {{ pagerfanta(pager, 'default') }} -->
-    <service id="pagerfanta.view.default" class="Pagerfanta\View\DefaultView" public="false">
-        <tag name="pagerfanta.view" alias="default" />
-    </service>
+    <services>
+        <!-- Use in Twig by calling {{ pagerfanta(pager, 'default') }} -->
+        <service id="pagerfanta.view.default" class="Pagerfanta\View\DefaultView" public="false">
+            <tag name="pagerfanta.view" alias="default" />
+        </service>
 
-    <!-- Use in Twig by calling {{ pagerfanta(pager, 'pagerfanta.view.semantic_ui') }} -->
-    <service id="pagerfanta.view.semantic_ui" class="Pagerfanta\View\SemanticUiView" public="false">
-        <tag name="pagerfanta.view" />
-    </service>
+        <!-- Use in Twig by calling {{ pagerfanta(pager, 'pagerfanta.view.semantic_ui') }} -->
+        <service id="pagerfanta.view.semantic_ui" class="Pagerfanta\View\SemanticUiView" public="false">
+            <tag name="pagerfanta.view" />
+        </service>
+    </services>
 </container>
 ```
 
