@@ -7,7 +7,8 @@ First, you'll need to pass an instance of Pagerfanta as a parameter into your te
 
 namespace App\Controller;
 
-use Pagerfanta\Adapter\DoctrineORMAdapter;
+use App\Entity\BlogPost;
+use Pagerfanta\Doctrine\ORM\QueryAdapter;
 use Pagerfanta\Pagerfanta;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,11 +21,14 @@ final class BlogController extends AbstractController
      */
     public function listPosts(): Response
     {
-        $adapter = new DoctrineORMAdapter($queryBuilder);
-        $pagerfanta = new Pagerfanta($adapter);
+        $queryBuilder = $this->get('doctrine')->getRepository(BlogPost::class)->createBlogListQueryBuilder();
+
+        $pagerfanta = new Pagerfanta(
+            new QueryAdapter($queryBuilder)
+        );
 
         return $this->render(
-            '@YourApp/Blog/list.html.twig',
+            'blog/list.html.twig',
             [
                 'pager' => $pagerfanta,
             ]
@@ -59,4 +63,4 @@ If you are using a parameter other than `page` for pagination, you can set the p
 
 Note that the page parameter *MUST* be wrapped in brackets (i.e. `[other_page]`) for the route generator to correctly function.
 
-See the [Pagerfanta documentation](https://github.com/whiteoctober/Pagerfanta) for the list of supported options.
+See the [Pagerfanta documentation](/open-source/packages/pagerfanta/docs) for the list of supported options.
