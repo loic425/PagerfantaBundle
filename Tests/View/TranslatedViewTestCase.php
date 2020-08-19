@@ -63,15 +63,26 @@ abstract class TranslatedViewTestCase extends TestCase
 
     public function testRenderShouldTranslatePreviousAndNextMessage(): void
     {
-        $this->translatorExpectsPreviousAt(0);
-        $this->translatorExpectsNextAt(1);
+        $this->translator->expects($this->exactly(2))
+            ->method('trans')
+            ->withConsecutive(
+                ['previous', [], 'pagerfanta'],
+                ['next', [], 'pagerfanta']
+            )
+            ->willReturnOnConsecutiveCalls(
+                $this->previous(),
+                $this->next()
+            );
 
         $this->assertRender([]);
     }
 
     public function testRenderAllowsCustomizingPreviousMessageWithOption(): void
     {
-        $this->translatorExpectsNextAt(0);
+        $this->translator->expects($this->once())
+            ->method('trans')
+            ->with('next', [], 'pagerfanta')
+            ->willReturn($this->next());
 
         $previousMessageOption = $this->previousMessageOption();
 
@@ -80,7 +91,10 @@ abstract class TranslatedViewTestCase extends TestCase
 
     public function testRenderAllowsCustomizingNextMessageWithOption(): void
     {
-        $this->translatorExpectsPreviousAt(0);
+        $this->translator->expects($this->once())
+            ->method('trans')
+            ->with('previous', [], 'pagerfanta')
+            ->willReturn($this->previous());
 
         $nextMessageOption = $this->nextMessageOption();
 
@@ -128,26 +142,6 @@ abstract class TranslatedViewTestCase extends TestCase
     private function createRouteGenerator(): callable
     {
         return static function (int $page): string { return ''; };
-    }
-
-    private function translatorExpectsPreviousAt(int $at): void
-    {
-        $previous = $this->previous();
-
-        $this->translator->expects($this->at($at))
-            ->method('trans')
-            ->with('previous', [], 'pagerfanta')
-            ->willReturn($previous);
-    }
-
-    private function translatorExpectsNextAt(int $at): void
-    {
-        $next = $this->next();
-
-        $this->translator->expects($this->at($at))
-            ->method('trans')
-            ->with('next', [], 'pagerfanta')
-            ->willReturn($next);
     }
 
     private function assertRender(array $options): void
