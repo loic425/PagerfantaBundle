@@ -22,7 +22,6 @@ final class BabDevPagerfantaBundle extends Bundle
         $container->addCompilerPass(new MaybeRemoveTranslatedViewsPass(true));
         $container->addCompilerPass(new AddPagerfantasPass());
         $container->addCompilerPass(new MaybeRemoveTwigServicesPass(), PassConfig::TYPE_BEFORE_OPTIMIZATION, 1);
-        $container->addCompilerPass(new AddPackageTemplatePathToTwigPass(), PassConfig::TYPE_BEFORE_OPTIMIZATION, 1);
     }
 
     public function getContainerExtension()
