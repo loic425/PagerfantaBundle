@@ -75,7 +75,7 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
             'kernel.bundles_metadata',
             [
                 'BabDevPagerfantaBundle' => [
-                    'path' => (__DIR__.'/../../src'),
+                    'path' => (__DIR__.'/../..'),
                     'namespace' => 'BabDev\\PagerfantaBundle',
                 ],
                 'TwigBundle' => [
@@ -85,6 +85,7 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
             ]
         );
 
+        $this->container->setParameter('kernel.debug', false);
         $this->container->setParameter('kernel.project_dir', __DIR__);
 
         $this->load();
