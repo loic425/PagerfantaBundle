@@ -2,11 +2,13 @@
 
 namespace BabDev\PagerfantaBundle\Tests\DependencyInjection;
 
+use BabDev\PagerfantaBundle\BabDevPagerfantaBundle;
 use BabDev\PagerfantaBundle\DependencyInjection\BabDevPagerfantaExtension;
 use BabDev\PagerfantaBundle\DependencyInjection\Configuration;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Pagerfanta\View\ViewFactory;
 use Pagerfanta\View\ViewFactoryInterface;
+use Symfony\Bundle\TwigBundle\DependencyInjection\TwigExtension;
 use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\HttpKernel\KernelEvents;
 
@@ -16,7 +18,9 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
     {
         $this->container->setParameter(
             'kernel.bundles',
-            []
+            [
+                'BabDevPagerfantaBundle' => BabDevPagerfantaBundle::class,
+            ]
         );
 
         $this->load();
@@ -57,12 +61,31 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
 
     public function testContainerIsLoadedWithDefaultConfigurationWhenTwigBundleIsInstalled(): void
     {
+        $this->container->registerExtension(new TwigExtension());
+
         $this->container->setParameter(
             'kernel.bundles',
             [
+                'BabDevPagerfantaBundle' => BabDevPagerfantaBundle::class,
                 'TwigBundle' => TwigBundle::class,
             ]
         );
+
+        $this->container->setParameter(
+            'kernel.bundles_metadata',
+            [
+                'BabDevPagerfantaBundle' => [
+                    'path' => (__DIR__.'/../../src'),
+                    'namespace' => 'BabDev\\PagerfantaBundle',
+                ],
+                'TwigBundle' => [
+                    'path' => (__DIR__.'/../../vendor/symfony/twig-bundle'),
+                    'namespace' => 'Symfony\\Bundle\\TwigBundle',
+                ],
+            ]
+        );
+
+        $this->container->setParameter('kernel.project_dir', __DIR__);
 
         $this->load();
 
@@ -98,13 +121,19 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
         foreach ($twigServices as $twigService) {
             $this->assertContainerBuilderHasService($twigService);
         }
+
+        $twigConfig = $this->container->getExtensionConfig('twig');
+
+        $this->assertArrayHasKey('Pagerfanta', $twigConfig[0]['paths']);
     }
 
     public function testContainerIsLoadedWhenBundleIsConfiguredWithCustomExceptionStrategies(): void
     {
         $this->container->setParameter(
             'kernel.bundles',
-            []
+            [
+                'BabDevPagerfantaBundle' => BabDevPagerfantaBundle::class,
+            ]
         );
 
         $bundleConfig = [

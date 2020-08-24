@@ -2,13 +2,15 @@
 
 namespace BabDev\PagerfantaBundle\DependencyInjection;
 
+use Pagerfanta\Twig\Extension\PagerfantaExtension;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\KernelEvents;
 
-final class BabDevPagerfantaExtension extends Extension
+final class BabDevPagerfantaExtension extends Extension implements PrependExtensionInterface
 {
     public function getAlias(): string
     {
@@ -57,5 +59,17 @@ final class BabDevPagerfantaExtension extends Extension
         } else {
             $container->removeDefinition('pagerfanta.event_listener.convert_not_valid_current_page_to_not_found');
         }
+    }
+
+    public function prepend(ContainerBuilder $container): void
+    {
+        if (!$container->hasExtension('twig')) {
+            return;
+        }
+
+        $refl = new \ReflectionClass(PagerfantaExtension::class);
+        $path = \dirname($refl->getFileName(), 2).'/templates/';
+
+        $container->prependExtensionConfig('twig', ['paths' => ['Pagerfanta' => $path]]);
     }
 }
