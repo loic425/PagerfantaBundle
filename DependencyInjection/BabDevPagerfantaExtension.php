@@ -4,15 +4,17 @@ namespace BabDev\PagerfantaBundle\DependencyInjection;
 
 use BabDev\PagerfantaBundle\RouteGenerator\RouteGeneratorFactoryInterface as BundleRouteGeneratorFactoryInterface;
 use Pagerfanta\RouteGenerator\RouteGeneratorFactoryInterface as PagerfantaRouteGeneratorFactoryInterface;
+use Pagerfanta\Twig\Extension\PagerfantaExtension;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Extension\Extension;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\KernelEvents;
 
-final class BabDevPagerfantaExtension extends Extension
+final class BabDevPagerfantaExtension extends Extension implements PrependExtensionInterface
 {
     private const DEPRECATED_ALIASES = [
         BundleRouteGeneratorFactoryInterface::class => PagerfantaRouteGeneratorFactoryInterface::class,
@@ -76,6 +78,18 @@ final class BabDevPagerfantaExtension extends Extension
 
         $this->deprecateAliases($container);
         $this->deprecateServices($container);
+    }
+
+    public function prepend(ContainerBuilder $container): void
+    {
+        if (!$container->hasExtension('twig')) {
+            return;
+        }
+
+        $refl = new \ReflectionClass(PagerfantaExtension::class);
+        $path = \dirname($refl->getFileName(), 2).'/templates/';
+
+        $container->prependExtensionConfig('twig', ['paths' => ['Pagerfanta' => $path]]);
     }
 
     private function deprecateAliases(ContainerBuilder $container): void
