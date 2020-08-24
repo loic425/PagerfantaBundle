@@ -80,26 +80,16 @@ final class BabDevPagerfantaExtension extends Extension implements PrependExtens
         $this->deprecateServices($container);
     }
 
-    public function prepend(ContainerBuilder $container)
+    public function prepend(ContainerBuilder $container): void
     {
-        $twigConfigs = $container->getExtensionConfig('twig');
-
-        $paths = [];
-        // keeping user-configured paths
-        foreach ($twigConfigs as $twigConfig) {
-            if (isset($twigConfig['default_path'])) {
-                $userDefinedTwigDefaultPath = $twigConfig['default_path'];
-            }
-            if (isset($twigConfig['paths'])) {
-                $paths += $twigConfig['paths'];
-            }
+        if (!$container->hasExtension('twig')) {
+            return;
         }
 
         $refl = new \ReflectionClass(PagerfantaExtension::class);
         $path = \dirname($refl->getFileName(), 2).'/templates/';
-        $paths[$path] = 'Pagerfanta';
 
-        $container->prependExtensionConfig('twig', ['paths' => $paths]);
+        $container->prependExtensionConfig('twig', ['paths' => ['Pagerfanta' => $path]]);
     }
 
     private function deprecateAliases(ContainerBuilder $container): void
