@@ -10,6 +10,7 @@ use Pagerfanta\View\ViewFactory;
 use Pagerfanta\View\ViewFactoryInterface;
 use Symfony\Bundle\TwigBundle\DependencyInjection\TwigExtension;
 use Symfony\Bundle\TwigBundle\TwigBundle;
+use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
@@ -87,6 +88,10 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
 
         $this->container->setParameter('kernel.debug', false);
         $this->container->setParameter('kernel.project_dir', __DIR__);
+
+        if (method_exists(Kernel::class, 'getRootDir')) {
+            $this->container->setParameter('kernel.root_dir', __DIR__);
+        }
 
         $this->load();
 
