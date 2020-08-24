@@ -5,6 +5,9 @@ namespace BabDev\PagerfantaBundle\DependencyInjection\CompilerPass;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
+/**
+ * @internal
+ */
 final class MaybeRemoveTwigServicesPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container): void

@@ -13,6 +13,7 @@ The below guide will assist in upgrading from the 2.x versions to 3.0.
 - Added parameter, return, and property typehints where not previously in place
 - The values for the `babdev_pagerfanta.exceptions_strategy.out_of_range_page` and `babdev_pagerfanta.exceptions_strategy.not_valid_current_page` configuration options must be one of "to_http_not_found" or "custom", other values will raise an exception
 - The bundle no longer requires the `pagerfanta/pagerfanta` monopackage, only the `pagerfanta/core` and `pagerfanta/twig` packages are included now; you will need to install the appropriate package(s) to use the adapters your application requires
+- The compiler passes are now internal, they are not intended for direct use by bundle users and B/C will no longer be guaranteed on them
 
 ## Removed Features
 
