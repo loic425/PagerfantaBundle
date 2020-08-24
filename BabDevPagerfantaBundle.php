@@ -3,7 +3,6 @@
 namespace BabDev\PagerfantaBundle;
 
 use BabDev\PagerfantaBundle\DependencyInjection\BabDevPagerfantaExtension;
-use BabDev\PagerfantaBundle\DependencyInjection\CompilerPass\AddPackageTemplatePathToTwigPass;
 use BabDev\PagerfantaBundle\DependencyInjection\CompilerPass\AddPagerfantasPass;
 use BabDev\PagerfantaBundle\DependencyInjection\CompilerPass\MaybeRemoveTranslatedViewsPass;
 use BabDev\PagerfantaBundle\DependencyInjection\CompilerPass\MaybeRemoveTwigServicesPass;
