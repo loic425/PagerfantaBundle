@@ -10,7 +10,7 @@ use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
-final class ConvertNotValidMaxPageToNotFoundListenerTest extends TestCase
+final class ConvertNotValidMaxPerPageToNotFoundListenerTest extends TestCase
 {
     public function testListenerConvertsExceptionForEvent(): void
     {

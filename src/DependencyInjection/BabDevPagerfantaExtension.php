@@ -2,6 +2,8 @@
 
 namespace BabDev\PagerfantaBundle\DependencyInjection;
 
+use BabDev\PagerfantaBundle\EventListener\ConvertNotValidCurrentPageToNotFoundListener;
+use BabDev\PagerfantaBundle\EventListener\ConvertNotValidMaxPerPageToNotFoundListener;
 use Pagerfanta\Twig\Extension\PagerfantaExtension;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -33,7 +35,7 @@ final class BabDevPagerfantaExtension extends Extension implements PrependExtens
         }
 
         if (Configuration::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND === $config['exceptions_strategy']['out_of_range_page']) {
-            $container->getDefinition('pagerfanta.event_listener.convert_not_valid_max_per_page_to_not_found')
+            $container->register('pagerfanta.event_listener.convert_not_valid_max_per_page_to_not_found', ConvertNotValidCurrentPageToNotFoundListener::class)
                 ->addTag(
                     'kernel.event_listener',
                     [
@@ -42,12 +44,10 @@ final class BabDevPagerfantaExtension extends Extension implements PrependExtens
                         'priority' => 512,
                     ]
                 );
-        } else {
-            $container->removeDefinition('pagerfanta.event_listener.convert_not_valid_max_per_page_to_not_found');
         }
 
         if (Configuration::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND === $config['exceptions_strategy']['not_valid_current_page']) {
-            $container->getDefinition('pagerfanta.event_listener.convert_not_valid_current_page_to_not_found')
+            $container->register('pagerfanta.event_listener.convert_not_valid_current_page_to_not_found', ConvertNotValidMaxPerPageToNotFoundListener::class)
                 ->addTag(
                     'kernel.event_listener',
                     [
@@ -56,8 +56,6 @@ final class BabDevPagerfantaExtension extends Extension implements PrependExtens
                         'priority' => 512,
                     ]
                 );
-        } else {
-            $container->removeDefinition('pagerfanta.event_listener.convert_not_valid_current_page_to_not_found');
         }
     }
 
