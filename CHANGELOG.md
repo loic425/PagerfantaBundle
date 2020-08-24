@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.5.1 (2020-08-24)
+
+- [#22](https://github.com/BabDev/PagerfantaBundle/pull/22) Pagerfanta namespace not always registered to Twig (Fixes [#21](https://github.com/BabDev/BabDevPagerfantaBundle/issues/21))
+
 ## 2.5.0 (2020-07-25)
 
 - Add the `referenceType` option to the `RouterAwareRouteGenerator` to allow specifying the `$referenceType` parameter when calling `Symfony\Component\Routing\Generator\UrlGeneratorInterface::generate()`
