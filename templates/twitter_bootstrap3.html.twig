@@ -1,7 +1,17 @@
-{%- extends '@BabDevPagerfanta/twitter_bootstrap.html.twig' -%}
+{%- extends '@Pagerfanta/twitter_bootstrap3.html.twig' -%}
 
-{%- block pager_widget -%}
-    <ul class="pagination">
-        {{- block('pager') -}}
-    </ul>
-{%- endblock pager_widget -%}
+{%- block previous_page_message -%}
+    {%- if options['prev_message'] is defined -%}
+        {{- options['prev_message'] -}}
+    {%- else -%}
+        {{- 'previous'|trans([], 'pagerfanta') -}}
+    {%- endif -%}
+{%- endblock previous_page_message -%}
+
+{%- block next_page_message -%}
+    {%- if options['next_message'] is defined -%}
+        {{- options['next_message'] -}}
+    {%- else -%}
+        {{- 'next'|trans([], 'pagerfanta') -}}
+    {%- endif -%}
+{%- endblock next_page_message -%}
