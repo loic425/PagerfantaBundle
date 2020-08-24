@@ -9,7 +9,7 @@ use Symfony\Component\DependencyInjection\Reference;
 /**
  * @internal
  */
-final class AddPagerfantasPass implements CompilerPassInterface
+final class RegisterPagerfantaViewsPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container): void
     {

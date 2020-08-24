@@ -2,14 +2,14 @@
 
 namespace BabDev\PagerfantaBundle\Tests\DependencyInjection\CompilerPass;
 
-use BabDev\PagerfantaBundle\DependencyInjection\CompilerPass\AddPagerfantasPass;
+use BabDev\PagerfantaBundle\DependencyInjection\CompilerPass\RegisterPagerfantaViewsPass;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractCompilerPassTestCase;
 use Pagerfanta\View\DefaultView;
 use Pagerfanta\View\ViewFactory;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
-final class AddPagerfantasPassTest extends AbstractCompilerPassTestCase
+final class RegisterPagerfantaViewsPassTest extends AbstractCompilerPassTestCase
 {
     public function testViewsAreAddedToTheRegistry(): void
     {
@@ -29,6 +29,6 @@ final class AddPagerfantasPassTest extends AbstractCompilerPassTestCase
 
     protected function registerCompilerPass(ContainerBuilder $container): void
     {
-        $container->addCompilerPass(new AddPagerfantasPass());
+        $container->addCompilerPass(new RegisterPagerfantaViewsPass());
     }
 }
