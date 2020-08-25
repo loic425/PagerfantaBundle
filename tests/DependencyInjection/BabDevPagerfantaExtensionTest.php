@@ -6,6 +6,7 @@ use BabDev\PagerfantaBundle\BabDevPagerfantaBundle;
 use BabDev\PagerfantaBundle\DependencyInjection\BabDevPagerfantaExtension;
 use BabDev\PagerfantaBundle\DependencyInjection\Configuration;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
+use Pagerfanta\Twig\Extension\PagerfantaExtension;
 use Pagerfanta\View\ViewFactory;
 use Pagerfanta\View\ViewFactoryInterface;
 use Symfony\Bundle\TwigBundle\DependencyInjection\TwigExtension;
@@ -130,7 +131,10 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
 
         $twigConfig = $this->container->getExtensionConfig('twig');
 
-        $this->assertArrayHasKey('Pagerfanta', $twigConfig[0]['paths']);
+        $refl = new \ReflectionClass(PagerfantaExtension::class);
+        $path = \dirname($refl->getFileName(), 2).'/templates/';
+
+        $this->assertArrayHasKey($path, $twigConfig[0]['paths']);
     }
 
     public function testContainerIsLoadedWhenBundleIsConfiguredWithCustomExceptionStrategies(): void
