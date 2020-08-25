@@ -89,7 +89,7 @@ final class BabDevPagerfantaExtension extends Extension implements PrependExtens
         $refl = new \ReflectionClass(PagerfantaExtension::class);
         $path = \dirname($refl->getFileName(), 2).'/templates/';
 
-        $container->prependExtensionConfig('twig', ['paths' => ['Pagerfanta' => $path]]);
+        $container->prependExtensionConfig('twig', ['paths' => [$path => 'Pagerfanta']]);
     }
 
     private function deprecateAliases(ContainerBuilder $container): void

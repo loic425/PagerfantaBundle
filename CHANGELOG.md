@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.5.2 (2020-08-25)
+
+- [#23](https://github.com/BabDev/PagerfantaBundle/issues/23) Invalid Twig configuration for Pagerfanta namespace
+
 ## 2.5.1 (2020-08-24)
 
 - [#22](https://github.com/BabDev/PagerfantaBundle/pull/22) Pagerfanta namespace not always registered to Twig (Fixes [#21](https://github.com/BabDev/BabDevPagerfantaBundle/issues/21))
