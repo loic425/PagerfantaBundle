@@ -112,6 +112,7 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
             ]
         );
 
+        $this->container->setParameter('kernel.debug', false);
         $this->container->setParameter('kernel.project_dir', __DIR__);
 
         if (method_exists(Kernel::class, 'getRootDir')) {
