@@ -47,6 +47,8 @@ jobs:
         run: |
           composer global require --no-scripts --no-plugins symfony/flex
           composer update ${{ matrix.composer-flags }} --prefer-dist --no-suggest
+        env:
+          SYMFONY_REQUIRE: {{ matrix.symfony }}
 
       - name: Execute tests
         run: vendor/bin/phpunit --coverage-clover clover.xml
