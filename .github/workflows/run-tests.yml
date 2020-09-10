@@ -46,7 +46,7 @@ jobs:
       - name: Install dependencies
         run: |
           composer global require --no-scripts --no-plugins symfony/flex
-          composer update ${{ matrix.composer-flags }} --prefer-dist --no-suggest
+          SYMFONY_REQUIRE=${{ matrix.symfony }} composer update ${{ matrix.composer-flags }} --prefer-dist --no-suggest
 
       - name: Execute tests
         run: vendor/bin/phpunit --coverage-clover clover.xml
