@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.6.0 (202?-??-??)
+## 2.6.0 (2020-09-29)
 
 - Trigger runtime deprecations for deprecated views when the view is rendered
 - Drop support for Symfony 5.0, it is no longer maintained
