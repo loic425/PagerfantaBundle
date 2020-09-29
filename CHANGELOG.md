@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.5.3 (202?-??-??)
+
+- Trigger runtime deprecations for deprecated views when the view is rendered
+
 ## 2.5.2 (2020-08-25)
 
 - [#23](https://github.com/BabDev/PagerfantaBundle/issues/23) Invalid Twig configuration for Pagerfanta namespace

@@ -9,8 +9,6 @@ use Pagerfanta\Twig\View\TwigView as PagerfantaTwigView;
 use Pagerfanta\View\View;
 use Twig\Environment;
 
-trigger_deprecation('babdev/pagerfanta-bundle', '2.5', 'The "%s" class is deprecated and will be removed in 3.0. Use the "%s" class instead.', TwigView::class, PagerfantaTwigView::class);
-
 /**
  * @deprecated to be removed in BabDevPagerfantaBundle 3.0. Use `Pagerfanta\Twig\View\TwigView` instead.
  */
@@ -46,6 +44,8 @@ final class TwigView extends View
 
     public function render(PagerfantaInterface $pagerfanta, $routeGenerator, array $options = [])
     {
+        trigger_deprecation('babdev/pagerfanta-bundle', '2.5', 'The "%s" class is deprecated and will be removed in 3.0. Use the "%s" class instead.', self::class, PagerfantaTwigView::class);
+
         $this->initializePagerfanta($pagerfanta);
         $this->initializeOptions($options);
 
