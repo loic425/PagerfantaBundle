@@ -8,13 +8,13 @@
         "php": "^7.4",
         "pagerfanta/core": "^3.0",
         "pagerfanta/twig": "^3.0",
-        "symfony/config": "^4.4 || ^5.0",
-        "symfony/dependency-injection": "^4.4 || ^5.0",
+        "symfony/config": "^4.4 || ^5.1",
+        "symfony/dependency-injection": "^4.4 || ^5.1",
         "symfony/deprecation-contracts": "^2.1",
-        "symfony/http-foundation": "^4.4 || ^5.0",
-        "symfony/http-kernel": "^4.4 || ^5.0",
-        "symfony/property-access": "^4.4 || ^5.0",
-        "symfony/routing": "^4.4 || ^5.0",
+        "symfony/http-foundation": "^4.4 || ^5.1",
+        "symfony/http-kernel": "^4.4 || ^5.1",
+        "symfony/property-access": "^4.4 || ^5.1",
+        "symfony/routing": "^4.4 || ^5.1",
         "twig/twig": "^1.35 || ^2.5 || ^3.0"
     },
     "require-dev": {
@@ -26,9 +26,9 @@
         "phpstan/phpstan-phpunit": "^0.12.16",
         "phpstan/phpstan-symfony": "^0.12.7",
         "phpunit/phpunit": "^9.3",
-        "symfony/twig-bridge": "^4.4 || ^5.0",
-        "symfony/twig-bundle": "^4.4 || ^5.0",
-        "symfony/translation": "^4.4 || ^5.0"
+        "symfony/twig-bridge": "^4.4 || ^5.1",
+        "symfony/twig-bundle": "^4.4 || ^5.1",
+        "symfony/translation": "^4.4 || ^5.1"
     },
     "conflict": {
         "white-october/pagerfanta-bundle": "*"
