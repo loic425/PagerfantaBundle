@@ -34,19 +34,6 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
         $this->assertContainerBuilderHasAlias(ViewFactory::class, 'pagerfanta.view_factory');
         $this->assertContainerBuilderHasAlias(ViewFactoryInterface::class, 'pagerfanta.view_factory');
 
-        $deprecatedViews = [
-            'pagerfanta.view.default_translated',
-            'pagerfanta.view.semantic_ui_translated',
-            'pagerfanta.view.twitter_bootstrap_translated',
-            'pagerfanta.view.twitter_bootstrap3_translated',
-            'pagerfanta.view.twitter_bootstrap4_translated',
-        ];
-
-        foreach ($deprecatedViews as $deprecatedView) {
-            $this->assertContainerBuilderHasService($deprecatedView);
-            $this->assertTrue($this->container->getDefinition($deprecatedView)->isDeprecated());
-        }
-
         if (method_exists(Alias::class, 'setDeprecated')) {
             $deprecatedAliases = [
                 RouteGeneratorFactoryInterface::class,
@@ -127,19 +114,6 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
         $this->assertContainerBuilderHasAlias(ViewFactory::class, 'pagerfanta.view_factory');
         $this->assertContainerBuilderHasAlias(ViewFactoryInterface::class, 'pagerfanta.view_factory');
 
-        $deprecatedViews = [
-            'pagerfanta.view.default_translated',
-            'pagerfanta.view.semantic_ui_translated',
-            'pagerfanta.view.twitter_bootstrap_translated',
-            'pagerfanta.view.twitter_bootstrap3_translated',
-            'pagerfanta.view.twitter_bootstrap4_translated',
-        ];
-
-        foreach ($deprecatedViews as $deprecatedView) {
-            $this->assertContainerBuilderHasService($deprecatedView);
-            $this->assertTrue($this->container->getDefinition($deprecatedView)->isDeprecated());
-        }
-
         if (method_exists(Alias::class, 'setDeprecated')) {
             $deprecatedAliases = [
                 RouteGeneratorFactoryInterface::class,
@@ -209,19 +183,6 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
 
         $this->assertContainerBuilderHasAlias(ViewFactory::class, 'pagerfanta.view_factory');
         $this->assertContainerBuilderHasAlias(ViewFactoryInterface::class, 'pagerfanta.view_factory');
-
-        $deprecatedViews = [
-            'pagerfanta.view.default_translated',
-            'pagerfanta.view.semantic_ui_translated',
-            'pagerfanta.view.twitter_bootstrap_translated',
-            'pagerfanta.view.twitter_bootstrap3_translated',
-            'pagerfanta.view.twitter_bootstrap4_translated',
-        ];
-
-        foreach ($deprecatedViews as $deprecatedView) {
-            $this->assertContainerBuilderHasService($deprecatedView);
-            $this->assertTrue($this->container->getDefinition($deprecatedView)->isDeprecated());
-        }
 
         if (method_exists(Alias::class, 'setDeprecated')) {
             $deprecatedAliases = [

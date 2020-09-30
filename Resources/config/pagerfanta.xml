@@ -31,7 +31,7 @@
             <argument type="service" id="pagerfanta.view.default" />
             <argument type="service" id="translator" />
             <tag name="pagerfanta.view" alias="default_translated" />
-            <!-- deprecated service, deprecation is set in the container extension -->
+            <!-- deprecated service -->
         </service>
 
         <service id="pagerfanta.view.semantic_ui" class="Pagerfanta\View\SemanticUiView" public="false">
@@ -42,7 +42,7 @@
             <argument type="service" id="pagerfanta.view.semantic_ui" />
             <argument type="service" id="translator" />
             <tag name="pagerfanta.view" alias="semantic_ui_translated" />
-            <!-- deprecated service, deprecation is set in the container extension -->
+            <!-- deprecated service -->
         </service>
 
         <service id="pagerfanta.view.twitter_bootstrap" class="Pagerfanta\View\TwitterBootstrapView" public="false">
@@ -53,7 +53,7 @@
             <argument type="service" id="pagerfanta.view.twitter_bootstrap" />
             <argument type="service" id="translator" />
             <tag name="pagerfanta.view" alias="twitter_bootstrap_translated" />
-            <!-- deprecated service, deprecation is set in the container extension -->
+            <!-- deprecated service -->
         </service>
 
         <service id="pagerfanta.view.twitter_bootstrap3" class="Pagerfanta\View\TwitterBootstrap3View" public="false">
@@ -64,7 +64,7 @@
             <argument type="service" id="pagerfanta.view.twitter_bootstrap3" />
             <argument type="service" id="translator" />
             <tag name="pagerfanta.view" alias="twitter_bootstrap3_translated" />
-            <!-- deprecated service, deprecation is set in the container extension -->
+            <!-- deprecated service -->
         </service>
 
         <service id="pagerfanta.view.twitter_bootstrap4" class="Pagerfanta\View\TwitterBootstrap4View" public="false">
@@ -75,7 +75,7 @@
             <argument type="service" id="pagerfanta.view.twitter_bootstrap4" />
             <argument type="service" id="translator" />
             <tag name="pagerfanta.view" alias="twitter_bootstrap4_translated" />
-            <!-- deprecated service, deprecation is set in the container extension -->
+            <!-- deprecated service -->
         </service>
 
         <!-- View Factory -->

@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.6.1 (2020-09-30)
+
+- Remove deprecations from view services
+
 ## 2.6.0 (2020-09-29)
 
 - Trigger runtime deprecations for deprecated views when the view is rendered
