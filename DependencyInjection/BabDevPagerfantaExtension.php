@@ -39,6 +39,10 @@ final class BabDevPagerfantaExtension extends Extension implements PrependExtens
             $loader->load('twig.xml');
         }
 
+        if (isset($bundles['JMSSerializerBundle'])) {
+            $loader->load('jms_serializer.xml');
+        }
+
         if (Configuration::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND === $config['exceptions_strategy']['out_of_range_page']) {
             $container->getDefinition('pagerfanta.event_listener.convert_not_valid_max_per_page_to_not_found')
                 ->addTag(

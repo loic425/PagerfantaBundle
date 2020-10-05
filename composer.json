@@ -18,6 +18,8 @@
     "require-dev": {
         "doctrine/annotations": "^1.8",
         "friendsofphp/php-cs-fixer": "^2.16",
+        "jms/serializer": "^3.0",
+        "jms/serializer-bundle": "^3.0",
         "matthiasnoback/symfony-dependency-injection-test": "^4.1",
         "phpstan/extension-installer": "^1.0.3",
         "phpstan/phpstan": "^0.12.37",
@@ -34,6 +36,7 @@
         "white-october/pagerfanta-bundle": "*"
     },
     "suggest": {
+        "jms/serializer-bundle": "To use the Pagerfanta class with the JMS Serializer",
         "symfony/translation": "To use the Pagerfanta views with translation support",
         "twig/twig": "To integrate Pagerfanta with Twig through extensions"
     },
