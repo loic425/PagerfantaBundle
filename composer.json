@@ -26,6 +26,7 @@
         "phpstan/phpstan-phpunit": "^0.12.16",
         "phpstan/phpstan-symfony": "^0.12.7",
         "phpunit/phpunit": "^8.5 || ^9.0",
+        "symfony/serializer": "^3.4 || ^4.4 || ^5.1",
         "symfony/twig-bridge": "^3.4 || ^4.4 || ^5.1",
         "symfony/twig-bundle": "^3.4 || ^4.4 || ^5.1",
         "symfony/translation": "^3.4 || ^4.4 || ^5.1",
@@ -37,6 +38,7 @@
     },
     "suggest": {
         "jms/serializer-bundle": "To use the Pagerfanta class with the JMS Serializer",
+        "symfony/serializer": "To use the Pagerfanta class with the Symfony Serializer",
         "symfony/translation": "To use the Pagerfanta views with translation support",
         "twig/twig": "To integrate Pagerfanta with Twig through extensions"
     },

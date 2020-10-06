@@ -72,6 +72,8 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
         foreach ($twigServices as $twigService) {
             $this->assertContainerBuilderNotHasService($twigService);
         }
+
+        $this->assertContainerBuilderHasService('pagerfanta.serializer.normalizer');
     }
 
     public function testContainerIsLoadedWithDefaultConfigurationWhenTwigBundleIsInstalled(): void
@@ -159,6 +161,8 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
         $path = \dirname($refl->getFileName(), 2).'/templates/';
 
         $this->assertArrayHasKey($path, $twigConfig[0]['paths']);
+
+        $this->assertContainerBuilderHasService('pagerfanta.serializer.normalizer');
     }
 
     public function testContainerIsLoadedWithDefaultConfigurationWhenJMSSerializerBundleIsInstalled(): void
@@ -208,6 +212,7 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
         }
 
         $this->assertContainerBuilderHasService('pagerfanta.serializer.handler');
+        $this->assertContainerBuilderHasService('pagerfanta.serializer.normalizer');
     }
 
     public function testContainerIsLoadedWhenBundleIsConfiguredWithCustomExceptionStrategies(): void
