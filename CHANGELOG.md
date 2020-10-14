@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.7.0 (202?-??-??)
+## 2.7.0 (2020-10-14)
 
 - Added support for the Symfony and JMS Serializers
 
