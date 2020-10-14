@@ -7,4 +7,5 @@
 - [Adding Views](/open-source/packages/pagerfantabundle/docs/2.x/adding-views)
 - [Retrieving Views](/open-source/packages/pagerfantabundle/docs/2.x/retrieving-views)
 - [Reusable Pagerfanta Configurations](/open-source/packages/pagerfantabundle/docs/2.x/reusing-options)
+- [Serializer](/open-source/packages/pagerfantabundle/docs/2.x/serializer)
 - [Configuring The Bundle](/open-source/packages/pagerfantabundle/docs/2.x/configuring-the-bundle)
