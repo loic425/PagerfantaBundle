@@ -11,6 +11,7 @@ use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\KernelEvents;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 final class BabDevPagerfantaExtension extends Extension implements PrependExtensionInterface
 {
@@ -32,6 +33,14 @@ final class BabDevPagerfantaExtension extends Extension implements PrependExtens
 
         if (isset($bundles['TwigBundle'])) {
             $loader->load('twig.xml');
+        }
+
+        if (isset($bundles['JMSSerializerBundle'])) {
+            $loader->load('jms_serializer.xml');
+        }
+
+        if (interface_exists(NormalizerInterface::class)) {
+            $loader->load('serializer.xml');
         }
 
         if (Configuration::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND === $config['exceptions_strategy']['out_of_range_page']) {

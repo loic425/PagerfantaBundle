@@ -20,12 +20,15 @@
     "require-dev": {
         "doctrine/annotations": "^1.8",
         "friendsofphp/php-cs-fixer": "^2.16",
+        "jms/serializer": "^3.0",
+        "jms/serializer-bundle": "^3.0",
         "matthiasnoback/symfony-dependency-injection-test": "^4.1",
         "phpstan/extension-installer": "^1.0.3",
         "phpstan/phpstan": "^0.12.37",
         "phpstan/phpstan-phpunit": "^0.12.16",
         "phpstan/phpstan-symfony": "^0.12.7",
         "phpunit/phpunit": "^9.3",
+        "symfony/serializer": "^4.4 || ^5.1",
         "symfony/twig-bridge": "^4.4 || ^5.1",
         "symfony/twig-bundle": "^4.4 || ^5.1",
         "symfony/translation": "^4.4 || ^5.1"
@@ -34,7 +37,10 @@
         "white-october/pagerfanta-bundle": "*"
     },
     "suggest": {
-        "symfony/translation": "To use the Twig templates with translation support"
+        "jms/serializer-bundle": "To use the Pagerfanta class with the JMS Serializer",
+        "symfony/serializer": "To use the Pagerfanta class with the Symfony Serializer",
+        "symfony/translation": "To use the Twig templates with translation support",
+        "twig/twig": "To integrate Pagerfanta with Twig through extensions"
     },
     "autoload": {
         "psr-4": {

@@ -5,6 +5,7 @@ namespace BabDev\PagerfantaBundle\Tests\DependencyInjection;
 use BabDev\PagerfantaBundle\BabDevPagerfantaBundle;
 use BabDev\PagerfantaBundle\DependencyInjection\BabDevPagerfantaExtension;
 use BabDev\PagerfantaBundle\DependencyInjection\Configuration;
+use JMS\SerializerBundle\JMSSerializerBundle;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Pagerfanta\Twig\Extension\PagerfantaExtension;
 use Pagerfanta\View\ViewFactory;
@@ -59,6 +60,8 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
         foreach ($twigServices as $twigService) {
             $this->assertContainerBuilderNotHasService($twigService);
         }
+
+        $this->assertContainerBuilderHasService('pagerfanta.serializer.normalizer');
     }
 
     public function testContainerIsLoadedWithDefaultConfigurationWhenTwigBundleIsInstalled(): void
@@ -135,6 +138,47 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
         $path = \dirname($refl->getFileName(), 2).'/templates/';
 
         $this->assertArrayHasKey($path, $twigConfig[0]['paths']);
+
+        $this->assertContainerBuilderHasService('pagerfanta.serializer.normalizer');
+    }
+
+    public function testContainerIsLoadedWithDefaultConfigurationWhenJMSSerializerBundleIsInstalled(): void
+    {
+        $this->container->setParameter(
+            'kernel.bundles',
+            [
+                'BabDevPagerfantaBundle' => BabDevPagerfantaBundle::class,
+                'JMSSerializerBundle' => JMSSerializerBundle::class,
+            ]
+        );
+
+        $this->load();
+
+        $this->assertContainerBuilderHasParameter('babdev_pagerfanta.default_view');
+        $this->assertContainerBuilderHasParameter('babdev_pagerfanta.default_twig_template');
+
+        $this->assertContainerBuilderHasAlias(ViewFactory::class, 'pagerfanta.view_factory');
+        $this->assertContainerBuilderHasAlias(ViewFactoryInterface::class, 'pagerfanta.view_factory');
+
+        $listeners = [
+            'pagerfanta.event_listener.convert_not_valid_max_per_page_to_not_found',
+            'pagerfanta.event_listener.convert_not_valid_current_page_to_not_found',
+        ];
+
+        foreach ($listeners as $listener) {
+            $this->assertContainerBuilderHasServiceDefinitionWithTag(
+                $listener,
+                'kernel.event_listener',
+                [
+                    'event' => KernelEvents::EXCEPTION,
+                    'method' => 'onKernelException',
+                    'priority' => 512,
+                ]
+            );
+        }
+
+        $this->assertContainerBuilderHasService('pagerfanta.serializer.handler');
+        $this->assertContainerBuilderHasService('pagerfanta.serializer.normalizer');
     }
 
     public function testContainerIsLoadedWhenBundleIsConfiguredWithCustomExceptionStrategies(): void
