@@ -1,7 +1,5 @@
 # Serializer
 
-<div class="docs-note docs-note--new-feature">Serialization support was introduced in PagerfantaBundle 2.7.</div>
-
 The PagerfantaBundle provides support for serializing `Pagerfanta/Pagerfanta` instances using either the [Symfony Serializer component](https://symfony.com/doc/current/components/serializer.html) or the [JMS Serializer](https://jmsyst.com/libs/serializer) (note, the `JMSSerializerBundle` must be installed to enable the serialization handler for the JMS serializer).
 
 Below is an example of building a JSON response in a controller using the Symfony Serializer:
