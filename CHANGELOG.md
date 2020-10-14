@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.7.0 (202?-??-??)
+
+- Added support for the Symfony and JMS Serializers
+
 ## 2.6.1 (2020-09-30)
 
 - Remove deprecations from view services
