@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.8.0 (2020-11-10)
+
+- Allow install on PHP 8
+
 ## 2.7.0 (2020-10-14)
 
 - Added support for the Symfony and JMS Serializers
