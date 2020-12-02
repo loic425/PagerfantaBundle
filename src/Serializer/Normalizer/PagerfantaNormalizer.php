@@ -4,9 +4,10 @@ namespace BabDev\PagerfantaBundle\Serializer\Normalizer;
 
 use Pagerfanta\PagerfantaInterface;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
+use Symfony\Component\Serializer\Normalizer\CacheableSupportsMethodInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-final class PagerfantaNormalizer implements NormalizerInterface
+final class PagerfantaNormalizer implements NormalizerInterface, CacheableSupportsMethodInterface
 {
     /**
      * @param mixed $object Object to normalize
