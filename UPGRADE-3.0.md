@@ -15,6 +15,7 @@ The below guide will assist in upgrading from the 2.x versions to 3.0.
 - The bundle no longer requires the `pagerfanta/pagerfanta` monopackage, only the `pagerfanta/core` and `pagerfanta/twig` packages are included now; you will need to install the appropriate package(s) to use the adapters your application requires
 - The compiler passes are now internal, they are not intended for direct use by bundle users and B/C will no longer be guaranteed on them
 - The bundle's Twig templates now all extend the templates from the `pagerfanta/twig` package
+- Renamed the CSS file for the default template from `pagerfantaDefault.css` to `pagerfanta.css`
 
 ## Removed Features
 

@@ -62,5 +62,5 @@ If you want to create your own Twig template, the quickest and easiest way to do
 The bundle comes with basic CSS for the default view so you can get started quickly.
 
 ```html
-<link rel="stylesheet" href="{{ asset('bundles/babdevpagerfanta/css/pagerfantaDefault.css') }}">
+<link rel="stylesheet" href="{{ asset('bundles/babdevpagerfanta/css/pagerfanta.css') }}">
 ```
