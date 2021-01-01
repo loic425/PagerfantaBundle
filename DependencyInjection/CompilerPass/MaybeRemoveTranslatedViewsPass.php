@@ -26,7 +26,7 @@ final class MaybeRemoveTranslatedViewsPass implements CompilerPassInterface
     public function process(ContainerBuilder $container): void
     {
         if (false === $this->internalUse) {
-            trigger_deprecation('babdev/pagerfanta-bundle', '2.2', 'The "%s" class is deprecated and will be removed in 3.0.', MaybeRemoveTranslatedViewsPass::class);
+            trigger_deprecation('babdev/pagerfanta-bundle', '2.2', 'The "%s" class is deprecated and will be removed in 3.0.', self::class);
         }
 
         if (!$container->has('translator')) {
