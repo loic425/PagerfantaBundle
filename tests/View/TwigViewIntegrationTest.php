@@ -147,7 +147,7 @@ final class TwigViewIntegrationTest extends TestCase
     <div class="disabled item">&hellip;</div>
     <a class="item" href="/pagerfanta-view?page=10">10</a>
     <a class="item" href="/pagerfanta-view?page=2" rel="next">Next</a>
-</div>'
+</div>',
         ];
 
         yield 'Semantic UI template at page 5 with first page omitted' => [
@@ -165,7 +165,7 @@ final class TwigViewIntegrationTest extends TestCase
     <div class="disabled item">&hellip;</div>
     <a class="item" href="/pagerfanta-view?page=10">10</a>
     <a class="item" href="/pagerfanta-view?page=6" rel="next">Next</a>
-</div>'
+</div>',
         ];
 
         yield 'Twitter Bootstrap template at page 1' => [
@@ -183,7 +183,7 @@ final class TwigViewIntegrationTest extends TestCase
         <li><a href="/pagerfanta-view?page=10">10</a></li>
         <li><a href="/pagerfanta-view?page=2" rel="next">Next</a></li>
     </ul>
-</div>'
+</div>',
         ];
 
         yield 'Twitter Bootstrap template at page 5 with first page omitted' => [
@@ -203,7 +203,7 @@ final class TwigViewIntegrationTest extends TestCase
         <li><a href="/pagerfanta-view?page=10">10</a></li>
         <li><a href="/pagerfanta-view?page=6" rel="next">Next</a></li>
     </ul>
-</div>'
+</div>',
         ];
 
         yield 'Twitter Bootstrap 3 template at page 1' => [
@@ -219,7 +219,7 @@ final class TwigViewIntegrationTest extends TestCase
     <li class="disabled"><span>&hellip;</span></li>
     <li><a href="/pagerfanta-view?page=10">10</a></li>
     <li><a href="/pagerfanta-view?page=2" rel="next">Next</a></li>
-</ul>'
+</ul>',
         ];
 
         yield 'Twitter Bootstrap 3 template at page 5 with first page omitted' => [
@@ -237,7 +237,7 @@ final class TwigViewIntegrationTest extends TestCase
     <li class="disabled"><span>&hellip;</span></li>
     <li><a href="/pagerfanta-view?page=10">10</a></li>
     <li><a href="/pagerfanta-view?page=6" rel="next">Next</a></li>
-</ul>'
+</ul>',
         ];
 
         yield 'Twitter Bootstrap 4 template at page 1' => [
@@ -253,7 +253,7 @@ final class TwigViewIntegrationTest extends TestCase
     <li class="page-item disabled"><span class="page-link">&hellip;</span></li>
     <li class="page-item"><a class="page-link" href="/pagerfanta-view?page=10">10</a></li>
     <li class="page-item"><a class="page-link" href="/pagerfanta-view?page=2" rel="next">Next</a></li>
-</ul>'
+</ul>',
         ];
 
         yield 'Twitter Bootstrap 4 template at page 5 with first page omitted' => [
@@ -271,7 +271,7 @@ final class TwigViewIntegrationTest extends TestCase
     <li class="page-item disabled"><span class="page-link">&hellip;</span></li>
     <li class="page-item"><a class="page-link" href="/pagerfanta-view?page=10">10</a></li>
     <li class="page-item"><a class="page-link" href="/pagerfanta-view?page=6" rel="next">Next</a></li>
-</ul>'
+</ul>',
         ];
 
         yield 'Tailwind CSS template at page 1' => [
@@ -299,7 +299,7 @@ final class TwigViewIntegrationTest extends TestCase
             </span>
         </div>
     </div>
-</nav>'
+</nav>',
         ];
 
         yield 'Tailwind CSS template at page 5 with first page omitted' => [
@@ -327,7 +327,7 @@ final class TwigViewIntegrationTest extends TestCase
             </span>
         </div>
     </div>
-</nav>'
+</nav>',
         ];
     }
 
