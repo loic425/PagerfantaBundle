@@ -29,6 +29,7 @@ final class BabDevPagerfantaExtension extends Extension implements PrependExtens
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../../config'));
         $loader->load('pagerfanta.xml');
 
+        /** @var array<string, class-string> $bundles */
         $bundles = $container->getParameter('kernel.bundles');
 
         if (isset($bundles['TwigBundle'])) {
@@ -75,6 +76,11 @@ final class BabDevPagerfantaExtension extends Extension implements PrependExtens
         }
 
         $refl = new \ReflectionClass(PagerfantaExtension::class);
+
+        if (false === $refl->getFileName()) {
+            return;
+        }
+
         $path = \dirname($refl->getFileName(), 2).'/templates/';
 
         $container->prependExtensionConfig('twig', ['paths' => [$path => 'Pagerfanta']]);

@@ -13,6 +13,7 @@ The below table lists the view names and the corresponding class.
 | `twitter_bootstrap`  | `Pagerfanta\View\TwitterBootstrapView`  |
 | `twitter_bootstrap3` | `Pagerfanta\View\TwitterBootstrap3View` |
 | `twitter_bootstrap4` | `Pagerfanta\View\TwitterBootstrap4View` |
+| `twitter_bootstrap5` | `Pagerfanta\View\TwitterBootstrap5View` |
 
 ## Twig View
 
@@ -28,6 +29,7 @@ The below table lists the available templates and the CSS framework they corresp
 | `@BabDevPagerfanta/twitter_bootstrap.html.twig`  | [Bootstrap](https://getbootstrap.com) (version 2.x)  |
 | `@BabDevPagerfanta/twitter_bootstrap3.html.twig` | [Bootstrap](https://getbootstrap.com) (version 3.x)  |
 | `@BabDevPagerfanta/twitter_bootstrap4.html.twig` | [Bootstrap](https://getbootstrap.com) (version 4.x)  |
+| `@BabDevPagerfanta/twitter_bootstrap5.html.twig` | [Bootstrap](https://getbootstrap.com) (version 5.x)  |
 
 The labels of the "Previous" and "Next" buttons are localizable in the Twig templates.
 

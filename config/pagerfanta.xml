@@ -33,6 +33,10 @@
             <tag name="pagerfanta.view" alias="twitter_bootstrap4" />
         </service>
 
+        <service id="pagerfanta.view.twitter_bootstrap5" class="Pagerfanta\View\TwitterBootstrap5View" public="false">
+            <tag name="pagerfanta.view" alias="twitter_bootstrap5" />
+        </service>
+
         <!-- View Factory -->
         <service id="pagerfanta.view_factory" class="Pagerfanta\View\ViewFactory" public="true" />
         <service id="Pagerfanta\View\ViewFactory" alias="pagerfanta.view_factory" />
