@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.9.0 (2021-02-18)
+
+- Add support for Bootstrap 5
+
 ## 2.8.0 (2020-11-10)
 
 - Allow install on PHP 8
