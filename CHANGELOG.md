@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.10.0 (????-??-??)
+
+- Drop support for Symfony 5.1, it is no longer maintained
+
 ## 2.9.0 (2021-02-18)
 
 - Add support for Bootstrap 5
