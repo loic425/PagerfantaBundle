@@ -86,6 +86,10 @@ final class BabDevPagerfantaExtension extends Extension implements PrependExtens
             return;
         }
 
+        if (!class_exists(PagerfantaExtension::class)) {
+            return;
+        }
+
         $refl = new \ReflectionClass(PagerfantaExtension::class);
 
         if (false === $refl->getFileName()) {
