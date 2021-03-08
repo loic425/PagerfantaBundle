@@ -2,7 +2,6 @@
 
 namespace BabDev\PagerfantaBundle\DependencyInjection;
 
-use Pagerfanta\Twig\View\TwigView;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -22,7 +21,7 @@ final class Configuration implements ConfigurationInterface
         $root
             ->children()
                 ->scalarNode('default_view')->defaultValue('default')->end()
-                ->scalarNode('default_twig_template')->defaultValue(TwigView::DEFAULT_TEMPLATE)->end()
+                ->scalarNode('default_twig_template')->defaultValue('@Pagerfanta/default.html.twig')->end()
                 ->arrayNode('exceptions_strategy')
                     ->addDefaultsIfNotSet()
                     ->children()
