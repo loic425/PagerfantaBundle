@@ -37,7 +37,7 @@ final class BabDevPagerfantaExtension extends Extension implements PrependExtens
         /** @var array<string, class-string> $bundles */
         $bundles = $container->getParameter('kernel.bundles');
 
-        if (isset($bundles['TwigBundle'])) {
+        if (isset($bundles['TwigBundle']) && class_exists(PagerfantaExtension::class)) {
             $loader->load('twig.xml');
         }
 
