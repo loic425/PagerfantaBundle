@@ -52,6 +52,13 @@ final class TwigViewIntegrationTest extends TestCase
      */
     public $twig;
 
+    public static function setUpBeforeClass(): void
+    {
+        if (!class_exists(PagerfantaExtension::class)) {
+            self::markTestSkipped('Test requires Twig');
+        }
+    }
+
     protected function setUp(): void
     {
         $refl = new \ReflectionClass(PagerfantaExtension::class);

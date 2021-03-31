@@ -3,7 +3,6 @@
 namespace BabDev\PagerfantaBundle\Tests\DependencyInjection;
 
 use BabDev\PagerfantaBundle\DependencyInjection\Configuration;
-use Pagerfanta\Twig\View\TwigView;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Config\Definition\Processor;
 
@@ -65,7 +64,7 @@ final class ConfigurationTest extends TestCase
     {
         return [
             'default_view' => 'default',
-            'default_twig_template' => TwigView::DEFAULT_TEMPLATE,
+            'default_twig_template' => '@Pagerfanta/default.html.twig',
             'exceptions_strategy' => [
                 'out_of_range_page' => Configuration::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND,
                 'not_valid_current_page' => Configuration::EXCEPTION_STRATEGY_TO_HTTP_NOT_FOUND,

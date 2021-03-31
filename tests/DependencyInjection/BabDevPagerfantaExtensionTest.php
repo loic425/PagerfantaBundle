@@ -66,6 +66,10 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
 
     public function testContainerIsLoadedWithDefaultConfigurationWhenTwigBundleIsInstalled(): void
     {
+        if (!class_exists(PagerfantaExtension::class)) {
+            $this->markTestSkipped('Test requires Twig');
+        }
+
         $this->container->registerExtension(new TwigExtension());
 
         $this->container->setParameter(
