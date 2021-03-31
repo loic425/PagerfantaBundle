@@ -27,11 +27,11 @@ jobs:
             with-twig: true
           - php: 8.0
             symfony: 5.*@dev
-            composer-flags: '--prefer-stable'
+            composer-flags: ''
             can-fail: true
             with-twig: true
 
-    name: "PHP ${{ matrix.php }}${{ matrix.with-twig == false && ' - Without Twig' || '' }} - Symfony ${{ matrix.symfony }} - Composer ${{ matrix.composer-flags }}"
+    name: "PHP ${{ matrix.php }}${{ matrix.with-twig == false && ' - Without Twig' || '' }} - Symfony ${{ matrix.symfony }}${{ matrix.composer-flags != '' && format(' - Composer {0}', matrix.composer-flags) || '' }}"
 
     steps:
       - name: Checkout code
