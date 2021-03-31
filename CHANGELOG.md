@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.10.0 (????-??-??)
+## 2.10.0 (2021-03-31)
 
 - Drop support for Symfony 5.1, it is no longer maintained
 - Fix errors caused by optional Twig dependency not being installed
