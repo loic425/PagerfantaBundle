@@ -42,6 +42,6 @@ final class PagerfantaNormalizer implements NormalizerInterface, CacheableSuppor
 
     public function hasCacheableSupportsMethod(): bool
     {
-        return __CLASS__ === static::class;
+        return true;
     }
 }
