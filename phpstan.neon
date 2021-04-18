@@ -7,6 +7,11 @@ parameters:
     # Untyped parameter for Twig version compatibility
     - '/Method class@anonymous\/tests\/View\/TwigViewIntegrationTest.php:380::load\(\) has parameter \$class with no typehint specified\./'
 
+    # Tests error handling for untyped argument
+    -
+      message: '/Parameter #2 \$propertyAccessor of class BabDev\\PagerfantaBundle\\RouteGenerator\\RouterAwareRouteGenerator constructor expects array\|Symfony\\Component\\PropertyAccess\\PropertyAccessorInterface\|null, stdClass given\./'
+      path: %currentWorkingDirectory%/tests/RouteGenerator/RouterAwareRouteGeneratorTest.php
+
     # Ignore unchecked error returns
     -
       message: '/Parameter #1 \$path of function dirname expects string, string\|false given\./'

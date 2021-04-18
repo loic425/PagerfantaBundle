@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.1.0 (????-??-??)
+
+- Inject the `property_accessor` service into the route generator factory and route generator when available
+- Deprecate not passing a property accessor into the route generator factory and route generator
+
 ## 3.0.2 (2021-03-31)
 
 - Fix more errors caused by optional Twig dependency not being installed

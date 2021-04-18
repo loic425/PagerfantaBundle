@@ -8,12 +8,13 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 final class RequestAwareRouteGeneratorFactoryTest extends TestCase
 {
     /**
-     * @var MockObject|UrlGeneratorInterface
+     * @var MockObject&UrlGeneratorInterface
      */
     private $router;
 
@@ -23,19 +24,15 @@ final class RequestAwareRouteGeneratorFactoryTest extends TestCase
     private $requestStack;
 
     /**
-     * @var RequestAwareRouteGeneratorFactory
+     * @var MockObject&PropertyAccessorInterface
      */
-    private $factory;
+    private $propertyAccessor;
 
     protected function setUp(): void
     {
         $this->router = $this->createMock(UrlGeneratorInterface::class);
         $this->requestStack = new RequestStack();
-
-        $this->factory = new RequestAwareRouteGeneratorFactory(
-            $this->router,
-            $this->requestStack
-        );
+        $this->propertyAccessor = $this->createMock(PropertyAccessorInterface::class);
     }
 
     protected function tearDown(): void
@@ -55,7 +52,7 @@ final class RequestAwareRouteGeneratorFactoryTest extends TestCase
 
         $this->assertInstanceOf(
             RouteGeneratorInterface::class,
-            $this->factory->create()
+            $this->createFactory(true)->create()
         );
     }
 
@@ -72,7 +69,7 @@ final class RequestAwareRouteGeneratorFactoryTest extends TestCase
 
         $this->assertInstanceOf(
             RouteGeneratorInterface::class,
-            $this->factory->create(['routeName' => 'pagerfanta_view'])
+            $this->createFactory(true)->create(['routeName' => 'pagerfanta_view'])
         );
     }
 
@@ -90,6 +87,15 @@ final class RequestAwareRouteGeneratorFactoryTest extends TestCase
         $this->requestStack->push($masterRequest);
         $this->requestStack->push($subRequest);
 
-        $this->factory->create();
+        $this->createFactory(false)->create();
+    }
+
+    private function createFactory(bool $withPropertyAccessor): RequestAwareRouteGeneratorFactory
+    {
+        return new RequestAwareRouteGeneratorFactory(
+            $this->router,
+            $this->requestStack,
+            $withPropertyAccessor ? $this->propertyAccessor : null
+        );
     }
 }

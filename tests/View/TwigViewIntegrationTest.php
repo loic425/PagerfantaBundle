@@ -14,6 +14,8 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Bridge\Twig\Extension\TranslationExtension;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\PropertyAccess\PropertyAccess;
+use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 use Symfony\Component\Routing\Generator\UrlGenerator;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RequestContext;
@@ -48,6 +50,11 @@ final class TwigViewIntegrationTest extends TestCase
     public $requestStack;
 
     /**
+     * @var PropertyAccessorInterface
+     */
+    public $propertyAccessor;
+
+    /**
      * @var Environment
      */
     public $twig;
@@ -75,6 +82,7 @@ final class TwigViewIntegrationTest extends TestCase
 
         $this->router = $this->createRouter();
         $this->requestStack = new RequestStack();
+        $this->propertyAccessor = PropertyAccess::createPropertyAccessor();
     }
 
     protected function tearDown(): void
@@ -369,7 +377,7 @@ final class TwigViewIntegrationTest extends TestCase
         $this->assertNotEmpty(
             (new TwigView($this->twig))->render(
                 $this->createPagerfanta(),
-                (new RequestAwareRouteGeneratorFactory($this->router, $this->requestStack))->create()
+                (new RequestAwareRouteGeneratorFactory($this->router, $this->requestStack, $this->propertyAccessor))->create()
             )
         );
     }
@@ -409,7 +417,8 @@ final class TwigViewIntegrationTest extends TestCase
 
                         $routeGeneratorFactory = new RequestAwareRouteGeneratorFactory(
                             $this->testCase->router,
-                            $this->testCase->requestStack
+                            $this->testCase->requestStack,
+                            $this->testCase->propertyAccessor
                         );
 
                         return new PagerfantaRuntime(

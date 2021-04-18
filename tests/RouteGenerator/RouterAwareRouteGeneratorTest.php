@@ -5,6 +5,8 @@ namespace BabDev\PagerfantaBundle\Tests\RouteGenerator;
 use BabDev\PagerfantaBundle\RouteGenerator\RouterAwareRouteGenerator;
 use Pagerfanta\Exception\InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\PropertyAccess\PropertyAccess;
+use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 use Symfony\Component\Routing\Generator\UrlGenerator;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RequestContext;
@@ -21,6 +23,22 @@ final class RouterAwareRouteGeneratorTest extends TestCase
         return new UrlGenerator($routeCollection, new RequestContext());
     }
 
+    private function createPropertyAccessor(): PropertyAccessorInterface
+    {
+        return PropertyAccess::createPropertyAccessor();
+    }
+
+    public function testTheConstructorRejectsInvalidTypesForThePropertyAccessorArgument(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        new RouterAwareRouteGenerator(
+            $this->createRouter(),
+            new \stdClass(),
+            ['routeParams' => ['hello' => 'world']]
+        );
+    }
+
     public function testARouteIsGeneratedWithEmptyOptions(): void
     {
         $generator = new RouterAwareRouteGenerator($this->createRouter(), ['routeName' => 'pagerfanta_view']);
@@ -32,6 +50,7 @@ final class RouterAwareRouteGeneratorTest extends TestCase
     {
         $generator = new RouterAwareRouteGenerator(
             $this->createRouter(),
+            $this->createPropertyAccessor(),
             ['routeName' => 'pagerfanta_view', 'omitFirstPage' => true]
         );
 
@@ -52,6 +71,7 @@ final class RouterAwareRouteGeneratorTest extends TestCase
     {
         $generator = new RouterAwareRouteGenerator(
             $this->createRouter(),
+            $this->createPropertyAccessor(),
             ['routeName' => 'pagerfanta_view', 'routeParams' => ['hello' => 'world']]
         );
 
@@ -74,6 +94,7 @@ final class RouterAwareRouteGeneratorTest extends TestCase
 
         $generator = new RouterAwareRouteGenerator(
             $this->createRouter(),
+            $this->createPropertyAccessor(),
             ['routeParams' => ['hello' => 'world']]
         );
 

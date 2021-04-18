@@ -9,6 +9,7 @@
         <service id="pagerfanta.route_generator_factory" class="BabDev\PagerfantaBundle\RouteGenerator\RequestAwareRouteGeneratorFactory" public="true">
             <argument type="service" id="router" />
             <argument type="service" id="request_stack" />
+            <argument type="service" id="property_accessor" on-invalid="ignore" />
         </service>
         <service id="Pagerfanta\RouteGenerator\RouteGeneratorFactoryInterface" alias="pagerfanta.route_generator_factory" />
 
