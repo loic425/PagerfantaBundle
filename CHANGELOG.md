@@ -1,6 +1,6 @@
 # Changelog
 
-## 3.1.0 (????-??-??)
+## 3.1.0 (2021-04-25)
 
 - Inject the `property_accessor` service into the route generator factory and route generator when available
 - Deprecate not passing a property accessor into the route generator factory and route generator
