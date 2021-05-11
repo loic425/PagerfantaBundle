@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.2.0 (2021-05-11)
+
+- Add support for the Foundation 6 templates added to the `pagerfanta/core` and `pagerfanta/twig` packages
+
 ## 3.1.0 (2021-04-25)
 
 - Inject the `property_accessor` service into the route generator factory and route generator when available
