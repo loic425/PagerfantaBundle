@@ -18,6 +18,10 @@
             <tag name="pagerfanta.view" alias="default" />
         </service>
 
+        <service id="pagerfanta.view.foundation6" class="Pagerfanta\View\Foundation6View" public="false">
+            <tag name="pagerfanta.view" alias="foundation6" />
+        </service>
+
         <service id="pagerfanta.view.semantic_ui" class="Pagerfanta\View\SemanticUiView" public="false">
             <tag name="pagerfanta.view" alias="semantic_ui" />
         </service>
