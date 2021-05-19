@@ -10,7 +10,7 @@ jobs:
       fail-fast: true
       matrix:
         php: [7.4, 8.0]
-        symfony: [4.4.*, 5.2.*, 5.3.*@beta]
+        symfony: [4.4.*, 5.2.*, 5.3.*@rc]
         composer-flags: ['--prefer-stable']
         can-fail: [false]
         with-twig: [true]
@@ -26,7 +26,7 @@ jobs:
             can-fail: false
             with-twig: true
           - php: 8.0
-            symfony: 5.*@dev
+            symfony: 5.4.*@dev
             composer-flags: ''
             can-fail: true
             with-twig: true
