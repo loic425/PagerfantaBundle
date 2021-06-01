@@ -16,7 +16,7 @@ jobs:
         with-twig: [true]
         include:
           - php: 8.0
-            symfony: 5.2.*
+            symfony: 5.3.*
             composer-flags: '--prefer-stable'
             can-fail: false
             with-twig: false
