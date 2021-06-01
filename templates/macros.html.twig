@@ -2,7 +2,7 @@
     {%- if options['prev_message'] is defined -%}
         {{- options['prev_message'] -}}
     {%- else -%}
-        {{- 'previous'|trans([], 'pagerfanta') -}}
+        {{- 'Previous'|trans([], 'pagerfanta') -}}
     {%- endif -%}
 {%- endmacro -%}
 
@@ -10,6 +10,6 @@
     {%- if options['next_message'] is defined -%}
         {{- options['next_message'] -}}
     {%- else -%}
-        {{- 'next'|trans([], 'pagerfanta') -}}
+        {{- 'Next'|trans([], 'pagerfanta') -}}
     {%- endif -%}
 {%- endmacro -%}
