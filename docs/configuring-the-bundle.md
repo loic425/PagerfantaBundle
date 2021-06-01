@@ -5,8 +5,7 @@
 The default view for your application can be set with the `default_view` configuration node. This defaults to "default".
 
 ```yaml
-# app/config/config.yml for Symfony Standard applications
-# config/packages/babdev_pagerfanta.yaml for Symfony Flex applications
+# config/packages/babdev_pagerfanta.yaml
 babdev_pagerfanta:
     default_view: my_view
 ```
@@ -16,8 +15,7 @@ babdev_pagerfanta:
 The default Twig template for Twig views in your application can be set with the `default_twig_template` configuration node. This defaults to "`@BabDevPagerfanta/default.html.twig`".
 
 ```yaml
-# app/config/config.yml for Symfony Standard applications
-# config/packages/babdev_pagerfanta.yaml for Symfony Flex applications
+# config/packages/babdev_pagerfanta.yaml
 babdev_pagerfanta:
     default_view: twig
     default_twig_template: '@App/Pagerfanta/default.html.twig'
@@ -28,8 +26,7 @@ babdev_pagerfanta:
 By default, the bundle converts `Pagerfanta\Exception\NotValidCurrentPageException` and `Pagerfanta\Exception\NotValidMaxPerPageException` exceptions into 404 responses. If you would like to disable or change this behavior, you can change the strategies using the `exceptions_strategy` node by setting the value to "custom" for each behavior you want to change.
 
 ```yaml
-# app/config/config.yml for Symfony Standard applications
-# config/packages/babdev_pagerfanta.yaml for Symfony Flex applications
+# config/packages/babdev_pagerfanta.yaml
 babdev_pagerfanta:
     exceptions_strategy:
         out_of_range_page: custom # Disables converting `Pagerfanta\Exception\NotValidMaxPerPageException` to a 404 response
