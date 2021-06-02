@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
-  <file source-language="en" target-language="it" datatype="plaintext" original="file.ext">
+  <file source-language="en" datatype="plaintext" original="file.ext" target-language="it">
     <body>
       <trans-unit id="1">
-        <source>previous</source>
-        <target state="needs-translation">previous</target>
+        <source>Previous</source>
+        <target state="needs-translation">Previous</target>
       </trans-unit>
       <trans-unit id="2">
-        <source>next</source>
-        <target state="needs-translation">next</target>
+        <source>Next</source>
+        <target state="needs-translation">Next</target>
       </trans-unit>
     </body>
   </file>
