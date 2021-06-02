@@ -1,3 +1,0 @@
-files:
-  - source: /translations/pagerfanta.en.xliff
-    translation: /translations/pagerfanta.%locale_with_underscore%.xliff
