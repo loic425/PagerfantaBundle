@@ -37,7 +37,7 @@ final class BlogController extends AbstractController
 }
 ```
 
-You then call the `pagerfanta` function in your Twig template, passing in the Pagerfanta instance. The routes are generated automatically for the current route using the variable "page" to propagate the page number. By default, the bundle uses the `Pagerfanta\View\DefaultView` class to render the pager.
+You then call the `pagerfanta` function in your Twig template, passing in the `Pagerfanta\Pagerfanta` instance. The routes are generated automatically for the current route using the variable "page" to propagate the page number. By default, the bundle uses the `Pagerfanta\View\DefaultView` class to render the pager.
 
 ```twig
 {{ pagerfanta(pager) }}

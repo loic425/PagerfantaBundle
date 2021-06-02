@@ -2,7 +2,7 @@
 
 ## Default Views
 
-All of the views provided in the `pagerfanta/pagerfanta` are available by default for use with this bundle.
+All of the views provided in the `pagerfanta/core` package are available by default for use with this bundle.
 
 The below table lists the view names and the corresponding class. 
 

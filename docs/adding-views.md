@@ -4,6 +4,31 @@ Views are added to the service container with the `pagerfanta.view` tag. You can
 
 <div class="docs-note">It is recommended that view services are <strong>NOT</strong> public services, the <code>ViewFactoryInterface</code> should be used to <a href="/open-source/packages/pagerfantabundle/docs/3.x/retrieving-views">retrieve views</a>.</div>
 
+## PHP Configuration
+
+```php
+<?php
+
+namespace Symfony\Component\DependencyInjection\Loader\Configurator;
+
+use Pagerfanta\View\DefaultView;
+use Pagerfanta\View\SemanticUiView;
+
+return static function (ContainerConfigurator $container): void {
+    $container->services()
+        // Use in Twig by calling {{ pagerfanta(pager, 'default') }}
+        ->set('pagerfanta.view.default', DefaultView::class)
+            ->private()
+            ->tag('pagerfanta.view', ['alias' => 'default'])
+
+        // Use in Twig by calling {{ pagerfanta(pager, 'pagerfanta.view.semantic_ui') }}
+        ->set('pagerfanta.view.semantic_ui', SemanticUiView::class)
+            ->private()
+            ->tag('pagerfanta.view')
+    ;
+};
+```
+
 ## XML Configuration
 
 ```xml
