@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.2.1 (2021-06-09)
+
+- [#36](https://github.com/BabDev/PagerfantaBundle/pull/36) Items not correctly serialized when using `symfony/serializer` (Fixes [#35](https://github.com/BabDev/PagerfantaBundle/issues/35))
+
 ## 3.2.0 (2021-05-11)
 
 - Add support for the Foundation 6 templates added to the `pagerfanta/core` and `pagerfanta/twig` packages
