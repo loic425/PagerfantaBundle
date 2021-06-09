@@ -5,10 +5,14 @@ namespace BabDev\PagerfantaBundle\Serializer\Normalizer;
 use Pagerfanta\PagerfantaInterface;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Normalizer\CacheableSupportsMethodInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
-final class PagerfantaNormalizer implements NormalizerInterface, CacheableSupportsMethodInterface
+final class PagerfantaNormalizer implements NormalizerInterface, CacheableSupportsMethodInterface, NormalizerAwareInterface
 {
+    use NormalizerAwareTrait;
+
     /**
      * @param mixed $object Object to normalize
      *
@@ -23,7 +27,7 @@ final class PagerfantaNormalizer implements NormalizerInterface, CacheableSuppor
         }
 
         return [
-            'items' => iterator_to_array($object),
+            'items' => $this->normalizer->normalize($object->getIterator(), $format, $context),
             'pagination' => [
                 'current_page' => $object->getCurrentPage(),
                 'has_previous_page' => $object->hasPreviousPage(),

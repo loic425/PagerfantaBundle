@@ -8,7 +8,6 @@ use Pagerfanta\Adapter\NullAdapter;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\PagerfantaInterface;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Serializer;
 
@@ -31,11 +30,9 @@ final class PagerfantaNormalizerTest extends TestCase
                 'total_pages' => $pager->getNbPages(),
             ],
         ];
+        $serializer = new Serializer([new PagerfantaNormalizer()]);
 
-        self::assertEquals(
-            $expectedResultArray,
-            (new PagerfantaNormalizer())->normalize($pager)
-        );
+        self::assertEquals($expectedResultArray, $serializer->normalize($pager));
     }
 
     public function testNormalizeOnlyAcceptsPagerfantaInstances(): void
@@ -67,7 +64,7 @@ final class PagerfantaNormalizerTest extends TestCase
 
     public function testIteSerializesIterableData(): void
     {
-        $serializer = new Serializer([new PagerfantaNormalizer()], [new JsonEncoder()]);
+        $serializer = new Serializer([new PagerfantaNormalizer()]);
         $items = ['1', '2', '3', '4', '5'];
         $pager = new Pagerfanta(new FixedAdapter(5, new \ArrayIterator($items)));
 
@@ -83,6 +80,6 @@ final class PagerfantaNormalizerTest extends TestCase
             ],
         ];
 
-        self::assertSame($expectedResultArray, json_decode($serializer->serialize($pager, 'json'), true));
+        self::assertSame($expectedResultArray, $serializer->normalize($pager));
     }
 }
