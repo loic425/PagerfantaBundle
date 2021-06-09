@@ -3,11 +3,13 @@
 namespace BabDev\PagerfantaBundle\Tests\Serializer\Normalizer;
 
 use BabDev\PagerfantaBundle\Serializer\Normalizer\PagerfantaNormalizer;
+use Pagerfanta\Adapter\FixedAdapter;
 use Pagerfanta\Adapter\NullAdapter;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\PagerfantaInterface;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
+use Symfony\Component\Serializer\Serializer;
 
 final class PagerfantaNormalizerTest extends TestCase
 {
@@ -28,11 +30,9 @@ final class PagerfantaNormalizerTest extends TestCase
                 'total_pages' => $pager->getNbPages(),
             ],
         ];
+        $serializer = new Serializer([new PagerfantaNormalizer()]);
 
-        $this->assertEquals(
-            $expectedResultArray,
-            (new PagerfantaNormalizer())->normalize($pager)
-        );
+        self::assertEquals($expectedResultArray, $serializer->normalize($pager));
     }
 
     public function testNormalizeOnlyAcceptsPagerfantaInstances(): void
@@ -50,17 +50,36 @@ final class PagerfantaNormalizerTest extends TestCase
     }
 
     /**
-     * @param mixed $data
-     *
      * @dataProvider dataSupportsNormalization
      */
     public function testSupportsNormalization($data, bool $supported): void
     {
-        $this->assertSame($supported, (new PagerfantaNormalizer())->supportsNormalization($data));
+        self::assertSame($supported, (new PagerfantaNormalizer())->supportsNormalization($data));
     }
 
     public function testHasCacheableSupportsMethod(): void
     {
-        $this->assertTrue((new PagerfantaNormalizer())->hasCacheableSupportsMethod());
+        self::assertTrue((new PagerfantaNormalizer())->hasCacheableSupportsMethod());
+    }
+
+    public function testIteSerializesIterableData(): void
+    {
+        $serializer = new Serializer([new PagerfantaNormalizer()]);
+        $items = ['1', '2', '3', '4', '5'];
+        $pager = new Pagerfanta(new FixedAdapter(5, new \ArrayIterator($items)));
+
+        $expectedResultArray = [
+            'items' => $items,
+            'pagination' => [
+                'current_page' => $pager->getCurrentPage(),
+                'has_previous_page' => $pager->hasPreviousPage(),
+                'has_next_page' => $pager->hasNextPage(),
+                'per_page' => $pager->getMaxPerPage(),
+                'total_items' => $pager->getNbResults(),
+                'total_pages' => $pager->getNbPages(),
+            ],
+        ];
+
+        self::assertSame($expectedResultArray, $serializer->normalize($pager));
     }
 }

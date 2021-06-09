@@ -50,7 +50,7 @@ final class RequestAwareRouteGeneratorFactoryTest extends TestCase
 
         $this->requestStack->push($request);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             RouteGeneratorInterface::class,
             $this->createFactory(true)->create()
         );
@@ -67,7 +67,7 @@ final class RequestAwareRouteGeneratorFactoryTest extends TestCase
         $this->requestStack->push($masterRequest);
         $this->requestStack->push($subRequest);
 
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             RouteGeneratorInterface::class,
             $this->createFactory(true)->create(['routeName' => 'pagerfanta_view'])
         );

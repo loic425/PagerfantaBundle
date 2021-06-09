@@ -43,7 +43,7 @@ final class RouterAwareRouteGeneratorTest extends TestCase
     {
         $generator = new RouterAwareRouteGenerator($this->createRouter(), ['routeName' => 'pagerfanta_view']);
 
-        $this->assertSame('/pagerfanta-view?page=1', $generator(1));
+        self::assertSame('/pagerfanta-view?page=1', $generator(1));
     }
 
     public function testARouteIsGeneratedWithFirstPageOmitted(): void
@@ -54,7 +54,7 @@ final class RouterAwareRouteGeneratorTest extends TestCase
             ['routeName' => 'pagerfanta_view', 'omitFirstPage' => true]
         );
 
-        $this->assertSame('/pagerfanta-view', $generator(1));
+        self::assertSame('/pagerfanta-view', $generator(1));
     }
 
     public function testARouteIsGeneratedWithACustomPageParameter(): void
@@ -64,7 +64,7 @@ final class RouterAwareRouteGeneratorTest extends TestCase
             ['routeName' => 'pagerfanta_view', 'pageParameter' => '[custom_page]']
         );
 
-        $this->assertSame('/pagerfanta-view?custom_page=1', $generator(1));
+        self::assertSame('/pagerfanta-view?custom_page=1', $generator(1));
     }
 
     public function testARouteIsGeneratedWithAdditionalParameters(): void
@@ -75,7 +75,7 @@ final class RouterAwareRouteGeneratorTest extends TestCase
             ['routeName' => 'pagerfanta_view', 'routeParams' => ['hello' => 'world']]
         );
 
-        $this->assertSame('/pagerfanta-view?hello=world&page=1', $generator(1));
+        self::assertSame('/pagerfanta-view?hello=world&page=1', $generator(1));
     }
 
     public function testARouteIsGeneratedWithAnAbsoluteUrl(): void
@@ -85,7 +85,7 @@ final class RouterAwareRouteGeneratorTest extends TestCase
             ['routeName' => 'pagerfanta_view', 'referenceType' => UrlGeneratorInterface::ABSOLUTE_URL]
         );
 
-        $this->assertSame('http://localhost/pagerfanta-view?page=1', $generator(1));
+        self::assertSame('http://localhost/pagerfanta-view?page=1', $generator(1));
     }
 
     public function testARouteIsNotGeneratedWhenTheRouteNameParameterIsMissing(): void

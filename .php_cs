@@ -4,7 +4,7 @@ return PhpCsFixer\Config::create()
     ->setRules([
         '@Symfony' => true,
         '@Symfony:risky' => true,
-        '@PHPUnit75Migration:risky' => true,
+        '@PHPUnit84Migration:risky' => true,
         'array_syntax' => ['syntax' => 'short'],
         'blank_line_after_opening_tag' => false,
         'declare_strict_types' => true,
@@ -12,6 +12,7 @@ return PhpCsFixer\Config::create()
         'linebreak_after_opening_tag' => false,
         'no_superfluous_phpdoc_tags' => ['remove_inheritdoc' => true],
         'ordered_imports' => true,
+        'php_unit_test_case_static_method_calls' => ['call_type' => 'self'],
         'protected_to_private' => true,
         'void_return' => true,
     ])

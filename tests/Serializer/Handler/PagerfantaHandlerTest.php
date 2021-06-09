@@ -35,12 +35,12 @@ final class PagerfantaHandlerTest extends TestCase
 
         /** @var SerializationVisitorInterface&MockObject $visitor */
         $visitor = $this->createMock(SerializationVisitorInterface::class);
-        $visitor->expects($this->once())
+        $visitor->expects(self::once())
             ->method('visitArray')
-            ->with($this->isType('array'), [])
+            ->with(self::isType('array'), [])
             ->willReturn($expectedResultArray);
 
-        $this->assertEquals(
+        self::assertEquals(
             $expectedResultArray,
             (new PagerfantaHandler())->serializeToJson($visitor, $pager, [], $context)
         );
