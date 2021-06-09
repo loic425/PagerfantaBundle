@@ -30,6 +30,7 @@ final class PagerfantaNormalizerTest extends TestCase
                 'total_pages' => $pager->getNbPages(),
             ],
         ];
+
         $serializer = new Serializer([new PagerfantaNormalizer()]);
 
         self::assertEquals($expectedResultArray, $serializer->normalize($pager));
@@ -62,7 +63,7 @@ final class PagerfantaNormalizerTest extends TestCase
         self::assertTrue((new PagerfantaNormalizer())->hasCacheableSupportsMethod());
     }
 
-    public function testIteSerializesIterableData(): void
+    public function testItSerializesIterableData(): void
     {
         $serializer = new Serializer([new PagerfantaNormalizer()]);
         $items = ['1', '2', '3', '4', '5'];
