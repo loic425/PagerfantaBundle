@@ -412,7 +412,7 @@ final class TwigViewIntegrationTest extends TestCase
 
         $this->requestStack->push($request);
 
-        $this->assertNotEmpty(
+        self::assertNotEmpty(
             (new TwigView($this->twig))->render(
                 $this->createPagerfanta(),
                 (new RequestAwareRouteGeneratorFactory($this->router, $this->requestStack, $this->propertyAccessor))->create()
@@ -483,7 +483,7 @@ final class TwigViewIntegrationTest extends TestCase
 
     private function assertViewOutputMatches(string $view, string $expected): void
     {
-        $this->assertSame($this->removeWhitespacesBetweenTags($expected), $view);
+        self::assertSame($this->removeWhitespacesBetweenTags($expected), $view);
     }
 
     private function removeWhitespacesBetweenTags(string $string): string

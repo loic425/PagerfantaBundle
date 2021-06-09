@@ -23,7 +23,7 @@ final class PagerfantaNormalizer implements NormalizerInterface, CacheableSuppor
         }
 
         return [
-            'items' => $object->getCurrentPageResults(),
+            'items' => iterator_to_array($object),
             'pagination' => [
                 'current_page' => $object->getCurrentPage(),
                 'has_previous_page' => $object->hasPreviousPage(),

@@ -67,7 +67,7 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
     public function testContainerIsLoadedWithDefaultConfigurationWhenTwigBundleIsInstalled(): void
     {
         if (!class_exists(PagerfantaExtension::class)) {
-            $this->markTestSkipped('Test requires Twig');
+            self::markTestSkipped('Test requires Twig');
         }
 
         $this->container->registerExtension(new TwigExtension());
@@ -141,12 +141,12 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
         $refl = new \ReflectionClass(PagerfantaExtension::class);
 
         if (false === $refl->getFileName()) {
-            $this->fail(sprintf('Could not reflect "%s"', PagerfantaExtension::class));
+            self::fail(sprintf('Could not reflect "%s"', PagerfantaExtension::class));
         }
 
         $path = \dirname($refl->getFileName(), 2).'/templates/';
 
-        $this->assertArrayHasKey($path, $twigConfig[0]['paths']);
+        self::assertArrayHasKey($path, $twigConfig[0]['paths']);
 
         $this->assertContainerBuilderHasService('pagerfanta.serializer.normalizer');
     }

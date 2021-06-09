@@ -32,7 +32,7 @@ final class PagerfantaNormalizerTest extends TestCase
             ],
         ];
 
-        $this->assertEquals(
+        self::assertEquals(
             $expectedResultArray,
             (new PagerfantaNormalizer())->normalize($pager)
         );
@@ -53,34 +53,26 @@ final class PagerfantaNormalizerTest extends TestCase
     }
 
     /**
-     * @param mixed $data
-     *
      * @dataProvider dataSupportsNormalization
      */
     public function testSupportsNormalization($data, bool $supported): void
     {
-        $this->assertSame($supported, (new PagerfantaNormalizer())->supportsNormalization($data));
+        self::assertSame($supported, (new PagerfantaNormalizer())->supportsNormalization($data));
     }
 
     public function testHasCacheableSupportsMethod(): void
     {
-        $this->assertTrue((new PagerfantaNormalizer())->hasCacheableSupportsMethod());
+        self::assertTrue((new PagerfantaNormalizer())->hasCacheableSupportsMethod());
     }
 
     public function testIteSerializesIterableData(): void
     {
         $serializer = new Serializer([new PagerfantaNormalizer()], [new JsonEncoder()]);
-        $generator = static function (): iterable {
-            yield '1';
-            yield '2';
-            yield '3';
-            yield '4';
-            yield '5';
-        };
-        $pager = new Pagerfanta(new FixedAdapter(5, $generator()));
+        $items = ['1', '2', '3', '4', '5'];
+        $pager = new Pagerfanta(new FixedAdapter(5, new \ArrayIterator($items)));
 
         $expectedResultArray = [
-            'items' => iterator_to_array($pager->getCurrentPageResults()),
+            'items' => $items,
             'pagination' => [
                 'current_page' => $pager->getCurrentPage(),
                 'has_previous_page' => $pager->hasPreviousPage(),
@@ -91,6 +83,6 @@ final class PagerfantaNormalizerTest extends TestCase
             ],
         ];
 
-        self::assertSame($expectedResultArray, \json_decode($serializer->serialize($pager, 'json'), true));
+        self::assertSame($expectedResultArray, json_decode($serializer->serialize($pager, 'json'), true));
     }
 }
