@@ -1,7 +1,7 @@
 {%- extends '@Pagerfanta/default.html.twig' -%}
 
 {%- block previous_page_message -%}
-    {%- if options['prev_message'] is defined -%}
+    {%- if options['prev_message'] is empty -%}
         {{- options['prev_message'] -}}
     {%- else -%}
         {{- 'previous'|trans([], 'pagerfanta') -}}
