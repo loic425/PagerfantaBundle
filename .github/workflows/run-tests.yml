@@ -30,6 +30,11 @@ jobs:
             composer-flags: ''
             can-fail: true
             with-twig: true
+          - php: 8.0
+            symfony: 6.0.*@dev
+            composer-flags: ''
+            can-fail: true
+            with-twig: true
           - php: 8.1
             symfony: 5.3.*
             composer-flags: '--ignore-platform-req=php'
