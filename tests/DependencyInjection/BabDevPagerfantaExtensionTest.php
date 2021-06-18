@@ -64,6 +64,9 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
         $this->assertContainerBuilderHasService('pagerfanta.serializer.normalizer');
     }
 
+    /**
+     * @group legacy
+     */
     public function testContainerIsLoadedWithDefaultConfigurationWhenTwigBundleIsInstalled(): void
     {
         if (!class_exists(PagerfantaExtension::class)) {
@@ -190,6 +193,9 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
         $this->assertContainerBuilderHasService('pagerfanta.serializer.normalizer');
     }
 
+    /**
+     * @group legacy
+     */
     public function testContainerIsLoadedWhenBundleIsConfiguredWithCustomExceptionStrategies(): void
     {
         $this->container->setParameter(
