@@ -12,6 +12,9 @@ use PHPUnit\Framework\TestCase;
 
 final class PagerfantaHandlerTest extends TestCase
 {
+    /**
+     * @group legacy
+     */
     public function testSerializeToJson(): void
     {
         $pager = new Pagerfanta(
