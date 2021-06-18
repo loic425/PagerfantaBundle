@@ -2,6 +2,7 @@
 
 namespace BabDev\PagerfantaBundle\RouteGenerator;
 
+use Pagerfanta\Exception\RuntimeException;
 use Pagerfanta\RouteGenerator\RouteGeneratorFactoryInterface;
 use Pagerfanta\RouteGenerator\RouteGeneratorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,7 +43,7 @@ final class RequestAwareRouteGeneratorFactory implements RouteGeneratorFactoryIn
             $request = $this->getRequest();
 
             if (null !== $this->requestStack->getParentRequest()) {
-                throw new \RuntimeException('The request aware route generator can not guess the route when used in a sub-request, pass the "routeName" option to use this generator.');
+                throw new RuntimeException('The request aware route generator can not guess the route when used in a sub-request, pass the "routeName" option to use this generator.');
             }
 
             $options['routeName'] = $request->attributes->get('_route');
