@@ -12,6 +12,9 @@ use Twig\Environment;
 use Twig\Template;
 use Twig\TemplateWrapper;
 
+/**
+ * @group legacy
+ */
 final class TwigViewTest extends TestCase
 {
     /**

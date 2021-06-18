@@ -25,6 +25,7 @@
         "phpstan/phpstan-phpunit": "^0.12.19",
         "phpstan/phpstan-symfony": "^0.12.35",
         "phpunit/phpunit": "^8.5 || ^9.3",
+        "symfony/phpunit-bridge": "^4.4 || ^5.3",
         "symfony/serializer": "^3.4 || ^4.4 || ^5.2",
         "symfony/twig-bridge": "^3.4 || ^4.4 || ^5.2",
         "symfony/twig-bundle": "^3.4 || ^4.4 || ^5.2",

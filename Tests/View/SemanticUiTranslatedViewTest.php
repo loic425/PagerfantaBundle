@@ -5,6 +5,9 @@ namespace BabDev\PagerfantaBundle\Tests\View;
 use BabDev\PagerfantaBundle\View\SemanticUiTranslatedView;
 use Pagerfanta\View\SemanticUiView;
 
+/**
+ * @group legacy
+ */
 final class SemanticUiTranslatedViewTest extends TranslatedViewTestCase
 {
     protected function decoratedViewClass(): string

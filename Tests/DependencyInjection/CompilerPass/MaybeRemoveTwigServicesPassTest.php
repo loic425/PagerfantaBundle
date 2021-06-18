@@ -10,6 +10,9 @@ use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractCompilerPassTestCase
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Twig\Environment;
 
+/**
+ * @group legacy
+ */
 final class MaybeRemoveTwigServicesPassTest extends AbstractCompilerPassTestCase
 {
     public function testTheTwigServicesAreRemovedWhenTwigIsNotRegistered(): void

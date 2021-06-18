@@ -12,6 +12,9 @@ use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
+/**
+ * @group legacy
+ */
 final class ConvertNotValidCurrentPageToNotFoundListenerTest extends TestCase
 {
     public function testListenerConvertsExceptionForLegacyEvent(): void

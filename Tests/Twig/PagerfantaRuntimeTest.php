@@ -17,6 +17,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
+/**
+ * @group legacy
+ */
 final class PagerfantaRuntimeTest extends TestCase
 {
     /**

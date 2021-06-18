@@ -12,6 +12,9 @@ use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractCompilerPassTestCase
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Translation\Translator;
 
+/**
+ * @group legacy
+ */
 final class MaybeRemoveTranslatedViewsPassTest extends AbstractCompilerPassTestCase
 {
     private const TRANSLATED_VIEWS = [

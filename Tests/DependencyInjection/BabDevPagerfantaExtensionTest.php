@@ -220,6 +220,9 @@ final class BabDevPagerfantaExtensionTest extends AbstractExtensionTestCase
         $this->assertContainerBuilderHasService('pagerfanta.serializer.normalizer');
     }
 
+    /**
+     * @group legacy
+     */
     public function testContainerIsLoadedWhenBundleIsConfiguredWithCustomExceptionStrategies(): void
     {
         $this->container->setParameter(

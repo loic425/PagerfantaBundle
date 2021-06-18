@@ -61,6 +61,9 @@ final class ConfigurationTest extends TestCase
         );
     }
 
+    /**
+     * @group legacy
+     */
     public function testConfigWithDeprecatedExceptionsStrategy(): void
     {
         $extraConfig = [

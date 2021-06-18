@@ -5,6 +5,9 @@ namespace BabDev\PagerfantaBundle\Tests\View;
 use BabDev\PagerfantaBundle\View\TwitterBootstrap3TranslatedView;
 use Pagerfanta\View\TwitterBootstrap3View;
 
+/**
+ * @group legacy
+ */
 final class TwitterBootstrap3TranslatedViewTest extends TwitterBootstrapTranslatedViewTest
 {
     protected function decoratedViewClass(): string
