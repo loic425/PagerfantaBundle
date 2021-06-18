@@ -42,6 +42,10 @@ final class RequestAwareRouteGeneratorFactory implements RouteGeneratorFactoryIn
         if (null === $options['routeName']) {
             $request = $this->getRequest();
 
+            if (null === $request) {
+                throw new RuntimeException('The request aware route generator can not be used when there is not an active request.');
+            }
+
             if (null !== $this->requestStack->getParentRequest()) {
                 throw new RuntimeException('The request aware route generator can not guess the route when used in a sub-request, pass the "routeName" option to use this generator.');
             }

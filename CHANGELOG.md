@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.10.2 (????-??-??)
+
+- Throw exception in the route generator factory if there is not an active request
+
 ## 2.10.1 (2021-06-09)
 
 - [#36](https://github.com/BabDev/PagerfantaBundle/pull/36) Items not correctly serialized when using `symfony/serializer` (Fixes [#35](https://github.com/BabDev/PagerfantaBundle/issues/35))

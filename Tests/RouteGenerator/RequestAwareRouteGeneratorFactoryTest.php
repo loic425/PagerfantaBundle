@@ -3,6 +3,7 @@
 namespace BabDev\PagerfantaBundle\Tests\RouteGenerator;
 
 use BabDev\PagerfantaBundle\RouteGenerator\RequestAwareRouteGeneratorFactory;
+use Pagerfanta\Exception\RuntimeException;
 use Pagerfanta\RouteGenerator\RouteGeneratorInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -78,7 +79,7 @@ final class RequestAwareRouteGeneratorFactoryTest extends TestCase
 
     public function testTheGeneratorIsNotCreatedWhenARouteNameIsNotGivenDuringASubrequest(): void
     {
-        $this->expectException(\RuntimeException::class);
+        $this->expectException(RuntimeException::class);
         $this->expectExceptionMessage('The request aware route generator can not guess the route when used in a sub-request, pass the "routeName" option to use this generator.');
 
         $masterRequest = Request::create('/');
@@ -89,6 +90,14 @@ final class RequestAwareRouteGeneratorFactoryTest extends TestCase
 
         $this->requestStack->push($masterRequest);
         $this->requestStack->push($subRequest);
+
+        $this->factory->create();
+    }
+
+    public function testTheGeneratorIsNotCreatedWhenARequestIsNotActive(): void
+    {
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('The request aware route generator can not be used when there is not an active request.');
 
         $this->factory->create();
     }
