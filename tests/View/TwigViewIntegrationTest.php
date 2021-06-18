@@ -31,8 +31,6 @@ use Twig\RuntimeLoader\RuntimeLoaderInterface;
 
 /**
  * Integration tests which simulates a real Twig environment to validate templates are correctly generated.
- *
- * @group legacy
  */
 final class TwigViewIntegrationTest extends TestCase
 {

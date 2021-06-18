@@ -39,6 +39,9 @@ final class RouterAwareRouteGeneratorTest extends TestCase
         );
     }
 
+    /**
+     * @group legacy
+     */
     public function testARouteIsGeneratedWithEmptyOptions(): void
     {
         $generator = new RouterAwareRouteGenerator($this->createRouter(), ['routeName' => 'pagerfanta_view']);
@@ -57,6 +60,9 @@ final class RouterAwareRouteGeneratorTest extends TestCase
         self::assertSame('/pagerfanta-view', $generator(1));
     }
 
+    /**
+     * @group legacy
+     */
     public function testARouteIsGeneratedWithACustomPageParameter(): void
     {
         $generator = new RouterAwareRouteGenerator(
@@ -78,6 +84,9 @@ final class RouterAwareRouteGeneratorTest extends TestCase
         self::assertSame('/pagerfanta-view?hello=world&page=1', $generator(1));
     }
 
+    /**
+     * @group legacy
+     */
     public function testARouteIsGeneratedWithAnAbsoluteUrl(): void
     {
         $generator = new RouterAwareRouteGenerator(

@@ -74,6 +74,9 @@ final class RequestAwareRouteGeneratorFactoryTest extends TestCase
         );
     }
 
+    /**
+     * @group legacy
+     */
     public function testTheGeneratorIsNotCreatedWhenARouteNameIsNotGivenDuringASubrequest(): void
     {
         $this->expectException(RuntimeException::class);
@@ -91,6 +94,14 @@ final class RequestAwareRouteGeneratorFactoryTest extends TestCase
         $this->createFactory(false)->create();
     }
 
+    public function testTheGeneratorIsNotCreatedWhenARequestIsNotActive(): void
+    {
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('The request aware route generator can not be used when there is not an active request.');
+
+        $this->createFactory(true)->create();
+    }
+
     private function createFactory(bool $withPropertyAccessor): RequestAwareRouteGeneratorFactory
     {
         return new RequestAwareRouteGeneratorFactory(
@@ -98,13 +109,5 @@ final class RequestAwareRouteGeneratorFactoryTest extends TestCase
             $this->requestStack,
             $withPropertyAccessor ? $this->propertyAccessor : null
         );
-    }
-
-    public function testTheGeneratorIsNotCreatedWhenARequestIsNotActive(): void
-    {
-        $this->expectException(RuntimeException::class);
-        $this->expectExceptionMessage('The request aware route generator can not be used when there is not an active request.');
-
-        $this->factory->create();
     }
 }
