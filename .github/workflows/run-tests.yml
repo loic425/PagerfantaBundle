@@ -30,6 +30,11 @@ jobs:
             composer-flags: ''
             can-fail: true
             with-twig: true
+          - php: 8.1
+            symfony: 5.3.*
+            composer-flags: '--ignore-platform-req=php'
+            can-fail: true
+            with-twig: true
 
     name: "PHP ${{ matrix.php }}${{ matrix.with-twig == false && ' - Without Twig' || '' }} - Symfony ${{ matrix.symfony }}${{ matrix.composer-flags != '' && format(' - Composer {0}', matrix.composer-flags) || '' }}"
 
