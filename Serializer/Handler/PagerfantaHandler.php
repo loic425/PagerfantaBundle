@@ -23,7 +23,9 @@ final class PagerfantaHandler implements SubscribingHandlerInterface
     }
 
     /**
-     * @return array|\ArrayObject
+     * @param Pagerfanta<mixed> $pagerfanta
+     *
+     * @return array<string, mixed>|\ArrayObject<string, mixed>
      */
     public function serializeToJson(SerializationVisitorInterface $visitor, Pagerfanta $pagerfanta, array $type, SerializationContext $context)
     {

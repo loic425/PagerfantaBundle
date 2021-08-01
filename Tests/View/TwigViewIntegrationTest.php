@@ -83,6 +83,9 @@ final class TwigViewIntegrationTest extends TestCase
         } while (null !== $request);
     }
 
+    /**
+     * @return Pagerfanta<int>
+     */
     private function createPagerfanta(): Pagerfanta
     {
         return new Pagerfanta(new FixedAdapter(100, range(1, 100)));

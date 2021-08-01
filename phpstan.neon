@@ -1,14 +1,23 @@
 parameters:
-  level: 7
+  level: 8
   paths:
     - %currentWorkingDirectory%/DependencyInjection
     - %currentWorkingDirectory%/EventListener
     - %currentWorkingDirectory%/RouteGenerator
+    - %currentWorkingDirectory%/Serializer
     - %currentWorkingDirectory%/Tests
     - %currentWorkingDirectory%/Twig
     - %currentWorkingDirectory%/View
     - %currentWorkingDirectory%/BabDevPagerfantaBundle.php
   ignoreErrors:
+    -
+      message: '/Parameter #1 \$configuration of method Symfony\\Component\\DependencyInjection\\Extension\\Extension::processConfiguration\(\) expects Symfony\\Component\\Config\\Definition\\ConfigurationInterface, Symfony\\Component\\Config\\Definition\\ConfigurationInterface\|null given\./'
+      path: %currentWorkingDirectory%/DependencyInjection/BabDevPagerfantaExtension.php
+
+    -
+      message: '/Call to an undefined method Pagerfanta\\PagerfantaInterface::getIterator\(\)\./'
+      path: %currentWorkingDirectory%/Serializer/Normalizer/PagerfantaNormalizer.php
+
     # Class conditionally used
     -
       message: '/Class Symfony\\Component\\HttpKernel\\Event\\GetResponseForExceptionEvent not found\./'
@@ -51,10 +60,6 @@ parameters:
       message: '/Call to method trans\(\) on an unknown class Symfony\\Component\\Translation\\TranslatorInterface\./'
       path: %currentWorkingDirectory%/View/TranslatedView.php
 
-    -
-      message: '/Call to method expects\(\) on an unknown class Symfony\\Component\\Translation\\TranslatorInterface\./'
-      path: %currentWorkingDirectory%/Tests/View/TranslatedViewTestCase.php
-
     # Unexpected typehint due to compatibility layer
     - '/Parameter \$event of method BabDev\\PagerfantaBundle\\EventListener\\ConvertNotValidCurrentPageToNotFoundListener::onKernelException\(\) has invalid typehint type Symfony\\Component\\HttpKernel\\Event\\GetResponseForExceptionEvent\./'
     - '/Parameter \$event of method BabDev\\PagerfantaBundle\\EventListener\\ConvertNotValidMaxPerPageToNotFoundListener::onKernelException\(\) has invalid typehint type Symfony\\Component\\HttpKernel\\Event\\GetResponseForExceptionEvent\./'
@@ -73,27 +78,22 @@ parameters:
     - '/Parameter #1 \$event of method BabDev\\PagerfantaBundle\\EventListener\\ConvertNotValidCurrentPageToNotFoundListener::onKernelException\(\) expects Symfony\\Component\\HttpKernel\\Event\\ExceptionEvent\|Symfony\\Component\\HttpKernel\\Event\\GetResponseForExceptionEvent, Symfony\\Component\\EventDispatcher\\GenericEvent given\./'
     - '/Parameter #1 \$event of method BabDev\\PagerfantaBundle\\EventListener\\ConvertNotValidMaxPerPageToNotFoundListener::onKernelException\(\) expects Symfony\\Component\\HttpKernel\\Event\\ExceptionEvent\|Symfony\\Component\\HttpKernel\\Event\\GetResponseForExceptionEvent, Symfony\\Component\\EventDispatcher\\GenericEvent given\./'
 
-    # Untyped parameter for Twig version compatibility
-    - '/Method class@anonymous\/Tests\/View\/TwigViewIntegrationTest.php:381::load\(\) has parameter \$class with no typehint specified\./'
-
     # Ignore untyped parameters and returns in views
     - '/Method BabDev\\PagerfantaBundle\\View\\(.*) has parameter (.*) with no typehint specified\./'
     - '/Method BabDev\\PagerfantaBundle\\View\\(.*) has no return typehint specified\./'
 
     # Ignore unchecked error returns
     -
-      message: '/Parameter #1 \$path of function dirname expects string, string\|false given\./'
-      path: %currentWorkingDirectory%/DependencyInjection/CompilerPass/AddPackageTemplatePathToTwigPass.php
-
-    -
-      message: '/Parameter #1 \$path of function dirname expects string, string\|false given\./'
-      path: %currentWorkingDirectory%/Tests/DependencyInjection/CompilerPass/AddPackageTemplatePathToTwigPassTest.php
+      message: '/Method BabDev\\PagerfantaBundle\\Tests\\Twig\\PagerfantaRuntimeTest::removeWhitespacesBetweenTags\(\) should return string but returns string\|null\./'
+      path: %currentWorkingDirectory%/Tests/Twig/PagerfantaRuntimeTest.php
 
     -
       message: '/Parameter #1 \$path of function dirname expects string, string\|false given\./'
       path: %currentWorkingDirectory%/Tests/View/TwigViewIntegrationTest.php
 
-  reportUnmatchedIgnoredErrors: false
+    -
+      message: '/Method BabDev\\PagerfantaBundle\\Tests\\View\\TwigViewIntegrationTest::removeWhitespacesBetweenTags\(\) should return string but returns string\|null\./'
+      path: %currentWorkingDirectory%/Tests/View/TwigViewIntegrationTest.php
+
   checkMissingIterableValueType: false
-  checkGenericClassInNonGenericObjectType: false
   treatPhpDocTypesAsCertain: false

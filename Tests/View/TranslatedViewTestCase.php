@@ -27,7 +27,7 @@ abstract class TranslatedViewTestCase extends TestCase
     private $translatedView;
 
     /**
-     * @var MockObject|Pagerfanta
+     * @var MockObject&Pagerfanta<mixed>
      */
     private $pagerfanta;
 
@@ -132,7 +132,7 @@ abstract class TranslatedViewTestCase extends TestCase
     }
 
     /**
-     * @return MockObject|Pagerfanta
+     * @return MockObject&Pagerfanta<mixed>
      */
     private function createPagerfantaMock(): MockObject
     {
