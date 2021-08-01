@@ -10,6 +10,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
@@ -29,7 +30,7 @@ final class BabDevPagerfantaExtension extends Extension implements PrependExtens
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../../config'));
         $loader->load('pagerfanta.xml');
 
-        /** @var array<string, class-string> $bundles */
+        /** @var array<string, class-string<BundleInterface>> $bundles */
         $bundles = $container->getParameter('kernel.bundles');
 
         if (isset($bundles['TwigBundle']) && class_exists(PagerfantaExtension::class)) {
