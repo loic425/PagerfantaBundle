@@ -1,11 +1,12 @@
 parameters:
-  level: 7
+  level: 8
   paths:
     - %currentWorkingDirectory%/src
     - %currentWorkingDirectory%/tests
   ignoreErrors:
-    # Untyped parameter for Twig version compatibility
-    - '/Method class@anonymous\/tests\/View\/TwigViewIntegrationTest.php:380::load\(\) has parameter \$class with no typehint specified\./'
+    -
+      message: '/Parameter #1 \$configuration of method Symfony\\Component\\DependencyInjection\\Extension\\Extension::processConfiguration\(\) expects Symfony\\Component\\Config\\Definition\\ConfigurationInterface, Symfony\\Component\\Config\\Definition\\ConfigurationInterface\|null given\./'
+      path: %currentWorkingDirectory%/src/DependencyInjection/BabDevPagerfantaExtension.php
 
     # Tests error handling for untyped argument
     -
@@ -15,21 +16,11 @@ parameters:
     # Ignore unchecked error returns
     -
       message: '/Parameter #1 \$path of function dirname expects string, string\|false given\./'
-      path: %currentWorkingDirectory%/src/DependencyInjection/CompilerPass/AddPackageTemplatePathToTwigPass.php
-
-    -
-      message: '/Parameter #1 \$path of function dirname expects string, string\|false given\./'
-      path: %currentWorkingDirectory%/tests/DependencyInjection/CompilerPass/AddPackageTemplatePathToTwigPassTest.php
-
-    -
-      message: '/Parameter #1 \$path of function dirname expects string, string\|false given\./'
       path: %currentWorkingDirectory%/tests/View/TwigViewIntegrationTest.php
 
     -
-      message: '/Call to an undefined method Symfony\\Component\\Config\\Definition\\Builder\\NodeParentInterface::scalarNode\(\)\./'
-      path: %currentWorkingDirectory%/src/DependencyInjection/Configuration.php
+      message: '/Method BabDev\\PagerfantaBundle\\Tests\\View\\TwigViewIntegrationTest::removeWhitespacesBetweenTags\(\) should return string but returns string\|null\./'
+      path: %currentWorkingDirectory%/tests/View/TwigViewIntegrationTest.php
 
-  reportUnmatchedIgnoredErrors: false
   checkMissingIterableValueType: false
-  checkGenericClassInNonGenericObjectType: false
   treatPhpDocTypesAsCertain: false

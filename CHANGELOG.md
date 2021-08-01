@@ -1,7 +1,8 @@
 # Changelog
 
-## 3.2.2 (????-??-??)
+## 3.3.0 (????-??-??)
 
+- Drop support for Symfony 5.2, it is no longer maintained
 - Throw exception in the route generator factory if there is not an active request
 
 ## 3.2.1 (2021-06-09)

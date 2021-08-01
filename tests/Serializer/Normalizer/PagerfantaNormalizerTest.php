@@ -51,6 +51,8 @@ final class PagerfantaNormalizerTest extends TestCase
     }
 
     /**
+     * @param mixed $data
+     *
      * @dataProvider dataSupportsNormalization
      */
     public function testSupportsNormalization($data, bool $supported): void
