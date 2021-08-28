@@ -46,7 +46,7 @@ The `pager` block is designed to hold the structure of the pager and generally s
 When rendering a Twig view, the following options are passed into the template for use. Note that for the most part, only the `pager` block will use these variables.
 
 - `pagerfanta` - The `Pagerfanta\Pagerfanta` object
-- `route_generator` - A `BabDev\PagerfantaBundle\RouteGenerator\RouteGeneratorDecorator` object which decorates the route generator created by the `pagerfanta()` Twig function
+- `route_generator` - A `Pagerfanta\RouteGenerator\RouteGeneratorDecorator` object which decorates the route generator created by the `pagerfanta()` Twig function
     - The decorator is required because Twig does not allow direct execution of Closures within templates
 - `options` - The options array passed through the `pagerfanta()` Twig function
 - `start_page` - The calculated start page for the list of items displayed between separators, this is based on the `proximity` option and the total number of pages
@@ -65,6 +65,6 @@ If you want to create your own Twig template, the quickest and easiest way to do
 
 The bundle comes with basic CSS for the default view so you can get started quickly.
 
-```html
+```twig
 <link rel="stylesheet" href="{{ asset('bundles/babdevpagerfanta/css/pagerfanta.css') }}">
 ```
